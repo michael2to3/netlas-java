@@ -14,6 +14,9 @@ public class Netlas {
   private final boolean debug;
   private final OkHttpClient client;
 
+  public Netlas(String apiKey) {
+    this(apiKey, "https://app.netlas.io", false);
+  }
   public Netlas(String apiKey, String apiBase, boolean debug) {
     this.apiKey = apiKey;
     this.apiBase = apiBase.endsWith("/") ? apiBase.substring(0, apiBase.length() - 1) : apiBase;
