@@ -35,49 +35,37 @@ public class Netlas {
     this.client = builder.build();
   }
 
-  private String buildEndpointUrl(String endpoint) {
-    return apiBase + endpoint;
+  public String getApiKey() {
+    return apiKey;
   }
 
-  private Request buildRequest(HttpUrl.Builder urlBuilder) {
-    HttpUrl url = urlBuilder.build();
-    Request.Builder requestBuilder = new Request.Builder()
-        .url(url)
-        .header("Content-Type", "application/json")
-        .header("X-Api-Key", apiKey)
-        .get();
-    return requestBuilder.build();
+  public String getApiBase() {
+    return apiBase;
   }
 
-  private Response sendRequest(Request request) throws IOException, APIException {
-    Response response = client.newCall(request).execute();
-    if (!response.isSuccessful()) {
-      throw new APIException(response.code() + ": " + response.message());
-    }
-    return response;
+  public boolean isDebug() {
+    return debug;
   }
 
-  public String getRequest(HttpUrl.Builder urlBuilder) throws APIException {
-    try {
-      Request request = buildRequest(urlBuilder);
-      Response response = sendRequest(request);
-      return response.body().string();
-    } catch (IOException e) {
-      throw new APIException("Error sending HTTP request", e);
-    }
+  public int getConnectionTimeout() {
+    return connectionTimeout;
   }
 
-  public byte[] getStreamRequest(HttpUrl.Builder urlBuilder) throws APIException {
-    try {
-      Request request = buildRequest(urlBuilder);
-      Response response = sendRequest(request);
-      return response.body().bytes();
-    } catch (IOException e) {
-      throw new APIException("Error sending HTTP request", e);
-    }
+  public OkHttpClient getClient() {
+    return client;
   }
 
-  public String search(String query, String datatype, int page, String indices, String fields, boolean excludeFields)
+  public JsonNode search(String query, String datatype, int page, String indices, String fields,
+      boolean excludeFields)
+      throws APIException, JsonMappingException, JsonProcessingException {
+    String response = searchAsString(query, datatype, page, indices, fields, excludeFields);
+    ObjectMapper mapper = new ObjectMapper();
+    JsonNode root = mapper.readTree(response);
+    return root;
+  }
+
+  public String searchAsString(String query, String datatype, int page, String indices, String fields,
+      boolean excludeFields)
       throws APIException {
     String endpoint = "/api/responses/";
     if (datatype.equals("cert")) {
@@ -101,6 +89,48 @@ public class Netlas {
     }
     String responseBody = getRequest(urlBuilder);
     return responseBody;
+  }
+
+  private String getRequest(HttpUrl.Builder urlBuilder) throws APIException {
+    try {
+      Request request = buildRequest(urlBuilder);
+      Response response = sendRequest(request);
+      return response.body().string();
+    } catch (IOException e) {
+      throw new APIException("Error sending HTTP request", e);
+    }
+  }
+
+  private byte[] getStreamRequest(HttpUrl.Builder urlBuilder) throws APIException {
+    try {
+      Request request = buildRequest(urlBuilder);
+      Response response = sendRequest(request);
+      return response.body().bytes();
+    } catch (IOException e) {
+      throw new APIException("Error sending HTTP request", e);
+    }
+  }
+
+  private String buildEndpointUrl(String endpoint) {
+    return apiBase + endpoint;
+  }
+
+  private Request buildRequest(HttpUrl.Builder urlBuilder) {
+    HttpUrl url = urlBuilder.build();
+    Request.Builder requestBuilder = new Request.Builder()
+        .url(url)
+        .header("Content-Type", "application/json")
+        .header("X-Api-Key", apiKey)
+        .get();
+    return requestBuilder.build();
+  }
+
+  private Response sendRequest(Request request) throws IOException, APIException {
+    Response response = client.newCall(request).execute();
+    if (!response.isSuccessful()) {
+      throw new APIException(response.code() + ": " + response.message());
+    }
+    return response;
   }
 
 }
