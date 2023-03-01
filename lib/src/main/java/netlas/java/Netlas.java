@@ -17,6 +17,7 @@ public class Netlas {
   public Netlas(String apiKey) {
     this(apiKey, "https://app.netlas.io", false);
   }
+
   public Netlas(String apiKey, String apiBase, boolean debug) {
     this.apiKey = apiKey;
     this.apiBase = apiBase.endsWith("/") ? apiBase.substring(0, apiBase.length() - 1) : apiBase;
@@ -28,10 +29,10 @@ public class Netlas {
     return apiBase + endpoint;
   }
 
-  private Request buildRequest(String endpoint, HttpUrl.Builder urlBuilder) {
+  private Request buildRequest(HttpUrl.Builder urlBuilder) {
     HttpUrl url = urlBuilder.build();
     Request.Builder requestBuilder = new Request.Builder()
-        .url(buildEndpointUrl(endpoint))
+        .url(url)
         .header("Content-Type", "application/json")
         .header("X-Api-Key", apiKey)
         .get();
@@ -46,9 +47,9 @@ public class Netlas {
     return response;
   }
 
-  public String getRequest(String endpoint, HttpUrl.Builder urlBuilder) throws APIException {
+  public String getRequest(HttpUrl.Builder urlBuilder) throws APIException {
     try {
-      Request request = buildRequest(endpoint, urlBuilder);
+      Request request = buildRequest(urlBuilder);
       Response response = sendRequest(request);
       return response.body().string();
     } catch (IOException e) {
@@ -56,9 +57,9 @@ public class Netlas {
     }
   }
 
-  public byte[] getStreamRequest(String endpoint, HttpUrl.Builder urlBuilder) throws APIException {
+  public byte[] getStreamRequest(HttpUrl.Builder urlBuilder) throws APIException {
     try {
-      Request request = buildRequest(endpoint, urlBuilder);
+      Request request = buildRequest(urlBuilder);
       Response response = sendRequest(request);
       return response.body().bytes();
     } catch (IOException e) {
@@ -88,7 +89,7 @@ public class Netlas {
     if (excludeFields) {
       urlBuilder.addQueryParameter("exclude_fields", "true");
     }
-    String responseBody = getRequest(endpoint, urlBuilder);
+    String responseBody = getRequest(urlBuilder);
     return responseBody;
   }
 
