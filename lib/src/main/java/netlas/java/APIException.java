@@ -16,6 +16,9 @@ public class APIException extends RuntimeException {
 
   @Override
   public String getMessage() {
+    if (details != null) {
+      return message + ": " + details;
+    }
     return message;
   }
 
