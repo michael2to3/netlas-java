@@ -9,6 +9,7 @@
 plugins {
     // Apply the java-library plugin for API and implementation separation.
     id 'java-library'
+    id 'maven-publish'
 }
 
 repositories {
@@ -37,4 +38,21 @@ dependencies {
 tasks.named('test') {
     // Use JUnit Platform for unit tests.
     useJUnitPlatform()
+}
+version = '0.0.1-ALPHA'
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            from components.java
+        }
+    }
+    repositories {
+        maven {
+            url 'https://your-maven-repo-url'
+            credentials {
+                username = 'your-username'
+                password = 'your-password'
+            }
+        }
+    }
 }

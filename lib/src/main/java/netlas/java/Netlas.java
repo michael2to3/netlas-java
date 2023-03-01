@@ -14,11 +14,11 @@ import okhttp3.Request;
 import okhttp3.Response;
 
 public class Netlas {
-
   private final String apiKey;
   private final String apiBase;
   private final boolean debug;
   private final int connectionTimeout;
+
   private final OkHttpClient client;
 
   public Netlas(String apiKey) {

@@ -50,12 +50,6 @@ String response = netlas.search("8.8.8.8", "whois-ip", 1, null, null, false);
 String response = netlas.search("example.com", "whois-domain", 1, null, null, false);
 ```
 
-You can also use the `getStreamRequest` method to retrieve the response as a byte array:
-
-```java
-byte[] response = netlas.getStreamRequest("example_endpoint", null);
-```
-
 ## Testing
 
 This library includes unit tests using JUnit Jupiter. You can run the tests by executing the following Gradle command:
