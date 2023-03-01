@@ -1,6 +1,12 @@
 package netlas.java;
 
 import java.io.IOException;
+import java.util.concurrent.TimeUnit;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import okhttp3.HttpUrl;
 import okhttp3.OkHttpClient;
@@ -12,17 +18,21 @@ public class Netlas {
   private final String apiKey;
   private final String apiBase;
   private final boolean debug;
+  private final int connectionTimeout;
   private final OkHttpClient client;
 
   public Netlas(String apiKey) {
-    this(apiKey, "https://app.netlas.io", false);
+    this(apiKey, "https://app.netlas.io", false, 120);
   }
 
-  public Netlas(String apiKey, String apiBase, boolean debug) {
+  public Netlas(String apiKey, String apiBase, boolean debug, int connectionTimeout) {
     this.apiKey = apiKey;
     this.apiBase = apiBase.endsWith("/") ? apiBase.substring(0, apiBase.length() - 1) : apiBase;
     this.debug = debug;
-    this.client = new OkHttpClient.Builder().build();
+    this.connectionTimeout = connectionTimeout;
+    var builder = new OkHttpClient.Builder().writeTimeout(this.connectionTimeout, TimeUnit.SECONDS)
+        .readTimeout(this.connectionTimeout, TimeUnit.SECONDS).connectTimeout(this.connectionTimeout, TimeUnit.SECONDS);
+    this.client = builder.build();
   }
 
   private String buildEndpointUrl(String endpoint) {
