@@ -1,6 +1,13 @@
 # Netlas java
 Netlas.io Java library
 
+[![GitHub license](https://img.shields.io/github/license/michael2to3/netlas-java)](https://github.com/michael2to3/netlas-java/blob/master/LICENSE)
+[![GitHub release](https://img.shields.io/github/release/michael2to3/netlas-java.svg)](https://GitHub.com/michael2to3/netlas-java/releases/)
+[![GitHub tag](https://img.shields.io/github/tag/michael2to3/netlas-java.svg)](https://GitHub.com/michael2to3/netlas-java/tags/)
+[![GitHub issues](https://img.shields.io/github/issues/michael2to3/netlas-java.svg)](https://GitHub.com/michael2to3/netlas-java/issues/)
+[![GitHub pull-requests](https://img.shields.io/github/issues-pr/michael2to3/netlas-java.svg)](https://GitHub.com/michael2to3/netlas-java/pull/)
+![Build Status](https://img.shields.io/github/actions/workflow/status/michael2to3/netlas-java/build.yml?branch=main)
+
 This Java library is designed to interact with the Netlas API, allowing you to easily search for certificates, domains, and WHOIS information. It requires an API key, and makes use of the following dependencies:
 
 - [Gradle](https://gradle.org/) - for building and managing the project
