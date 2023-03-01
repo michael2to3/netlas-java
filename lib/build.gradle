@@ -39,20 +39,9 @@ tasks.named('test') {
     // Use JUnit Platform for unit tests.
     useJUnitPlatform()
 }
-version = '0.0.1-ALPHA'
-publishing {
-    publications {
-        mavenJava(MavenPublication) {
-            from components.java
-        }
-    }
+
+allprojects {
     repositories {
-        maven {
-            url 'https://your-maven-repo-url'
-            credentials {
-                username = 'your-username'
-                password = 'your-password'
-            }
-        }
+        maven { url 'https://jitpack.io' }
     }
 }
