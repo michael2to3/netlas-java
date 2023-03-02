@@ -26,8 +26,6 @@ tasks.named('test') {
     useJUnitPlatform()
 }
 
-version '0.0.2-SNAPSHOT'
-
 publishing {
     repositories {
         maven {
@@ -40,8 +38,10 @@ publishing {
         }
     }
     publications {
-        gpr(MavenPublication) {
-            from(components.java)
-        }
+        groupId = 'com.michael2to3'
+        artifactId = 'netlas'
+        version = '0.0.21-SNAPSHOT'
+
+        from components.java
     }
 }
