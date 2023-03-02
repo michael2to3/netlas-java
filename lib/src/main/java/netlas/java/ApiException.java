@@ -3,10 +3,8 @@ package netlas.java;
 /**
  * An exception that represents an error response from the Netlas API.
  */
-public class APIException extends RuntimeException {
-  /** Message the message to display */
+public class ApiException extends RuntimeException {
   private final String message;
-  /** Details the cause of the exception */
   private final Exception details;
 
   /**
@@ -15,7 +13,7 @@ public class APIException extends RuntimeException {
    * @param message the message to display
    * @param details the cause of the exception
    */
-  public APIException(String message, Exception details) {
+  public ApiException(String message, Exception details) {
     this.message = message;
     this.details = details;
   }
@@ -25,7 +23,7 @@ public class APIException extends RuntimeException {
    *
    * @param message the message to display
    */
-  public APIException(String message) {
+  public ApiException(String message) {
     this.message = message;
     this.details = null;
   }

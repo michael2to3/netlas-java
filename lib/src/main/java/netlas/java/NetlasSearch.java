@@ -15,27 +15,27 @@ import javax.net.ssl.HttpsURLConnection;
  * NetlasSearch class provides a simple interface for searching Netlas API.
  */
 public class NetlasSearch {
-  private String api_key;
+  private String apiKey;
   private String apibase;
   private boolean debug;
-  private boolean verify_ssl;
+  private boolean verifySsl;
   private Map<String, String> headers;
 
   /**
    * Constructor for NetlasSearch.
    *
-   * @param api_key The Netlas API key to be used for making requests.
+   * @param apiKey The Netlas API key to be used for making requests.
    * @param apibase The base URL of the Netlas API.
    * @param debug   Whether debug mode is enabled.
    */
-  public NetlasSearch(String api_key, String apibase, boolean debug) {
-    this.api_key = api_key;
+  public NetlasSearch(String apiKey, String apibase, boolean debug) {
+    this.apiKey = apiKey;
     this.apibase = apibase.endsWith("/") ? apibase.substring(0, apibase.length() - 1) : apibase;
     this.debug = debug;
-    this.verify_ssl = this.apibase.equals("https://app.netlas.io");
+    this.verifySsl = this.apibase.equals("https://app.netlas.io");
     this.headers = new HashMap<String, String>();
     this.headers.put("Content-Type", "application/json");
-    this.headers.put("X-Api-Key", this.api_key);
+    this.headers.put("X-Api-Key", this.apiKey);
   }
 
   /**
@@ -46,7 +46,7 @@ public class NetlasSearch {
    * @return A Map containing the response data from the API.
    * @throws IOException If an error occurs while making the request.
    */
-  private Map<String, Object> _request(String endpoint, Map<String, Object> params)
+  private Map<String, Object> request(String endpoint, Map<String, Object> params)
       throws IOException {
     Map<String, Object> ret = new HashMap<String, Object>();
     URL url = new URL(this.apibase + endpoint + "?"
@@ -59,7 +59,7 @@ public class NetlasSearch {
     for (Map.Entry<String, String> entry : this.headers.entrySet()) {
       conn.setRequestProperty(entry.getKey(), entry.getValue());
     }
-    if (this.verify_ssl && conn instanceof HttpsURLConnection) {
+    if (this.verifySsl && conn instanceof HttpsURLConnection) {
       ((HttpsURLConnection) conn)
           .setSSLSocketFactory(HttpsURLConnection.getDefaultSSLSocketFactory());
     }
@@ -69,9 +69,9 @@ public class NetlasSearch {
     }
     MapType type =
         new ObjectMapper().getTypeFactory().constructMapType(Map.class, String.class, Object.class);
-    Map<String, Object> response_data =
+    Map<String, Object> responseData =
         new ObjectMapper().readValue(new InputStreamReader(conn.getInputStream()), type);
-    ret = response_data;
+    ret = responseData;
     return ret;
   }
 
@@ -84,13 +84,13 @@ public class NetlasSearch {
    * @param page           The page of results to retrieve.
    * @param indices        The Netlas indices to search within.
    * @param fields         The specific fields to include in the search results.
-   * @param exclude_fields Whether or not to exclude certain fields from the
+   * @param excludeFields Whether or not to exclude certain fields from the
    *                       search results.
    * @return A Map containing the response data from the Netlas API.
    * @throws IOException If there is an error making the HTTP request.
    */
   public Map<String, Object> search(String query, String datatype, int page, String indices,
-      String fields, boolean exclude_fields) throws IOException {
+      String fields, boolean excludeFields) throws IOException {
     String endpoint = "/api/responses/";
     if (datatype.equals("cert")) {
       endpoint = "/api/certs/";
@@ -110,9 +110,9 @@ public class NetlasSearch {
     if (fields != null) {
       params.put("fields", fields);
     }
-    if (exclude_fields) {
+    if (excludeFields) {
       params.put("exclude_fields", "1");
     }
-    return _request(endpoint, params);
+    return request(endpoint, params);
   }
 }

@@ -107,14 +107,14 @@ public class Netlas {
    * @param excludeFields Whether to exclude fields from the search results
    *                      (optional).
    * @return The search results as a JsonNode.
-   * @throws APIException            If an error occurs while making the request.
+   * @throws ApiException            If an error occurs while making the request.
    * @throws JsonMappingException    If an error occurs while parsing the
    *                                 response.
    * @throws JsonProcessingException If an error occurs while parsing the
    *                                 response.
    */
   public JsonNode search(String query, String datatype, int page, String indices, String fields,
-      boolean excludeFields) throws APIException, JsonMappingException, JsonProcessingException {
+      boolean excludeFields) throws ApiException, JsonMappingException, JsonProcessingException {
     String response = searchAsString(query, datatype, page, indices, fields, excludeFields);
     ObjectMapper mapper = new ObjectMapper();
     JsonNode root = mapper.readTree(response);
@@ -132,10 +132,10 @@ public class Netlas {
    * @param excludeFields Whether to exclude fields from the search results
    *                      (optional).
    * @return The search results as a string.
-   * @throws APIException If an error occurs while making the request.
+   * @throws ApiException If an error occurs while making the request.
    */
   public String searchAsString(String query, String datatype, int page, String indices,
-      String fields, boolean excludeFields) throws APIException {
+      String fields, boolean excludeFields) throws ApiException {
     String endpoint = "/api/responses/";
     if (datatype.equals("cert")) {
       endpoint = "/api/certs/";
@@ -161,23 +161,23 @@ public class Netlas {
     return responseBody;
   }
 
-  private String getRequest(HttpUrl.Builder urlBuilder) throws APIException {
+  private String getRequest(HttpUrl.Builder urlBuilder) throws ApiException {
     try {
       Request request = buildRequest(urlBuilder);
       Response response = sendRequest(request);
       return response.body().string();
     } catch (IOException e) {
-      throw new APIException("Error sending HTTP request", e);
+      throw new ApiException("Error sending HTTP request", e);
     }
   }
 
-  private byte[] getStreamRequest(HttpUrl.Builder urlBuilder) throws APIException {
+  private byte[] getStreamRequest(HttpUrl.Builder urlBuilder) throws ApiException {
     try {
       Request request = buildRequest(urlBuilder);
       Response response = sendRequest(request);
       return response.body().bytes();
     } catch (IOException e) {
-      throw new APIException("Error sending HTTP request", e);
+      throw new ApiException("Error sending HTTP request", e);
     }
   }
 
@@ -195,10 +195,10 @@ public class Netlas {
     return requestBuilder.build();
   }
 
-  private Response sendRequest(Request request) throws IOException, APIException {
+  private Response sendRequest(Request request) throws IOException, ApiException {
     Response response = client.newCall(request).execute();
     if (!response.isSuccessful()) {
-      throw new APIException(response.code() + ": " + response.message());
+      throw new ApiException(response.code() + ": " + response.message());
     }
     return response;
   }

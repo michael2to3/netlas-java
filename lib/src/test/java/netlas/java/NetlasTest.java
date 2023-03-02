@@ -13,18 +13,18 @@ import org.junit.jupiter.params.provider.CsvSource;
 
 class NetlasTest {
   private Netlas netlas;
-  final private String API_KEY = System.getenv("API_KEY");
+  private final String apiKey = System.getenv("API_KEY");
 
   @BeforeEach
   void setUp() {
-    assertNotNull(API_KEY);
-    assertNotEquals(0, API_KEY.length());
-    netlas = new Netlas(API_KEY);
+    assertNotNull(apiKey);
+    assertNotEquals(0, apiKey.length());
+    netlas = new Netlas(apiKey);
   }
 
   @Test
   void testGetApiKey() {
-    assertEquals(API_KEY, netlas.getApiKey());
+    assertEquals(apiKey, netlas.getApiKey());
   }
 
   @Test
@@ -48,10 +48,12 @@ class NetlasTest {
   }
 
   @ParameterizedTest
-  @CsvSource(
-      {"response, port:7001", "cert, certificate.subject.country:US", "domain, mx:mail.google.com"})
-  void
-  testSearch(String dataType, String query) {
+  @CsvSource({
+      "response, port:7001",
+      "cert, certificate.subject.country:US",
+      "domain, mx:mail.google.com"
+  })
+  void testSearch(String dataType, String query) {
     assertDoesNotThrow(() -> netlas.search(query, dataType, 0, null, null, false));
   }
 }
