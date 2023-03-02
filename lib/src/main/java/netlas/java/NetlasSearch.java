@@ -13,6 +13,9 @@ import javax.net.ssl.HttpsURLConnection;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.type.MapType;
 
+/**
+ * NetlasSearch class provides a simple interface for searching Netlas API.
+ */
 public class NetlasSearch {
     private String api_key;
     private String apibase;
@@ -20,6 +23,13 @@ public class NetlasSearch {
     private boolean verify_ssl;
     private Map<String, String> headers;
 
+    /**
+     * Constructor for NetlasSearch.
+     * 
+     * @param api_key The Netlas API key to be used for making requests.
+     * @param apibase The base URL of the Netlas API.
+     * @param debug   Whether debug mode is enabled.
+     */
     public NetlasSearch(String api_key, String apibase, boolean debug) {
         this.api_key = api_key;
         this.apibase = apibase.endsWith("/") ? apibase.substring(0, apibase.length() - 1) : apibase;
@@ -30,6 +40,14 @@ public class NetlasSearch {
         this.headers.put("X-Api-Key", this.api_key);
     }
 
+    /**
+     * Makes an API request to the given endpoint with the given parameters.
+     * 
+     * @param endpoint The API endpoint to make the request to.
+     * @param params   The parameters to include in the request.
+     * @return A Map containing the response data from the API.
+     * @throws IOException If an error occurs while making the request.
+     */
     private Map<String, Object> _request(String endpoint, Map<String, Object> params) throws IOException {
         Map<String, Object> ret = new HashMap<String, Object>();
         URL url = new URL(this.apibase + endpoint + "?" + params.entrySet().stream()
@@ -53,6 +71,20 @@ public class NetlasSearch {
         return ret;
     }
 
+    /**
+     * Sends a search query to the Netlas API and returns the response data as a
+     * Map.
+     *
+     * @param query          The search query to send.
+     * @param datatype       The type of data to search for.
+     * @param page           The page of results to retrieve.
+     * @param indices        The Netlas indices to search within.
+     * @param fields         The specific fields to include in the search results.
+     * @param exclude_fields Whether or not to exclude certain fields from the
+     *                       search results.
+     * @return A Map containing the response data from the Netlas API.
+     * @throws IOException If there is an error making the HTTP request.
+     */
     public Map<String, Object> search(String query, String datatype, int page, String indices, String fields,
             boolean exclude_fields) throws IOException {
         String endpoint = "/api/responses/";
