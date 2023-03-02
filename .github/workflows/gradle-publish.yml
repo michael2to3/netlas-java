@@ -7,9 +7,7 @@
 
 name: Gradle Package
 
-on:
-  release:
-    types: [created]
+on: push
 
 jobs:
   build:
@@ -26,7 +24,7 @@ jobs:
       with:
         java-version: '11'
         distribution: 'temurin'
-        server-id: github # Value of the distributionManagement/repository/id field of the pom.xml
+        server-id: 'netlas-java'
         settings-path: ${{ github.workspace }} # location for the settings.xml file
 
     - name: Build with Gradle
@@ -42,4 +40,4 @@ jobs:
         arguments: publish
       env:
         USERNAME: ${{ github.actor }}
-        TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GITHUB_TOKEN: ${{ secrets.PACKAGE_TOKEN }}

@@ -43,9 +43,21 @@ artifacts {
 
 version '0.0.1-SNAPSHOT'
 
-allprojects {
+publishing {
     repositories {
-        mavenCentral()
-        maven { url 'https://jitpack.io' }
+        maven {
+            name = "netlas-java"
+            url = "https://maven.pkg.github.com/michael2to3/netlas-java"
+            credentials {
+               username = System.getenv("GITHUB_ACTOR")
+               password = System.getenv("GITHUB_TOKEN")
+            }
+        }
     }
+    publications {
+        maven(MavenPublication) {
+            from components.java
+        }
+    }
+    
 }
