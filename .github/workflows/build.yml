@@ -34,3 +34,6 @@ jobs:
 
     - name: Upload coverage reports to Codecov
       uses: codecov/codecov-action@v3
+
+    - name: Google Java Format
+      uses: axel-op/googlejavaformat-action@v3.6.0
