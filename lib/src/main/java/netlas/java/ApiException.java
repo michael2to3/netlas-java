@@ -1,8 +1,6 @@
 package netlas.java;
 
-/**
- * An exception that represents an error response from the Netlas API.
- */
+/** An exception that represents an error response from the Netlas API. */
 public class ApiException extends RuntimeException {
   private final String message;
   private final Exception details;
@@ -29,8 +27,7 @@ public class ApiException extends RuntimeException {
   }
 
   /**
-   * Returns the error message for this exception, including any details if
-   * available.
+   * Returns the error message for this exception, including any details if available.
    *
    * @return the error message
    */

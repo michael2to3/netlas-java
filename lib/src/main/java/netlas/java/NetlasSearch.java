@@ -11,9 +11,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 import javax.net.ssl.HttpsURLConnection;
 
-/**
- * NetlasSearch class provides a simple interface for searching Netlas API.
- */
+/** NetlasSearch class provides a simple interface for searching Netlas API. */
 public class NetlasSearch {
   private String apiKey;
   private String apibase;
@@ -26,7 +24,7 @@ public class NetlasSearch {
    *
    * @param apiKey The Netlas API key to be used for making requests.
    * @param apibase The base URL of the Netlas API.
-   * @param debug   Whether debug mode is enabled.
+   * @param debug Whether debug mode is enabled.
    */
   public NetlasSearch(String apiKey, String apibase, boolean debug) {
     this.apiKey = apiKey;
@@ -42,18 +40,21 @@ public class NetlasSearch {
    * Makes an API request to the given endpoint with the given parameters.
    *
    * @param endpoint The API endpoint to make the request to.
-   * @param params   The parameters to include in the request.
+   * @param params The parameters to include in the request.
    * @return A Map containing the response data from the API.
    * @throws IOException If an error occurs while making the request.
    */
   private Map<String, Object> request(String endpoint, Map<String, Object> params)
       throws IOException {
     Map<String, Object> ret = new HashMap<String, Object>();
-    URL url = new URL(this.apibase + endpoint + "?"
-        + params.entrySet()
-              .stream()
-              .map(e -> e.getKey() + "=" + e.getValue())
-              .collect(Collectors.joining("&")));
+    URL url =
+        new URL(
+            this.apibase
+                + endpoint
+                + "?"
+                + params.entrySet().stream()
+                    .map(e -> e.getKey() + "=" + e.getValue())
+                    .collect(Collectors.joining("&")));
     HttpURLConnection conn = (HttpURLConnection) url.openConnection();
     conn.setRequestMethod("GET");
     for (Map.Entry<String, String> entry : this.headers.entrySet()) {
@@ -76,21 +77,20 @@ public class NetlasSearch {
   }
 
   /**
-   * Sends a search query to the Netlas API and returns the response data as a
-   * Map.
+   * Sends a search query to the Netlas API and returns the response data as a Map.
    *
-   * @param query          The search query to send.
-   * @param datatype       The type of data to search for.
-   * @param page           The page of results to retrieve.
-   * @param indices        The Netlas indices to search within.
-   * @param fields         The specific fields to include in the search results.
-   * @param excludeFields Whether or not to exclude certain fields from the
-   *                       search results.
+   * @param query The search query to send.
+   * @param datatype The type of data to search for.
+   * @param page The page of results to retrieve.
+   * @param indices The Netlas indices to search within.
+   * @param fields The specific fields to include in the search results.
+   * @param excludeFields Whether or not to exclude certain fields from the search results.
    * @return A Map containing the response data from the Netlas API.
    * @throws IOException If there is an error making the HTTP request.
    */
-  public Map<String, Object> search(String query, String datatype, int page, String indices,
-      String fields, boolean excludeFields) throws IOException {
+  public Map<String, Object> search(
+      String query, String datatype, int page, String indices, String fields, boolean excludeFields)
+      throws IOException {
     String endpoint = "/api/responses/";
     if (datatype.equals("cert")) {
       endpoint = "/api/certs/";

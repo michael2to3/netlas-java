@@ -49,9 +49,9 @@ class NetlasTest {
 
   @ParameterizedTest
   @CsvSource({
-      "response, port:7001",
-      "cert, certificate.subject.country:US",
-      "domain, mx:mail.google.com"
+    "response, port:7001",
+    "cert, certificate.subject.country:US",
+    "domain, mx:mail.google.com"
   })
   void testSearch(String dataType, String query) {
     assertDoesNotThrow(() -> netlas.search(query, dataType, 0, null, null, false));

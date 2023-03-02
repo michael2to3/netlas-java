@@ -11,9 +11,7 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 
-/**
- * A class for interacting with the Netlas API.
- */
+/** A class for interacting with the Netlas API. */
 public class Netlas {
   private final String apiKey;
   private final String apiBase;
@@ -34,9 +32,9 @@ public class Netlas {
   /**
    * Constructs a new Netlas instance with the given API key and options.
    *
-   * @param apiKey            The API key to use for requests.
-   * @param apiBase           The base URL for the Netlas API.
-   * @param debug             Whether to enable debug mode.
+   * @param apiKey The API key to use for requests.
+   * @param apiBase The base URL for the Netlas API.
+   * @param debug Whether to enable debug mode.
    * @param connectionTimeout The connection timeout in seconds.
    */
   public Netlas(String apiKey, String apiBase, boolean debug, int connectionTimeout) {
@@ -44,10 +42,11 @@ public class Netlas {
     this.apiBase = apiBase.endsWith("/") ? apiBase.substring(0, apiBase.length() - 1) : apiBase;
     this.debug = debug;
     this.connectionTimeout = connectionTimeout;
-    var builder = new OkHttpClient.Builder()
-                      .writeTimeout(this.connectionTimeout, TimeUnit.SECONDS)
-                      .readTimeout(this.connectionTimeout, TimeUnit.SECONDS)
-                      .connectTimeout(this.connectionTimeout, TimeUnit.SECONDS);
+    var builder =
+        new OkHttpClient.Builder()
+            .writeTimeout(this.connectionTimeout, TimeUnit.SECONDS)
+            .readTimeout(this.connectionTimeout, TimeUnit.SECONDS)
+            .connectTimeout(this.connectionTimeout, TimeUnit.SECONDS);
     this.client = builder.build();
   }
 
@@ -99,22 +98,20 @@ public class Netlas {
   /**
    * Searches the Netlas API and returns the results as a JsonNode.
    *
-   * @param query         The search query.
-   * @param datatype      The type of data to search for (e.g. "cert").
-   * @param page          The page number of the search results.
-   * @param indices       The indices to search in (e.g. "certs_prod").
-   * @param fields        The fields to include in the search results (optional).
-   * @param excludeFields Whether to exclude fields from the search results
-   *                      (optional).
+   * @param query The search query.
+   * @param datatype The type of data to search for (e.g. "cert").
+   * @param page The page number of the search results.
+   * @param indices The indices to search in (e.g. "certs_prod").
+   * @param fields The fields to include in the search results (optional).
+   * @param excludeFields Whether to exclude fields from the search results (optional).
    * @return The search results as a JsonNode.
-   * @throws ApiException            If an error occurs while making the request.
-   * @throws JsonMappingException    If an error occurs while parsing the
-   *                                 response.
-   * @throws JsonProcessingException If an error occurs while parsing the
-   *                                 response.
+   * @throws ApiException If an error occurs while making the request.
+   * @throws JsonMappingException If an error occurs while parsing the response.
+   * @throws JsonProcessingException If an error occurs while parsing the response.
    */
-  public JsonNode search(String query, String datatype, int page, String indices, String fields,
-      boolean excludeFields) throws ApiException, JsonMappingException, JsonProcessingException {
+  public JsonNode search(
+      String query, String datatype, int page, String indices, String fields, boolean excludeFields)
+      throws ApiException, JsonMappingException, JsonProcessingException {
     String response = searchAsString(query, datatype, page, indices, fields, excludeFields);
     ObjectMapper mapper = new ObjectMapper();
     JsonNode root = mapper.readTree(response);
@@ -124,18 +121,18 @@ public class Netlas {
   /**
    * Searches the Netlas API and returns the results as a string.
    *
-   * @param query         The search query.
-   * @param datatype      The type of data to search for (e.g. "cert").
-   * @param page          The page number of the search results.
-   * @param indices       The indices to search in (e.g. "certs_prod").
-   * @param fields        The fields to include in the search results (optional).
-   * @param excludeFields Whether to exclude fields from the search results
-   *                      (optional).
+   * @param query The search query.
+   * @param datatype The type of data to search for (e.g. "cert").
+   * @param page The page number of the search results.
+   * @param indices The indices to search in (e.g. "certs_prod").
+   * @param fields The fields to include in the search results (optional).
+   * @param excludeFields Whether to exclude fields from the search results (optional).
    * @return The search results as a string.
    * @throws ApiException If an error occurs while making the request.
    */
-  public String searchAsString(String query, String datatype, int page, String indices,
-      String fields, boolean excludeFields) throws ApiException {
+  public String searchAsString(
+      String query, String datatype, int page, String indices, String fields, boolean excludeFields)
+      throws ApiException {
     String endpoint = "/api/responses/";
     if (datatype.equals("cert")) {
       endpoint = "/api/certs/";
@@ -146,11 +143,12 @@ public class Netlas {
     } else if (datatype.equals("whois-domain")) {
       endpoint = "/api/whois_domains/";
     }
-    HttpUrl.Builder urlBuilder = HttpUrl.parse(buildEndpointUrl(endpoint))
-                                     .newBuilder()
-                                     .addQueryParameter("q", query)
-                                     .addQueryParameter("page", String.valueOf(page))
-                                     .addQueryParameter("indices", indices);
+    HttpUrl.Builder urlBuilder =
+        HttpUrl.parse(buildEndpointUrl(endpoint))
+            .newBuilder()
+            .addQueryParameter("q", query)
+            .addQueryParameter("page", String.valueOf(page))
+            .addQueryParameter("indices", indices);
     if (fields != null) {
       urlBuilder.addQueryParameter("fields", fields);
     }
@@ -187,11 +185,12 @@ public class Netlas {
 
   private Request buildRequest(HttpUrl.Builder urlBuilder) {
     HttpUrl url = urlBuilder.build();
-    Request.Builder requestBuilder = new Request.Builder()
-                                         .url(url)
-                                         .header("Content-Type", "application/json")
-                                         .header("X-Api-Key", apiKey)
-                                         .get();
+    Request.Builder requestBuilder =
+        new Request.Builder()
+            .url(url)
+            .header("Content-Type", "application/json")
+            .header("X-Api-Key", apiKey)
+            .get();
     return requestBuilder.build();
   }
 
