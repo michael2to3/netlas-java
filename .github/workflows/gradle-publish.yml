@@ -42,7 +42,6 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         tag_name: latest
-        release_name: lastest
         draft: false
         prerelease: false
         files: |
