@@ -11,7 +11,7 @@ public class APIException extends RuntimeException {
 
   /**
    * Constructs a new APIException with the specified message and details.
-   * 
+   *
    * @param message the message to display
    * @param details the cause of the exception
    */
@@ -22,7 +22,7 @@ public class APIException extends RuntimeException {
 
   /**
    * Constructs a new APIException with the specified message.
-   * 
+   *
    * @param message the message to display
    */
   public APIException(String message) {

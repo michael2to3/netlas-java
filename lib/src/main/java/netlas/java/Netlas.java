@@ -1,13 +1,11 @@
 package netlas.java;
 
-import java.io.IOException;
-import java.util.concurrent.TimeUnit;
-
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-
+import java.io.IOException;
+import java.util.concurrent.TimeUnit;
 import okhttp3.HttpUrl;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -46,8 +44,10 @@ public class Netlas {
     this.apiBase = apiBase.endsWith("/") ? apiBase.substring(0, apiBase.length() - 1) : apiBase;
     this.debug = debug;
     this.connectionTimeout = connectionTimeout;
-    var builder = new OkHttpClient.Builder().writeTimeout(this.connectionTimeout, TimeUnit.SECONDS)
-        .readTimeout(this.connectionTimeout, TimeUnit.SECONDS).connectTimeout(this.connectionTimeout, TimeUnit.SECONDS);
+    var builder = new OkHttpClient.Builder()
+                      .writeTimeout(this.connectionTimeout, TimeUnit.SECONDS)
+                      .readTimeout(this.connectionTimeout, TimeUnit.SECONDS)
+                      .connectTimeout(this.connectionTimeout, TimeUnit.SECONDS);
     this.client = builder.build();
   }
 
@@ -114,8 +114,7 @@ public class Netlas {
    *                                 response.
    */
   public JsonNode search(String query, String datatype, int page, String indices, String fields,
-      boolean excludeFields)
-      throws APIException, JsonMappingException, JsonProcessingException {
+      boolean excludeFields) throws APIException, JsonMappingException, JsonProcessingException {
     String response = searchAsString(query, datatype, page, indices, fields, excludeFields);
     ObjectMapper mapper = new ObjectMapper();
     JsonNode root = mapper.readTree(response);
@@ -135,9 +134,8 @@ public class Netlas {
    * @return The search results as a string.
    * @throws APIException If an error occurs while making the request.
    */
-  public String searchAsString(String query, String datatype, int page, String indices, String fields,
-      boolean excludeFields)
-      throws APIException {
+  public String searchAsString(String query, String datatype, int page, String indices,
+      String fields, boolean excludeFields) throws APIException {
     String endpoint = "/api/responses/";
     if (datatype.equals("cert")) {
       endpoint = "/api/certs/";
@@ -148,10 +146,11 @@ public class Netlas {
     } else if (datatype.equals("whois-domain")) {
       endpoint = "/api/whois_domains/";
     }
-    HttpUrl.Builder urlBuilder = HttpUrl.parse(buildEndpointUrl(endpoint)).newBuilder()
-        .addQueryParameter("q", query)
-        .addQueryParameter("page", String.valueOf(page))
-        .addQueryParameter("indices", indices);
+    HttpUrl.Builder urlBuilder = HttpUrl.parse(buildEndpointUrl(endpoint))
+                                     .newBuilder()
+                                     .addQueryParameter("q", query)
+                                     .addQueryParameter("page", String.valueOf(page))
+                                     .addQueryParameter("indices", indices);
     if (fields != null) {
       urlBuilder.addQueryParameter("fields", fields);
     }
@@ -189,10 +188,10 @@ public class Netlas {
   private Request buildRequest(HttpUrl.Builder urlBuilder) {
     HttpUrl url = urlBuilder.build();
     Request.Builder requestBuilder = new Request.Builder()
-        .url(url)
-        .header("Content-Type", "application/json")
-        .header("X-Api-Key", apiKey)
-        .get();
+                                         .url(url)
+                                         .header("Content-Type", "application/json")
+                                         .header("X-Api-Key", apiKey)
+                                         .get();
     return requestBuilder.build();
   }
 
@@ -203,5 +202,4 @@ public class Netlas {
     }
     return response;
   }
-
 }
