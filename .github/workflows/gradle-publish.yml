@@ -36,10 +36,14 @@ jobs:
         USERNAME: ${{ github.actor }}
         GITHUB_TOKEN: ${{ secrets.PACKAGE_TOKEN }}
 
-    - name: Publish to JitPack
-      uses: jitpack-io/publish-jitpack@v2
+    - name: Create Release
+      uses: softprops/action-gh-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        group-id: com.michael2to3
-        artifact-id: netlas
-        version: 0.0.22
-        access-token: ${{ secrets.JITPACK_ACCESS_TOKEN }}
+        tag_name: latest
+        release_name: lastest
+        draft: false
+        prerelease: false
+        files: |
+          build/libs/*
