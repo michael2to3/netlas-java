@@ -36,14 +36,13 @@ tasks.named('test') {
     useJUnitPlatform()
 }
 
+groupId = 'com.michael2to3'
+artifactId = 'netlas'
+version = '0.0.21-SNAPSHOT'
 
 publishing {
     publications {
         maven(MavenPublication) {
-            groupId = 'com.michael2to3'
-            artifactId = 'netlas'
-            version = '0.0.22-SNAPSHOT'
-
             from components.java
         }
     }
