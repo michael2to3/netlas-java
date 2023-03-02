@@ -4,14 +4,16 @@ package netlas.java;
  * An exception that represents an error response from the Netlas API.
  */
 public class APIException extends RuntimeException {
+  /** Message the message to display */
   private final String message;
+  /** Details the cause of the exception */
   private final Exception details;
 
   /**
-   * Constructs a new APIException with the specified message and cause.
+   * Constructs a new APIException with the specified message and details.
    * 
    * @param message the message to display
-   * @param cause   the cause of the exception
+   * @param details the cause of the exception
    */
   public APIException(String message, Exception details) {
     this.message = message;
