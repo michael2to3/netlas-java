@@ -19,11 +19,12 @@ To use this library, you'll need to add it as a dependency to your Gradle projec
 
 ```groovy
 dependencies {
-  implementation 'net.netlas:java-client:1.0.0'
+  implementation 'com.michael2to3:netlas:VERSION'
+</dependency>
 }
 ```
 
-Replace `1.0.0` with the desired version of the library.
+Replace `VERSION` with the desired version of the library.
 ## Usage
 
 First, you'll need to create an instance of the Netlas class with your API key and the base URL of the Netlas API. You can also enable debugging by passing true as the third argument.
