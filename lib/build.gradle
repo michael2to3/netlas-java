@@ -26,9 +26,25 @@ tasks.named('test') {
     useJUnitPlatform()
 }
 
-version = '0.1.0-SNAPSHOT'
+task sourcesJar(type: Jar) {
+    from sourceSets.main.allSource
+    archiveClassifier.set('sources')
+}
+
+task javadocJar(type: Jar) {
+    from javadoc
+    archiveClassifier.set('javadoc')
+}
+
+artifacts {
+    archives sourcesJar
+    archives javadocJar
+}
+
+
 allprojects {
     repositories {
+        mavenCentral()
         maven { url 'https://jitpack.io' }
     }
 }
