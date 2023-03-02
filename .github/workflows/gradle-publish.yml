@@ -35,3 +35,11 @@ jobs:
       env:
         USERNAME: ${{ github.actor }}
         GITHUB_TOKEN: ${{ secrets.PACKAGE_TOKEN }}
+
+    - name: Publish to JitPack
+      uses: jitpack-io/publish-jitpack@v2
+      with:
+        group-id: com.michael2to3
+        artifact-id: netlas
+        version: 0.0.22
+        access-token: ${{ secrets.JITPACK_ACCESS_TOKEN }}
