@@ -13,6 +13,4 @@ jobs:
           args: "--replace"
           files: 'lib/**/*.java'
           githubToken: ${{ secrets.GITHUB_TOKEN }}
-          skipCommit: true
-      - name: Print diffs
-        run: git --no-pager diff --exit-code
+          skipCommit: false
