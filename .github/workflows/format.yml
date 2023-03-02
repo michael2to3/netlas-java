@@ -11,5 +11,6 @@ jobs:
       - uses: axel-op/googlejavaformat-action@v3.6.0
         with:
           files: 'lib/**/*.java'
-          skip-commit: true
+          skipCommit: true
+          githubToken: ${{ secrets.GITHUB_TOKEN }}
           args: '--set-exit-if-changed --skip-javadoc-formatting'
