@@ -35,14 +35,3 @@ jobs:
       env:
         USERNAME: ${{ github.actor }}
         GITHUB_TOKEN: ${{ secrets.PACKAGE_TOKEN }}
-
-    - name: Create Release
-      uses: softprops/action-gh-release@v1
-      env:
-        GITHUB_TOKEN: ${{ secrets.GH_PACKAGE }}
-      with:
-        tag_name: latest
-        draft: false
-        prerelease: false
-        files: |
-          lib/build/*

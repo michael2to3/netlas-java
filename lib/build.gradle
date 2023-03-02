@@ -6,7 +6,6 @@ plugins {
 
 repositories {
     mavenCentral()
-    maven { url 'https://jitpack.io' }
     maven {
             name = "GitHubPackages"
             url = "https://maven.pkg.github.com/michael2to3/netlas-java"
