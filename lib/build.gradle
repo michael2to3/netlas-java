@@ -26,27 +26,12 @@ tasks.named('test') {
     useJUnitPlatform()
 }
 
-task sourcesJar(type: Jar) {
-    from sourceSets.main.allSource
-    archiveClassifier.set('sources')
-}
-
-task javadocJar(type: Jar) {
-    from javadoc
-    archiveClassifier.set('javadoc')
-}
-
-artifacts {
-    archives sourcesJar
-    archives javadocJar
-}
-
 version '0.0.1-SNAPSHOT'
 
 publishing {
     repositories {
         maven {
-            name = "netlas-java"
+            name = "GitHubPackages"
             url = "https://maven.pkg.github.com/michael2to3/netlas-java"
             credentials {
                username = System.getenv("GITHUB_ACTOR")
