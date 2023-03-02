@@ -32,8 +32,8 @@ publishing {
             name = "GitHubPackages"
             url = "https://maven.pkg.github.com/michael2to3/netlas-java"
             credentials {
-                username = project.findProperty("gpr.user") ?: System.getenv("USERNAME")
-                password = project.findProperty("gpr.key") ?: System.getenv("TOKEN")
+                username = System.getenv("USERNAME")
+                password = System.getenv("TOKEN")
             }
         }
     }
