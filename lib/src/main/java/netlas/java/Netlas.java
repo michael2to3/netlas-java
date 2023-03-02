@@ -13,6 +13,9 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 
+/**
+ * A class for interacting with the Netlas API.
+ */
 public class Netlas {
   private final String apiKey;
   private final String apiBase;
@@ -21,10 +24,23 @@ public class Netlas {
 
   private final OkHttpClient client;
 
+  /**
+   * Constructs a new Netlas instance with the given API key.
+   *
+   * @param apiKey The API key to use for requests.
+   */
   public Netlas(String apiKey) {
     this(apiKey, "https://app.netlas.io", false, 120);
   }
 
+  /**
+   * Constructs a new Netlas instance with the given API key and options.
+   *
+   * @param apiKey            The API key to use for requests.
+   * @param apiBase           The base URL for the Netlas API.
+   * @param debug             Whether to enable debug mode.
+   * @param connectionTimeout The connection timeout in seconds.
+   */
   public Netlas(String apiKey, String apiBase, boolean debug, int connectionTimeout) {
     this.apiKey = apiKey;
     this.apiBase = apiBase.endsWith("/") ? apiBase.substring(0, apiBase.length() - 1) : apiBase;
@@ -35,26 +51,68 @@ public class Netlas {
     this.client = builder.build();
   }
 
+  /**
+   * Returns the API key used by this instance.
+   *
+   * @return The API key.
+   */
   public String getApiKey() {
     return apiKey;
   }
 
+  /**
+   * Returns the base URL for the Netlas API used by this instance.
+   *
+   * @return The base URL.
+   */
   public String getApiBase() {
     return apiBase;
   }
 
+  /**
+   * Returns whether debug mode is enabled for this instance.
+   *
+   * @return Whether debug mode is enabled.
+   */
   public boolean isDebug() {
     return debug;
   }
 
+  /**
+   * Returns the connection timeout in seconds used by this instance.
+   *
+   * @return The connection timeout in seconds.
+   */
   public int getConnectionTimeout() {
     return connectionTimeout;
   }
 
+  /**
+   * Returns the OkHttpClient instance used by this instance.
+   *
+   * @return The OkHttpClient instance.
+   */
   public OkHttpClient getClient() {
     return client;
   }
 
+  /**
+   * Searches the Netlas API and returns the results as a JsonNode.
+   *
+   * @param query         The search query.
+   * @param datatype      The type of data to search for (e.g. "cert").
+   * @param page          The page number of the search results.
+   * @param indices       The indices to search in (e.g. "certs_prod").
+   * @param fields        The fields to include in the search results (optional).
+   * @param excludeFields Whether to exclude fields from the search results
+   *                      (optional).
+   * @return The search results as a JsonNode.
+   * @throws APIException            If an error occurs while making the request.
+   * @throws JsonMappingException    If an error occurs while parsing the
+   *                                 response.
+   * @throws JsonProcessingException If an error occurs while parsing the
+   *                                 response.
+   */
   public JsonNode search(String query, String datatype, int page, String indices, String fields,
       boolean excludeFields)
       throws APIException, JsonMappingException, JsonProcessingException {
@@ -64,6 +122,19 @@ public class Netlas {
     return root;
   }
 
+  /**
+   * Searches the Netlas API and returns the results as a string.
+   *
+   * @param query         The search query.
+   * @param datatype      The type of data to search for (e.g. "cert").
+   * @param page          The page number of the search results.
+   * @param indices       The indices to search in (e.g. "certs_prod").
+   * @param fields        The fields to include in the search results (optional).
+   * @param excludeFields Whether to exclude fields from the search results
+   *                      (optional).
+   * @return The search results as a string.
+   * @throws APIException If an error occurs while making the request.
+   */
   public String searchAsString(String query, String datatype, int page, String indices, String fields,
       boolean excludeFields)
       throws APIException {
