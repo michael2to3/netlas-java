@@ -38,10 +38,12 @@ publishing {
         }
     }
     publications {
-        groupId = 'com.michael2to3'
-        artifactId = 'netlas'
-        version = '0.0.21-SNAPSHOT'
+        maven(MavenPublication) {
+            groupId = 'com.michael2to3'
+            artifactId = 'netlas'
+            version = '0.0.21-SNAPSHOT'
 
-        from components.java
+            from components.java
+        }
     }
 }
