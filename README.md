@@ -20,7 +20,6 @@ To use this library, you'll need to add it as a dependency to your Gradle projec
 ```groovy
 dependencies {
   implementation 'com.michael2to3:netlas:VERSION'
-</dependency>
 }
 ```
 
