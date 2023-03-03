@@ -1,38 +1,35 @@
-import java.util.List;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import java.util.List;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@JsonPropertyOrder({
-    "value",
-    "key"
-})
+@JsonPropertyOrder({"value", "key"})
 public class UnknownHeader {
 
-    @JsonProperty("value")
-    private List<String> value;
-    @JsonProperty("key")
-    private String key;
+  @JsonProperty("value")
+  private List<String> value;
 
-    @JsonProperty("value")
-    public List<String> getValue() {
-        return value;
-    }
+  @JsonProperty("key")
+  private String key;
 
-    @JsonProperty("value")
-    public void setValue(List<String> value) {
-        this.value = value;
-    }
+  @JsonProperty("value")
+  public List<String> getValue() {
+    return value;
+  }
 
-    @JsonProperty("key")
-    public String getKey() {
-        return key;
-    }
+  @JsonProperty("value")
+  public void setValue(List<String> value) {
+    this.value = value;
+  }
 
-    @JsonProperty("key")
-    public void setKey(String key) {
-        this.key = key;
-    }
+  @JsonProperty("key")
+  public String getKey() {
+    return key;
+  }
 
+  @JsonProperty("key")
+  public void setKey(String key) {
+    this.key = key;
+  }
 }

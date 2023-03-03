@@ -1,51 +1,48 @@
-import java.util.List;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import java.util.List;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@JsonPropertyOrder({
-    "country",
-    "organization",
-    "common_name"
-})
+@JsonPropertyOrder({"country", "organization", "common_name"})
 public class Subject {
 
-    @JsonProperty("country")
-    private List<String> country;
-    @JsonProperty("organization")
-    private List<String> organization;
-    @JsonProperty("common_name")
-    private List<String> commonName;
+  @JsonProperty("country")
+  private List<String> country;
 
-    @JsonProperty("country")
-    public List<String> getCountry() {
-        return country;
-    }
+  @JsonProperty("organization")
+  private List<String> organization;
 
-    @JsonProperty("country")
-    public void setCountry(List<String> country) {
-        this.country = country;
-    }
+  @JsonProperty("common_name")
+  private List<String> commonName;
 
-    @JsonProperty("organization")
-    public List<String> getOrganization() {
-        return organization;
-    }
+  @JsonProperty("country")
+  public List<String> getCountry() {
+    return country;
+  }
 
-    @JsonProperty("organization")
-    public void setOrganization(List<String> organization) {
-        this.organization = organization;
-    }
+  @JsonProperty("country")
+  public void setCountry(List<String> country) {
+    this.country = country;
+  }
 
-    @JsonProperty("common_name")
-    public List<String> getCommonName() {
-        return commonName;
-    }
+  @JsonProperty("organization")
+  public List<String> getOrganization() {
+    return organization;
+  }
 
-    @JsonProperty("common_name")
-    public void setCommonName(List<String> commonName) {
-        this.commonName = commonName;
-    }
+  @JsonProperty("organization")
+  public void setOrganization(List<String> organization) {
+    this.organization = organization;
+  }
 
+  @JsonProperty("common_name")
+  public List<String> getCommonName() {
+    return commonName;
+  }
+
+  @JsonProperty("common_name")
+  public void setCommonName(List<String> commonName) {
+    this.commonName = commonName;
+  }
 }

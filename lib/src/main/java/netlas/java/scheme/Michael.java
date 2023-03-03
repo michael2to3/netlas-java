@@ -1,51 +1,48 @@
-import java.util.List;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import java.util.List;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@JsonPropertyOrder({
-    "items",
-    "took",
-    "timestamp"
-})
+@JsonPropertyOrder({"items", "took", "timestamp"})
 public class Michael {
 
-    @JsonProperty("items")
-    private List<Item> items;
-    @JsonProperty("took")
-    private Integer took;
-    @JsonProperty("timestamp")
-    private Integer timestamp;
+  @JsonProperty("items")
+  private List<Item> items;
 
-    @JsonProperty("items")
-    public List<Item> getItems() {
-        return items;
-    }
+  @JsonProperty("took")
+  private Integer took;
 
-    @JsonProperty("items")
-    public void setItems(List<Item> items) {
-        this.items = items;
-    }
+  @JsonProperty("timestamp")
+  private Integer timestamp;
 
-    @JsonProperty("took")
-    public Integer getTook() {
-        return took;
-    }
+  @JsonProperty("items")
+  public List<Item> getItems() {
+    return items;
+  }
 
-    @JsonProperty("took")
-    public void setTook(Integer took) {
-        this.took = took;
-    }
+  @JsonProperty("items")
+  public void setItems(List<Item> items) {
+    this.items = items;
+  }
 
-    @JsonProperty("timestamp")
-    public Integer getTimestamp() {
-        return timestamp;
-    }
+  @JsonProperty("took")
+  public Integer getTook() {
+    return took;
+  }
 
-    @JsonProperty("timestamp")
-    public void setTimestamp(Integer timestamp) {
-        this.timestamp = timestamp;
-    }
+  @JsonProperty("took")
+  public void setTook(Integer took) {
+    this.took = took;
+  }
 
+  @JsonProperty("timestamp")
+  public Integer getTimestamp() {
+    return timestamp;
+  }
+
+  @JsonProperty("timestamp")
+  public void setTimestamp(Integer timestamp) {
+    this.timestamp = timestamp;
+  }
 }
