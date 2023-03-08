@@ -29,6 +29,7 @@ dependencies {
 
     implementation 'com.fasterxml.jackson.core:jackson-core:2.14.2'
     implementation 'com.fasterxml.jackson.core:jackson-databind:2.14.2'
+    implementation 'org.slf4j:slf4j-log4j12:2.0.6'
 }
 
 tasks.named('test') {
@@ -40,7 +41,7 @@ publishing {
         maven(MavenPublication) {
             groupId = 'com.michael2to3'
             artifactId = 'netlas'
-            version = '0.0.21-SNAPSHOT'
+            version = '0.0.22-SNAPSHOT'
             from components.java
         }
     }

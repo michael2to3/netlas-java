@@ -10,6 +10,8 @@ import okhttp3.HttpUrl;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /** A class for interacting with the Netlas API. */
 public class Netlas {
@@ -17,6 +19,7 @@ public class Netlas {
   private final String apiBase;
   private final boolean debug;
   private final int connectionTimeout;
+  private static final Logger LOGGER = LoggerFactory.getLogger(Netlas.class);
 
   private final OkHttpClient client;
 
@@ -191,7 +194,11 @@ public class Netlas {
             .header("Content-Type", "application/json")
             .header("X-Api-Key", apiKey)
             .get();
-    return requestBuilder.build();
+
+    var response = requestBuilder.build();
+    LOGGER.info("Request: {}", response.toString());
+    LOGGER.info("Response: {}", response);
+    return response;
   }
 
   private Response sendRequest(Request request) throws IOException, ApiException {
