@@ -10,7 +10,7 @@ repositories {
             name = "GitHubPackages"
             url = "https://maven.pkg.github.com/michael2to3/netlas-java"
             credentials {
-                username = System.getenv("GITHUB_ACTOR")
+                username = System.getenv("USERNAME")
                 password = System.getenv("GITHUB_TOKEN")
         }
     }
@@ -20,7 +20,7 @@ publishing {
         maven(MavenPublication) {
             groupId = 'com.michael2to3'
             artifactId = 'netlas'
-            version = '0.0.23-SNAPSHOT'
+            version = '0.0.31-SNAPSHOT'
             from components.java
         }
     }
