@@ -41,7 +41,7 @@ javadoc {
     source = sourceSets.main.allJava
 }
 
-version = '0.0.31-SNAPSHOT'
+version = '0.0.311-SNAPSHOT'
 
 repositories {
     mavenCentral()
