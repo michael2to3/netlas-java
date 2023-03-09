@@ -14,17 +14,18 @@ repositories {
                 password = System.getenv("GITHUB_TOKEN")
         }
     }
-    publishing {
-        publications {
-            maven(MavenPublication) {
-                groupId = 'com.michael2to3'
-                artifactId = 'netlas'
-                version = '0.0.23-SNAPSHOT'
-                from components.java
-            }
+}
+publishing {
+    publications {
+        maven(MavenPublication) {
+            groupId = 'com.michael2to3'
+            artifactId = 'netlas'
+            version = '0.0.23-SNAPSHOT'
+            from components.java
         }
     }
 }
+
 
 dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter:5.9.1'
