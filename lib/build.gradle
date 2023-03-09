@@ -41,10 +41,11 @@ javadoc {
     source = sourceSets.main.allJava
 }
 
-groupId = 'com.michael2to3'
-artifactId = 'netlas'
 version = '0.0.31-SNAPSHOT'
 
+repositories {
+    mavenCentral()
+}
 publishing {
     repositories {
         maven {
