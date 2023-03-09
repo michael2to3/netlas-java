@@ -4,29 +4,6 @@ plugins {
     id 'jacoco'
 }
 
-repositories {
-    mavenCentral()
-    maven {
-            name = "GitHubPackages"
-            url = "https://maven.pkg.github.com/michael2to3/netlas-java"
-            credentials {
-                username = System.getenv("USERNAME")
-                password = System.getenv("GITHUB_TOKEN")
-        }
-    }
-}
-publishing {
-    publications {
-        maven(MavenPublication) {
-            groupId = 'com.michael2to3'
-            artifactId = 'netlas'
-            version = '0.0.31-SNAPSHOT'
-            from components.java
-        }
-    }
-}
-
-
 dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter:5.9.1'
 
@@ -62,4 +39,26 @@ jacocoTestReport {
 
 javadoc {
     source = sourceSets.main.allJava
+}
+
+groupId = 'com.michael2to3'
+artifactId = 'netlas'
+version = '0.0.31-SNAPSHOT'
+
+publishing {
+    repositories {
+        maven {
+            name = "GitHubPackages"
+            url = uri("https://maven.pkg.github.com/michael2to3/netlas-java")
+            credentials {
+                username = project.findProperty("gpr.user") ?: System.getenv("USERNAME")
+                password = project.findProperty("gpr.key") ?: System.getenv("TOKEN")
+            }
+        }
+    }
+    publications {
+        gpr(MavenPublication) {
+            from(components.java)
+        }
+    }
 }
