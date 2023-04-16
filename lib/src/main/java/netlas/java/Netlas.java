@@ -18,18 +18,26 @@ import okhttp3.Request;
 import okhttp3.Response;
 import okhttp3.ResponseBody;
 
+/** A class for interacting with the Netlas API. */
 public class Netlas {
   private String apiKey;
   private String apiBase;
   private OkHttpClient client;
   private ObjectMapper objectMapper;
 
+  /** Private constructor to initialize default values for API base, client, and object mapper. */
   private Netlas() {
     this.apiBase = "https://app.netlas.io";
     this.client = new OkHttpClient();
     this.objectMapper = new ObjectMapper();
   }
 
+  /**
+   * Public constructor to initialize the API key, API base, client, and object mapper.
+   *
+   * @param apiKey The API key for authentication
+   * @param apiBase The base URL of the Netlas API
+   */
   public Netlas(String apiKey, String apiBase) {
     this.apiKey = apiKey;
     this.apiBase = apiBase;
@@ -37,6 +45,13 @@ public class Netlas {
     this.objectMapper = new ObjectMapper();
   }
 
+  /**
+   * Makes an HTTP request to the specified URL and returns the response as a JsonNode.
+   *
+   * @param urlBuilder The HttpUrl.Builder instance used to build the request URL
+   * @return The response body as a JsonNode
+   * @throws IOException If there is an error while making the request or processing the response
+   */
   private JsonNode request(HttpUrl.Builder urlBuilder) throws IOException {
     Request request =
         new Request.Builder()
@@ -51,6 +66,18 @@ public class Netlas {
     }
   }
 
+  /**
+   * Searches for data matching the specified query and returns a Response object.
+   *
+   * @param query The search query
+   * @param datatype The type of data to search for
+   * @param page The page number to start from
+   * @param indices The indices to search in
+   * @param fields The fields to include or exclude in the response
+   * @param excludeFields Whether to exclude the specified fields from the response
+   * @return A Response object containing the search results
+   * @throws NetlasRequestException If there is an error while making the request
+   */
   public netlas.java.scheme.Response search(
       String query,
       DataType datatype,
@@ -76,6 +103,15 @@ public class Netlas {
     }
   }
 
+  /**
+   * Counts the number of matching results for the specified query and datatype.
+   *
+   * @param query The search query
+   * @param datatype The type of data to count
+   * @param indices The indices to search in
+   * @return A Count object containing the count of matching results
+   * @throws NetlasRequestException If there is an error while making the request
+   */
   public Count count(String query, DataType datatype, String indices)
       throws NetlasRequestException {
     HttpUrl.Builder urlBuilder =
@@ -92,6 +128,17 @@ public class Netlas {
     }
   }
 
+  /**
+   * Retrieves statistics for the specified query, grouped by the specified fields.
+   *
+   * @param query The search query
+   * @param groupFields The fields to group the results by
+   * @param indices The indices to search in
+   * @param size The number of results to return per group
+   * @param indexType The type of index to search
+   * @return A Stat object containing the statistics
+   * @throws NetlasRequestException If there is an error while making the request
+   */
   public Stat stat(String query, String groupFields, String indices, int size, String indexType)
       throws NetlasRequestException {
     HttpUrl.Builder urlBuilder =
@@ -111,6 +158,12 @@ public class Netlas {
     }
   }
 
+  /**
+   * Retrieves the profile information of the current user.
+   *
+   * @return A Profile object containing the user's profile information
+   * @throws NetlasRequestException If there is an error while making the request
+   */
   public Profile profile() throws NetlasRequestException {
     HttpUrl.Builder urlBuilder = HttpUrl.parse(apiBase + "/api/users/current/").newBuilder();
     try {
@@ -121,6 +174,15 @@ public class Netlas {
     }
   }
 
+  /**
+   * Retrieves information about the specified host.
+   *
+   * @param query The host query
+   * @param fields The fields to include or exclude in the response
+   * @param excludeFields Whether to exclude the specified fields from the response
+   * @return A Host object containing the host information
+   * @throws NetlasRequestException If there is an error while making the request
+   */
   public Host host(String query, String fields, boolean excludeFields)
       throws NetlasRequestException {
     HttpUrl.Builder urlBuilder =
@@ -137,6 +199,13 @@ public class Netlas {
     }
   }
 
+  /*
+   * Retrieves the list of indices available for the current user.
+   *
+   * @return A list of Index objects containing the indices information
+   *
+   * @throws NetlasRequestException If there is an error while making the request
+   */
   public List<Index> indices() throws NetlasRequestException {
     HttpUrl.Builder urlBuilder = HttpUrl.parse(apiBase + "/api/indices/").newBuilder();
 
@@ -150,6 +219,18 @@ public class Netlas {
     }
   }
 
+  /**
+   * Downloads data matching the specified query and parameters as an InputStream.
+   *
+   * @param query The search query
+   * @param fields The fields to include or exclude in the response
+   * @param excludeFields Whether to exclude the specified fields from the response
+   * @param datatype The type of data to download
+   * @param size The number of results to download
+   * @param indices The indices to search in
+   * @return An InputStream containing the downloaded data
+   * @throws NetlasRequestException If there is an error while making the request
+   */
   public InputStream download(
       String query,
       String fields,
@@ -192,30 +273,64 @@ public class Netlas {
     }
   }
 
+  /**
+   * Sets the OkHttpClient instance to be used for making requests.
+   *
+   * @param client The OkHttpClient instance
+   */
   public void setClient(OkHttpClient client) {
     this.client = client;
   }
 
+  /**
+   * Returns a new Builder instance for configuring and creating a Netlas instance.
+   *
+   * @return A new Builder instance
+   */
   public static Builder newBuilder() {
     return new Netlas().new Builder();
   }
 
+  /** A builder class for creating a Netlas instance with custom configurations. */
   public final class Builder {
+    /**
+     * Sets the API key to be used for authenticating requests.
+     *
+     * @param apiKey The API key
+     * @return The current Builder instance
+     */
     public Builder setApiKey(String apiKey) {
       Netlas.this.apiKey = apiKey;
       return this;
     }
 
+    /**
+     * Sets the base URL for the Netlas API.
+     *
+     * @param apiBase The base URL
+     * @return The current Builder instance
+     */
     public Builder setApiBase(String apiBase) {
       Netlas.this.apiBase = apiBase;
       return this;
     }
 
+    /**
+     * Sets the OkHttpClient instance to be used for making requests.
+     *
+     * @param client The OkHttpClient instance
+     * @return The current Builder instance
+     */
     public Builder setClient(OkHttpClient client) {
       Netlas.this.client = client;
       return this;
     }
 
+    /**
+     * Creates a new Netlas instance with the configured settings.
+     *
+     * @return A new Netlas instance
+     */
     public Netlas build() {
       return Netlas.this;
     }
