@@ -49,6 +49,12 @@ version = '0.0.400-SNAPSHOT'
 repositories {
     mavenCentral()
 }
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_11
+    targetCompatibility = JavaVersion.VERSION_11
+}
+
 allprojects {
     repositories {
         maven { url 'https://jitpack.io' }
