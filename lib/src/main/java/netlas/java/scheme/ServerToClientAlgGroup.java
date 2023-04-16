@@ -1,51 +1,49 @@
 package netlas.java.scheme;
+
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@JsonPropertyOrder({
-    "cipher",
-    "compression",
-    "mac"
-})
+@JsonPropertyOrder({"cipher", "compression", "mac"})
 public class ServerToClientAlgGroup {
 
-    @JsonProperty("cipher")
-    private String cipher;
-    @JsonProperty("compression")
-    private String compression;
-    @JsonProperty("mac")
-    private String mac;
+  @JsonProperty("cipher")
+  private String cipher;
 
-    @JsonProperty("cipher")
-    public String getCipher() {
-        return cipher;
-    }
+  @JsonProperty("compression")
+  private String compression;
 
-    @JsonProperty("cipher")
-    public void setCipher(String cipher) {
-        this.cipher = cipher;
-    }
+  @JsonProperty("mac")
+  private String mac;
 
-    @JsonProperty("compression")
-    public String getCompression() {
-        return compression;
-    }
+  @JsonProperty("cipher")
+  public String getCipher() {
+    return cipher;
+  }
 
-    @JsonProperty("compression")
-    public void setCompression(String compression) {
-        this.compression = compression;
-    }
+  @JsonProperty("cipher")
+  public void setCipher(String cipher) {
+    this.cipher = cipher;
+  }
 
-    @JsonProperty("mac")
-    public String getMac() {
-        return mac;
-    }
+  @JsonProperty("compression")
+  public String getCompression() {
+    return compression;
+  }
 
-    @JsonProperty("mac")
-    public void setMac(String mac) {
-        this.mac = mac;
-    }
+  @JsonProperty("compression")
+  public void setCompression(String compression) {
+    this.compression = compression;
+  }
 
+  @JsonProperty("mac")
+  public String getMac() {
+    return mac;
+  }
+
+  @JsonProperty("mac")
+  public void setMac(String mac) {
+    this.mac = mac;
+  }
 }

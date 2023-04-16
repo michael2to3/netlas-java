@@ -1,183 +1,195 @@
 package netlas.java.scheme;
-import java.util.ArrayList;
-import java.util.List;
+
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import java.util.ArrayList;
+import java.util.List;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
-    "country",
-    "address",
-    "created",
-    "description",
-    "range",
-    "handle",
-    "name",
-    "start_ip",
-    "cidr",
-    "net_size",
-    "updated",
-    "end_ip",
-    "remarks"
+  "country",
+  "address",
+  "created",
+  "description",
+  "range",
+  "handle",
+  "name",
+  "start_ip",
+  "cidr",
+  "net_size",
+  "updated",
+  "end_ip",
+  "remarks"
 })
 public class RelatedNet {
 
-    @JsonProperty("country")
-    private String country;
-    @JsonProperty("address")
-    private String address;
-    @JsonProperty("created")
-    private String created;
-    @JsonProperty("description")
-    private String description;
-    @JsonProperty("range")
-    private String range;
-    @JsonProperty("handle")
-    private String handle;
-    @JsonProperty("name")
-    private String name;
-    @JsonProperty("start_ip")
-    private String startIp;
-    @JsonProperty("cidr")
-    private List<String> cidr = new ArrayList<String>();
-    @JsonProperty("net_size")
-    private Integer netSize;
-    @JsonProperty("updated")
-    private String updated;
-    @JsonProperty("end_ip")
-    private String endIp;
-    @JsonProperty("remarks")
-    private String remarks;
+  @JsonProperty("country")
+  private String country;
 
-    @JsonProperty("country")
-    public String getCountry() {
-        return country;
-    }
+  @JsonProperty("address")
+  private String address;
 
-    @JsonProperty("country")
-    public void setCountry(String country) {
-        this.country = country;
-    }
+  @JsonProperty("created")
+  private String created;
 
-    @JsonProperty("address")
-    public String getAddress() {
-        return address;
-    }
+  @JsonProperty("description")
+  private String description;
 
-    @JsonProperty("address")
-    public void setAddress(String address) {
-        this.address = address;
-    }
+  @JsonProperty("range")
+  private String range;
 
-    @JsonProperty("created")
-    public String getCreated() {
-        return created;
-    }
+  @JsonProperty("handle")
+  private String handle;
 
-    @JsonProperty("created")
-    public void setCreated(String created) {
-        this.created = created;
-    }
+  @JsonProperty("name")
+  private String name;
 
-    @JsonProperty("description")
-    public String getDescription() {
-        return description;
-    }
+  @JsonProperty("start_ip")
+  private String startIp;
 
-    @JsonProperty("description")
-    public void setDescription(String description) {
-        this.description = description;
-    }
+  @JsonProperty("cidr")
+  private List<String> cidr = new ArrayList<String>();
 
-    @JsonProperty("range")
-    public String getRange() {
-        return range;
-    }
+  @JsonProperty("net_size")
+  private Integer netSize;
 
-    @JsonProperty("range")
-    public void setRange(String range) {
-        this.range = range;
-    }
+  @JsonProperty("updated")
+  private String updated;
 
-    @JsonProperty("handle")
-    public String getHandle() {
-        return handle;
-    }
+  @JsonProperty("end_ip")
+  private String endIp;
 
-    @JsonProperty("handle")
-    public void setHandle(String handle) {
-        this.handle = handle;
-    }
+  @JsonProperty("remarks")
+  private String remarks;
 
-    @JsonProperty("name")
-    public String getName() {
-        return name;
-    }
+  @JsonProperty("country")
+  public String getCountry() {
+    return country;
+  }
 
-    @JsonProperty("name")
-    public void setName(String name) {
-        this.name = name;
-    }
+  @JsonProperty("country")
+  public void setCountry(String country) {
+    this.country = country;
+  }
 
-    @JsonProperty("start_ip")
-    public String getStartIp() {
-        return startIp;
-    }
+  @JsonProperty("address")
+  public String getAddress() {
+    return address;
+  }
 
-    @JsonProperty("start_ip")
-    public void setStartIp(String startIp) {
-        this.startIp = startIp;
-    }
+  @JsonProperty("address")
+  public void setAddress(String address) {
+    this.address = address;
+  }
 
-    @JsonProperty("cidr")
-    public List<String> getCidr() {
-        return cidr;
-    }
+  @JsonProperty("created")
+  public String getCreated() {
+    return created;
+  }
 
-    @JsonProperty("cidr")
-    public void setCidr(List<String> cidr) {
-        this.cidr = cidr;
-    }
+  @JsonProperty("created")
+  public void setCreated(String created) {
+    this.created = created;
+  }
 
-    @JsonProperty("net_size")
-    public Integer getNetSize() {
-        return netSize;
-    }
+  @JsonProperty("description")
+  public String getDescription() {
+    return description;
+  }
 
-    @JsonProperty("net_size")
-    public void setNetSize(Integer netSize) {
-        this.netSize = netSize;
-    }
+  @JsonProperty("description")
+  public void setDescription(String description) {
+    this.description = description;
+  }
 
-    @JsonProperty("updated")
-    public String getUpdated() {
-        return updated;
-    }
+  @JsonProperty("range")
+  public String getRange() {
+    return range;
+  }
 
-    @JsonProperty("updated")
-    public void setUpdated(String updated) {
-        this.updated = updated;
-    }
+  @JsonProperty("range")
+  public void setRange(String range) {
+    this.range = range;
+  }
 
-    @JsonProperty("end_ip")
-    public String getEndIp() {
-        return endIp;
-    }
+  @JsonProperty("handle")
+  public String getHandle() {
+    return handle;
+  }
 
-    @JsonProperty("end_ip")
-    public void setEndIp(String endIp) {
-        this.endIp = endIp;
-    }
+  @JsonProperty("handle")
+  public void setHandle(String handle) {
+    this.handle = handle;
+  }
 
-    @JsonProperty("remarks")
-    public String getRemarks() {
-        return remarks;
-    }
+  @JsonProperty("name")
+  public String getName() {
+    return name;
+  }
 
-    @JsonProperty("remarks")
-    public void setRemarks(String remarks) {
-        this.remarks = remarks;
-    }
+  @JsonProperty("name")
+  public void setName(String name) {
+    this.name = name;
+  }
 
+  @JsonProperty("start_ip")
+  public String getStartIp() {
+    return startIp;
+  }
+
+  @JsonProperty("start_ip")
+  public void setStartIp(String startIp) {
+    this.startIp = startIp;
+  }
+
+  @JsonProperty("cidr")
+  public List<String> getCidr() {
+    return cidr;
+  }
+
+  @JsonProperty("cidr")
+  public void setCidr(List<String> cidr) {
+    this.cidr = cidr;
+  }
+
+  @JsonProperty("net_size")
+  public Integer getNetSize() {
+    return netSize;
+  }
+
+  @JsonProperty("net_size")
+  public void setNetSize(Integer netSize) {
+    this.netSize = netSize;
+  }
+
+  @JsonProperty("updated")
+  public String getUpdated() {
+    return updated;
+  }
+
+  @JsonProperty("updated")
+  public void setUpdated(String updated) {
+    this.updated = updated;
+  }
+
+  @JsonProperty("end_ip")
+  public String getEndIp() {
+    return endIp;
+  }
+
+  @JsonProperty("end_ip")
+  public void setEndIp(String endIp) {
+    this.endIp = endIp;
+  }
+
+  @JsonProperty("remarks")
+  public String getRemarks() {
+    return remarks;
+  }
+
+  @JsonProperty("remarks")
+  public void setRemarks(String remarks) {
+    this.remarks = remarks;
+  }
 }

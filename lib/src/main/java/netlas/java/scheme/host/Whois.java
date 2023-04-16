@@ -1,287 +1,307 @@
 package netlas.java.scheme.host;
-import java.util.ArrayList;
-import java.util.List;
+
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import java.util.ArrayList;
+import java.util.List;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
-    "server",
-    "extension",
-    "last_updated",
-    "registrar",
-    "technical",
-    "whois_server",
-    "level",
-    "name_servers",
-    "expiration_date",
-    "punycode",
-    "zone",
-    "stats",
-    "administrative",
-    "domain",
-    "name",
-    "id",
-    "created_date",
-    "registrant",
-    "updated_date",
-    "extracted_domain",
-    "status"
+  "server",
+  "extension",
+  "last_updated",
+  "registrar",
+  "technical",
+  "whois_server",
+  "level",
+  "name_servers",
+  "expiration_date",
+  "punycode",
+  "zone",
+  "stats",
+  "administrative",
+  "domain",
+  "name",
+  "id",
+  "created_date",
+  "registrant",
+  "updated_date",
+  "extracted_domain",
+  "status"
 })
 public class Whois {
 
-    @JsonProperty("server")
-    private String server;
-    @JsonProperty("extension")
-    private String extension;
-    @JsonProperty("last_updated")
-    private String lastUpdated;
-    @JsonProperty("registrar")
-    private Registrar registrar;
-    @JsonProperty("technical")
-    private Technical technical;
-    @JsonProperty("whois_server")
-    private String whoisServer;
-    @JsonProperty("level")
-    private Integer level;
-    @JsonProperty("name_servers")
-    private List<String> nameServers = new ArrayList<String>();
-    @JsonProperty("expiration_date")
-    private String expirationDate;
-    @JsonProperty("punycode")
-    private String punycode;
-    @JsonProperty("zone")
-    private String zone;
-    @JsonProperty("stats")
-    private Stats stats;
-    @JsonProperty("administrative")
-    private Administrative administrative;
-    @JsonProperty("domain")
-    private String domain;
-    @JsonProperty("name")
-    private String name;
-    @JsonProperty("id")
-    private String id;
-    @JsonProperty("created_date")
-    private String createdDate;
-    @JsonProperty("registrant")
-    private Registrant registrant;
-    @JsonProperty("updated_date")
-    private String updatedDate;
-    @JsonProperty("extracted_domain")
-    private String extractedDomain;
-    @JsonProperty("status")
-    private List<String> status = new ArrayList<String>();
+  @JsonProperty("server")
+  private String server;
 
-    @JsonProperty("server")
-    public String getServer() {
-        return server;
-    }
+  @JsonProperty("extension")
+  private String extension;
 
-    @JsonProperty("server")
-    public void setServer(String server) {
-        this.server = server;
-    }
+  @JsonProperty("last_updated")
+  private String lastUpdated;
 
-    @JsonProperty("extension")
-    public String getExtension() {
-        return extension;
-    }
+  @JsonProperty("registrar")
+  private Registrar registrar;
 
-    @JsonProperty("extension")
-    public void setExtension(String extension) {
-        this.extension = extension;
-    }
+  @JsonProperty("technical")
+  private Technical technical;
 
-    @JsonProperty("last_updated")
-    public String getLastUpdated() {
-        return lastUpdated;
-    }
+  @JsonProperty("whois_server")
+  private String whoisServer;
 
-    @JsonProperty("last_updated")
-    public void setLastUpdated(String lastUpdated) {
-        this.lastUpdated = lastUpdated;
-    }
+  @JsonProperty("level")
+  private Integer level;
 
-    @JsonProperty("registrar")
-    public Registrar getRegistrar() {
-        return registrar;
-    }
+  @JsonProperty("name_servers")
+  private List<String> nameServers = new ArrayList<String>();
 
-    @JsonProperty("registrar")
-    public void setRegistrar(Registrar registrar) {
-        this.registrar = registrar;
-    }
+  @JsonProperty("expiration_date")
+  private String expirationDate;
 
-    @JsonProperty("technical")
-    public Technical getTechnical() {
-        return technical;
-    }
+  @JsonProperty("punycode")
+  private String punycode;
 
-    @JsonProperty("technical")
-    public void setTechnical(Technical technical) {
-        this.technical = technical;
-    }
+  @JsonProperty("zone")
+  private String zone;
 
-    @JsonProperty("whois_server")
-    public String getWhoisServer() {
-        return whoisServer;
-    }
+  @JsonProperty("stats")
+  private Stats stats;
 
-    @JsonProperty("whois_server")
-    public void setWhoisServer(String whoisServer) {
-        this.whoisServer = whoisServer;
-    }
+  @JsonProperty("administrative")
+  private Administrative administrative;
 
-    @JsonProperty("level")
-    public Integer getLevel() {
-        return level;
-    }
+  @JsonProperty("domain")
+  private String domain;
 
-    @JsonProperty("level")
-    public void setLevel(Integer level) {
-        this.level = level;
-    }
+  @JsonProperty("name")
+  private String name;
 
-    @JsonProperty("name_servers")
-    public List<String> getNameServers() {
-        return nameServers;
-    }
+  @JsonProperty("id")
+  private String id;
 
-    @JsonProperty("name_servers")
-    public void setNameServers(List<String> nameServers) {
-        this.nameServers = nameServers;
-    }
+  @JsonProperty("created_date")
+  private String createdDate;
 
-    @JsonProperty("expiration_date")
-    public String getExpirationDate() {
-        return expirationDate;
-    }
+  @JsonProperty("registrant")
+  private Registrant registrant;
 
-    @JsonProperty("expiration_date")
-    public void setExpirationDate(String expirationDate) {
-        this.expirationDate = expirationDate;
-    }
+  @JsonProperty("updated_date")
+  private String updatedDate;
 
-    @JsonProperty("punycode")
-    public String getPunycode() {
-        return punycode;
-    }
+  @JsonProperty("extracted_domain")
+  private String extractedDomain;
 
-    @JsonProperty("punycode")
-    public void setPunycode(String punycode) {
-        this.punycode = punycode;
-    }
+  @JsonProperty("status")
+  private List<String> status = new ArrayList<String>();
 
-    @JsonProperty("zone")
-    public String getZone() {
-        return zone;
-    }
+  @JsonProperty("server")
+  public String getServer() {
+    return server;
+  }
 
-    @JsonProperty("zone")
-    public void setZone(String zone) {
-        this.zone = zone;
-    }
+  @JsonProperty("server")
+  public void setServer(String server) {
+    this.server = server;
+  }
 
-    @JsonProperty("stats")
-    public Stats getStats() {
-        return stats;
-    }
+  @JsonProperty("extension")
+  public String getExtension() {
+    return extension;
+  }
 
-    @JsonProperty("stats")
-    public void setStats(Stats stats) {
-        this.stats = stats;
-    }
+  @JsonProperty("extension")
+  public void setExtension(String extension) {
+    this.extension = extension;
+  }
 
-    @JsonProperty("administrative")
-    public Administrative getAdministrative() {
-        return administrative;
-    }
+  @JsonProperty("last_updated")
+  public String getLastUpdated() {
+    return lastUpdated;
+  }
 
-    @JsonProperty("administrative")
-    public void setAdministrative(Administrative administrative) {
-        this.administrative = administrative;
-    }
+  @JsonProperty("last_updated")
+  public void setLastUpdated(String lastUpdated) {
+    this.lastUpdated = lastUpdated;
+  }
 
-    @JsonProperty("domain")
-    public String getDomain() {
-        return domain;
-    }
+  @JsonProperty("registrar")
+  public Registrar getRegistrar() {
+    return registrar;
+  }
 
-    @JsonProperty("domain")
-    public void setDomain(String domain) {
-        this.domain = domain;
-    }
+  @JsonProperty("registrar")
+  public void setRegistrar(Registrar registrar) {
+    this.registrar = registrar;
+  }
 
-    @JsonProperty("name")
-    public String getName() {
-        return name;
-    }
+  @JsonProperty("technical")
+  public Technical getTechnical() {
+    return technical;
+  }
 
-    @JsonProperty("name")
-    public void setName(String name) {
-        this.name = name;
-    }
+  @JsonProperty("technical")
+  public void setTechnical(Technical technical) {
+    this.technical = technical;
+  }
 
-    @JsonProperty("id")
-    public String getId() {
-        return id;
-    }
+  @JsonProperty("whois_server")
+  public String getWhoisServer() {
+    return whoisServer;
+  }
 
-    @JsonProperty("id")
-    public void setId(String id) {
-        this.id = id;
-    }
+  @JsonProperty("whois_server")
+  public void setWhoisServer(String whoisServer) {
+    this.whoisServer = whoisServer;
+  }
 
-    @JsonProperty("created_date")
-    public String getCreatedDate() {
-        return createdDate;
-    }
+  @JsonProperty("level")
+  public Integer getLevel() {
+    return level;
+  }
 
-    @JsonProperty("created_date")
-    public void setCreatedDate(String createdDate) {
-        this.createdDate = createdDate;
-    }
+  @JsonProperty("level")
+  public void setLevel(Integer level) {
+    this.level = level;
+  }
 
-    @JsonProperty("registrant")
-    public Registrant getRegistrant() {
-        return registrant;
-    }
+  @JsonProperty("name_servers")
+  public List<String> getNameServers() {
+    return nameServers;
+  }
 
-    @JsonProperty("registrant")
-    public void setRegistrant(Registrant registrant) {
-        this.registrant = registrant;
-    }
+  @JsonProperty("name_servers")
+  public void setNameServers(List<String> nameServers) {
+    this.nameServers = nameServers;
+  }
 
-    @JsonProperty("updated_date")
-    public String getUpdatedDate() {
-        return updatedDate;
-    }
+  @JsonProperty("expiration_date")
+  public String getExpirationDate() {
+    return expirationDate;
+  }
 
-    @JsonProperty("updated_date")
-    public void setUpdatedDate(String updatedDate) {
-        this.updatedDate = updatedDate;
-    }
+  @JsonProperty("expiration_date")
+  public void setExpirationDate(String expirationDate) {
+    this.expirationDate = expirationDate;
+  }
 
-    @JsonProperty("extracted_domain")
-    public String getExtractedDomain() {
-        return extractedDomain;
-    }
+  @JsonProperty("punycode")
+  public String getPunycode() {
+    return punycode;
+  }
 
-    @JsonProperty("extracted_domain")
-    public void setExtractedDomain(String extractedDomain) {
-        this.extractedDomain = extractedDomain;
-    }
+  @JsonProperty("punycode")
+  public void setPunycode(String punycode) {
+    this.punycode = punycode;
+  }
 
-    @JsonProperty("status")
-    public List<String> getStatus() {
-        return status;
-    }
+  @JsonProperty("zone")
+  public String getZone() {
+    return zone;
+  }
 
-    @JsonProperty("status")
-    public void setStatus(List<String> status) {
-        this.status = status;
-    }
+  @JsonProperty("zone")
+  public void setZone(String zone) {
+    this.zone = zone;
+  }
 
+  @JsonProperty("stats")
+  public Stats getStats() {
+    return stats;
+  }
+
+  @JsonProperty("stats")
+  public void setStats(Stats stats) {
+    this.stats = stats;
+  }
+
+  @JsonProperty("administrative")
+  public Administrative getAdministrative() {
+    return administrative;
+  }
+
+  @JsonProperty("administrative")
+  public void setAdministrative(Administrative administrative) {
+    this.administrative = administrative;
+  }
+
+  @JsonProperty("domain")
+  public String getDomain() {
+    return domain;
+  }
+
+  @JsonProperty("domain")
+  public void setDomain(String domain) {
+    this.domain = domain;
+  }
+
+  @JsonProperty("name")
+  public String getName() {
+    return name;
+  }
+
+  @JsonProperty("name")
+  public void setName(String name) {
+    this.name = name;
+  }
+
+  @JsonProperty("id")
+  public String getId() {
+    return id;
+  }
+
+  @JsonProperty("id")
+  public void setId(String id) {
+    this.id = id;
+  }
+
+  @JsonProperty("created_date")
+  public String getCreatedDate() {
+    return createdDate;
+  }
+
+  @JsonProperty("created_date")
+  public void setCreatedDate(String createdDate) {
+    this.createdDate = createdDate;
+  }
+
+  @JsonProperty("registrant")
+  public Registrant getRegistrant() {
+    return registrant;
+  }
+
+  @JsonProperty("registrant")
+  public void setRegistrant(Registrant registrant) {
+    this.registrant = registrant;
+  }
+
+  @JsonProperty("updated_date")
+  public String getUpdatedDate() {
+    return updatedDate;
+  }
+
+  @JsonProperty("updated_date")
+  public void setUpdatedDate(String updatedDate) {
+    this.updatedDate = updatedDate;
+  }
+
+  @JsonProperty("extracted_domain")
+  public String getExtractedDomain() {
+    return extractedDomain;
+  }
+
+  @JsonProperty("extracted_domain")
+  public void setExtractedDomain(String extractedDomain) {
+    this.extractedDomain = extractedDomain;
+  }
+
+  @JsonProperty("status")
+  public List<String> getStatus() {
+    return status;
+  }
+
+  @JsonProperty("status")
+  public void setStatus(List<String> status) {
+    this.status = status;
+  }
 }

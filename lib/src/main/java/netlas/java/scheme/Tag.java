@@ -1,118 +1,125 @@
 package netlas.java.scheme;
-import java.util.ArrayList;
-import java.util.List;
+
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import java.util.ArrayList;
+import java.util.List;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
-    "nginx",
-    "name",
-    "cpe",
-    "description",
-    "fullname",
-    "category",
-    "openssh",
-    "debian"
+  "nginx",
+  "name",
+  "cpe",
+  "description",
+  "fullname",
+  "category",
+  "openssh",
+  "debian"
 })
 public class Tag {
 
-    @JsonProperty("nginx")
-    private Nginx nginx;
-    @JsonProperty("name")
-    private String name;
-    @JsonProperty("cpe")
-    private List<String> cpe = new ArrayList<String>();
-    @JsonProperty("description")
-    private String description;
-    @JsonProperty("fullname")
-    private String fullname;
-    @JsonProperty("category")
-    private List<String> category = new ArrayList<String>();
-    @JsonProperty("openssh")
-    private Openssh openssh;
-    @JsonProperty("debian")
-    private Debian debian;
+  @JsonProperty("nginx")
+  private Nginx nginx;
 
-    @JsonProperty("nginx")
-    public Nginx getNginx() {
-        return nginx;
-    }
+  @JsonProperty("name")
+  private String name;
 
-    @JsonProperty("nginx")
-    public void setNginx(Nginx nginx) {
-        this.nginx = nginx;
-    }
+  @JsonProperty("cpe")
+  private List<String> cpe = new ArrayList<String>();
 
-    @JsonProperty("name")
-    public String getName() {
-        return name;
-    }
+  @JsonProperty("description")
+  private String description;
 
-    @JsonProperty("name")
-    public void setName(String name) {
-        this.name = name;
-    }
+  @JsonProperty("fullname")
+  private String fullname;
 
-    @JsonProperty("cpe")
-    public List<String> getCpe() {
-        return cpe;
-    }
+  @JsonProperty("category")
+  private List<String> category = new ArrayList<String>();
 
-    @JsonProperty("cpe")
-    public void setCpe(List<String> cpe) {
-        this.cpe = cpe;
-    }
+  @JsonProperty("openssh")
+  private Openssh openssh;
 
-    @JsonProperty("description")
-    public String getDescription() {
-        return description;
-    }
+  @JsonProperty("debian")
+  private Debian debian;
 
-    @JsonProperty("description")
-    public void setDescription(String description) {
-        this.description = description;
-    }
+  @JsonProperty("nginx")
+  public Nginx getNginx() {
+    return nginx;
+  }
 
-    @JsonProperty("fullname")
-    public String getFullname() {
-        return fullname;
-    }
+  @JsonProperty("nginx")
+  public void setNginx(Nginx nginx) {
+    this.nginx = nginx;
+  }
 
-    @JsonProperty("fullname")
-    public void setFullname(String fullname) {
-        this.fullname = fullname;
-    }
+  @JsonProperty("name")
+  public String getName() {
+    return name;
+  }
 
-    @JsonProperty("category")
-    public List<String> getCategory() {
-        return category;
-    }
+  @JsonProperty("name")
+  public void setName(String name) {
+    this.name = name;
+  }
 
-    @JsonProperty("category")
-    public void setCategory(List<String> category) {
-        this.category = category;
-    }
+  @JsonProperty("cpe")
+  public List<String> getCpe() {
+    return cpe;
+  }
 
-    @JsonProperty("openssh")
-    public Openssh getOpenssh() {
-        return openssh;
-    }
+  @JsonProperty("cpe")
+  public void setCpe(List<String> cpe) {
+    this.cpe = cpe;
+  }
 
-    @JsonProperty("openssh")
-    public void setOpenssh(Openssh openssh) {
-        this.openssh = openssh;
-    }
+  @JsonProperty("description")
+  public String getDescription() {
+    return description;
+  }
 
-    @JsonProperty("debian")
-    public Debian getDebian() {
-        return debian;
-    }
+  @JsonProperty("description")
+  public void setDescription(String description) {
+    this.description = description;
+  }
 
-    @JsonProperty("debian")
-    public void setDebian(Debian debian) {
-        this.debian = debian;
-    }
+  @JsonProperty("fullname")
+  public String getFullname() {
+    return fullname;
+  }
 
+  @JsonProperty("fullname")
+  public void setFullname(String fullname) {
+    this.fullname = fullname;
+  }
+
+  @JsonProperty("category")
+  public List<String> getCategory() {
+    return category;
+  }
+
+  @JsonProperty("category")
+  public void setCategory(List<String> category) {
+    this.category = category;
+  }
+
+  @JsonProperty("openssh")
+  public Openssh getOpenssh() {
+    return openssh;
+  }
+
+  @JsonProperty("openssh")
+  public void setOpenssh(Openssh openssh) {
+    this.openssh = openssh;
+  }
+
+  @JsonProperty("debian")
+  public Debian getDebian() {
+    return debian;
+  }
+
+  @JsonProperty("debian")
+  public void setDebian(Debian debian) {
+    this.debian = debian;
+  }
 }

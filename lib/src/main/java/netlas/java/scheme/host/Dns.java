@@ -1,79 +1,77 @@
 package netlas.java.scheme.host;
-import java.util.ArrayList;
-import java.util.List;
+
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import java.util.ArrayList;
+import java.util.List;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@JsonPropertyOrder({
-    "a",
-    "txt",
-    "level",
-    "ns",
-    "zone"
-})
+@JsonPropertyOrder({"a", "txt", "level", "ns", "zone"})
 public class Dns {
 
-    @JsonProperty("a")
-    private List<String> a = new ArrayList<String>();
-    @JsonProperty("txt")
-    private List<String> txt = new ArrayList<String>();
-    @JsonProperty("level")
-    private Integer level;
-    @JsonProperty("ns")
-    private List<String> ns = new ArrayList<String>();
-    @JsonProperty("zone")
-    private String zone;
+  @JsonProperty("a")
+  private List<String> a = new ArrayList<String>();
 
-    @JsonProperty("a")
-    public List<String> getA() {
-        return a;
-    }
+  @JsonProperty("txt")
+  private List<String> txt = new ArrayList<String>();
 
-    @JsonProperty("a")
-    public void setA(List<String> a) {
-        this.a = a;
-    }
+  @JsonProperty("level")
+  private Integer level;
 
-    @JsonProperty("txt")
-    public List<String> getTxt() {
-        return txt;
-    }
+  @JsonProperty("ns")
+  private List<String> ns = new ArrayList<String>();
 
-    @JsonProperty("txt")
-    public void setTxt(List<String> txt) {
-        this.txt = txt;
-    }
+  @JsonProperty("zone")
+  private String zone;
 
-    @JsonProperty("level")
-    public Integer getLevel() {
-        return level;
-    }
+  @JsonProperty("a")
+  public List<String> getA() {
+    return a;
+  }
 
-    @JsonProperty("level")
-    public void setLevel(Integer level) {
-        this.level = level;
-    }
+  @JsonProperty("a")
+  public void setA(List<String> a) {
+    this.a = a;
+  }
 
-    @JsonProperty("ns")
-    public List<String> getNs() {
-        return ns;
-    }
+  @JsonProperty("txt")
+  public List<String> getTxt() {
+    return txt;
+  }
 
-    @JsonProperty("ns")
-    public void setNs(List<String> ns) {
-        this.ns = ns;
-    }
+  @JsonProperty("txt")
+  public void setTxt(List<String> txt) {
+    this.txt = txt;
+  }
 
-    @JsonProperty("zone")
-    public String getZone() {
-        return zone;
-    }
+  @JsonProperty("level")
+  public Integer getLevel() {
+    return level;
+  }
 
-    @JsonProperty("zone")
-    public void setZone(String zone) {
-        this.zone = zone;
-    }
+  @JsonProperty("level")
+  public void setLevel(Integer level) {
+    this.level = level;
+  }
 
+  @JsonProperty("ns")
+  public List<String> getNs() {
+    return ns;
+  }
+
+  @JsonProperty("ns")
+  public void setNs(List<String> ns) {
+    this.ns = ns;
+  }
+
+  @JsonProperty("zone")
+  public String getZone() {
+    return zone;
+  }
+
+  @JsonProperty("zone")
+  public void setZone(String zone) {
+    this.zone = zone;
+  }
 }

@@ -1,51 +1,49 @@
 package netlas.java.scheme;
+
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@JsonPropertyOrder({
-    "h",
-    "raw",
-    "parsed"
-})
+@JsonPropertyOrder({"h", "raw", "parsed"})
 public class ServerSignature {
 
-    @JsonProperty("h")
-    private String h;
-    @JsonProperty("raw")
-    private String raw;
-    @JsonProperty("parsed")
-    private Parsed parsed;
+  @JsonProperty("h")
+  private String h;
 
-    @JsonProperty("h")
-    public String getH() {
-        return h;
-    }
+  @JsonProperty("raw")
+  private String raw;
 
-    @JsonProperty("h")
-    public void setH(String h) {
-        this.h = h;
-    }
+  @JsonProperty("parsed")
+  private Parsed parsed;
 
-    @JsonProperty("raw")
-    public String getRaw() {
-        return raw;
-    }
+  @JsonProperty("h")
+  public String getH() {
+    return h;
+  }
 
-    @JsonProperty("raw")
-    public void setRaw(String raw) {
-        this.raw = raw;
-    }
+  @JsonProperty("h")
+  public void setH(String h) {
+    this.h = h;
+  }
 
-    @JsonProperty("parsed")
-    public Parsed getParsed() {
-        return parsed;
-    }
+  @JsonProperty("raw")
+  public String getRaw() {
+    return raw;
+  }
 
-    @JsonProperty("parsed")
-    public void setParsed(Parsed parsed) {
-        this.parsed = parsed;
-    }
+  @JsonProperty("raw")
+  public void setRaw(String raw) {
+    this.raw = raw;
+  }
 
+  @JsonProperty("parsed")
+  public Parsed getParsed() {
+    return parsed;
+  }
+
+  @JsonProperty("parsed")
+  public void setParsed(Parsed parsed) {
+    this.parsed = parsed;
+  }
 }

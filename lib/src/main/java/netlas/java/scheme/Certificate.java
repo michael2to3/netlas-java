@@ -1,287 +1,307 @@
 package netlas.java.scheme;
-import java.util.ArrayList;
-import java.util.List;
+
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import java.util.ArrayList;
+import java.util.List;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
-    "issuer_dn",
-    "fingerprint_md5",
-    "chain",
-    "src",
-    "redacted",
-    "signature",
-    "subject",
-    "serial_number",
-    "version",
-    "issuer",
-    "tbs_noct_fingerprint",
-    "fingerprint_sha256",
-    "extensions",
-    "tbs_fingerprint",
-    "subject_dn",
-    "names",
-    "fingerprint_sha1",
-    "signature_algorithm",
-    "spki_subject_fingerprint",
-    "validity",
-    "validation_level"
+  "issuer_dn",
+  "fingerprint_md5",
+  "chain",
+  "src",
+  "redacted",
+  "signature",
+  "subject",
+  "serial_number",
+  "version",
+  "issuer",
+  "tbs_noct_fingerprint",
+  "fingerprint_sha256",
+  "extensions",
+  "tbs_fingerprint",
+  "subject_dn",
+  "names",
+  "fingerprint_sha1",
+  "signature_algorithm",
+  "spki_subject_fingerprint",
+  "validity",
+  "validation_level"
 })
 public class Certificate {
 
-    @JsonProperty("issuer_dn")
-    private String issuerDn;
-    @JsonProperty("fingerprint_md5")
-    private String fingerprintMd5;
-    @JsonProperty("chain")
-    private List<Chain> chain = new ArrayList<Chain>();
-    @JsonProperty("src")
-    private String src;
-    @JsonProperty("redacted")
-    private Boolean redacted;
-    @JsonProperty("signature")
-    private Signature__1 signature;
-    @JsonProperty("subject")
-    private Subject__1 subject;
-    @JsonProperty("serial_number")
-    private String serialNumber;
-    @JsonProperty("version")
-    private Integer version;
-    @JsonProperty("issuer")
-    private Issuer__1 issuer;
-    @JsonProperty("tbs_noct_fingerprint")
-    private String tbsNoctFingerprint;
-    @JsonProperty("fingerprint_sha256")
-    private String fingerprintSha256;
-    @JsonProperty("extensions")
-    private Extensions__1 extensions;
-    @JsonProperty("tbs_fingerprint")
-    private String tbsFingerprint;
-    @JsonProperty("subject_dn")
-    private String subjectDn;
-    @JsonProperty("names")
-    private List<String> names = new ArrayList<String>();
-    @JsonProperty("fingerprint_sha1")
-    private String fingerprintSha1;
-    @JsonProperty("signature_algorithm")
-    private SignatureAlgorithm__3 signatureAlgorithm;
-    @JsonProperty("spki_subject_fingerprint")
-    private String spkiSubjectFingerprint;
-    @JsonProperty("validity")
-    private Validity__1 validity;
-    @JsonProperty("validation_level")
-    private String validationLevel;
+  @JsonProperty("issuer_dn")
+  private String issuerDn;
 
-    @JsonProperty("issuer_dn")
-    public String getIssuerDn() {
-        return issuerDn;
-    }
+  @JsonProperty("fingerprint_md5")
+  private String fingerprintMd5;
 
-    @JsonProperty("issuer_dn")
-    public void setIssuerDn(String issuerDn) {
-        this.issuerDn = issuerDn;
-    }
+  @JsonProperty("chain")
+  private List<Chain> chain = new ArrayList<Chain>();
 
-    @JsonProperty("fingerprint_md5")
-    public String getFingerprintMd5() {
-        return fingerprintMd5;
-    }
+  @JsonProperty("src")
+  private String src;
 
-    @JsonProperty("fingerprint_md5")
-    public void setFingerprintMd5(String fingerprintMd5) {
-        this.fingerprintMd5 = fingerprintMd5;
-    }
+  @JsonProperty("redacted")
+  private Boolean redacted;
 
-    @JsonProperty("chain")
-    public List<Chain> getChain() {
-        return chain;
-    }
+  @JsonProperty("signature")
+  private Signature__1 signature;
 
-    @JsonProperty("chain")
-    public void setChain(List<Chain> chain) {
-        this.chain = chain;
-    }
+  @JsonProperty("subject")
+  private Subject__1 subject;
 
-    @JsonProperty("src")
-    public String getSrc() {
-        return src;
-    }
+  @JsonProperty("serial_number")
+  private String serialNumber;
 
-    @JsonProperty("src")
-    public void setSrc(String src) {
-        this.src = src;
-    }
+  @JsonProperty("version")
+  private Integer version;
 
-    @JsonProperty("redacted")
-    public Boolean getRedacted() {
-        return redacted;
-    }
+  @JsonProperty("issuer")
+  private Issuer__1 issuer;
 
-    @JsonProperty("redacted")
-    public void setRedacted(Boolean redacted) {
-        this.redacted = redacted;
-    }
+  @JsonProperty("tbs_noct_fingerprint")
+  private String tbsNoctFingerprint;
 
-    @JsonProperty("signature")
-    public Signature__1 getSignature() {
-        return signature;
-    }
+  @JsonProperty("fingerprint_sha256")
+  private String fingerprintSha256;
 
-    @JsonProperty("signature")
-    public void setSignature(Signature__1 signature) {
-        this.signature = signature;
-    }
+  @JsonProperty("extensions")
+  private Extensions__1 extensions;
 
-    @JsonProperty("subject")
-    public Subject__1 getSubject() {
-        return subject;
-    }
+  @JsonProperty("tbs_fingerprint")
+  private String tbsFingerprint;
 
-    @JsonProperty("subject")
-    public void setSubject(Subject__1 subject) {
-        this.subject = subject;
-    }
+  @JsonProperty("subject_dn")
+  private String subjectDn;
 
-    @JsonProperty("serial_number")
-    public String getSerialNumber() {
-        return serialNumber;
-    }
+  @JsonProperty("names")
+  private List<String> names = new ArrayList<String>();
 
-    @JsonProperty("serial_number")
-    public void setSerialNumber(String serialNumber) {
-        this.serialNumber = serialNumber;
-    }
+  @JsonProperty("fingerprint_sha1")
+  private String fingerprintSha1;
 
-    @JsonProperty("version")
-    public Integer getVersion() {
-        return version;
-    }
+  @JsonProperty("signature_algorithm")
+  private SignatureAlgorithm__3 signatureAlgorithm;
 
-    @JsonProperty("version")
-    public void setVersion(Integer version) {
-        this.version = version;
-    }
+  @JsonProperty("spki_subject_fingerprint")
+  private String spkiSubjectFingerprint;
 
-    @JsonProperty("issuer")
-    public Issuer__1 getIssuer() {
-        return issuer;
-    }
+  @JsonProperty("validity")
+  private Validity__1 validity;
 
-    @JsonProperty("issuer")
-    public void setIssuer(Issuer__1 issuer) {
-        this.issuer = issuer;
-    }
+  @JsonProperty("validation_level")
+  private String validationLevel;
 
-    @JsonProperty("tbs_noct_fingerprint")
-    public String getTbsNoctFingerprint() {
-        return tbsNoctFingerprint;
-    }
+  @JsonProperty("issuer_dn")
+  public String getIssuerDn() {
+    return issuerDn;
+  }
 
-    @JsonProperty("tbs_noct_fingerprint")
-    public void setTbsNoctFingerprint(String tbsNoctFingerprint) {
-        this.tbsNoctFingerprint = tbsNoctFingerprint;
-    }
+  @JsonProperty("issuer_dn")
+  public void setIssuerDn(String issuerDn) {
+    this.issuerDn = issuerDn;
+  }
 
-    @JsonProperty("fingerprint_sha256")
-    public String getFingerprintSha256() {
-        return fingerprintSha256;
-    }
+  @JsonProperty("fingerprint_md5")
+  public String getFingerprintMd5() {
+    return fingerprintMd5;
+  }
 
-    @JsonProperty("fingerprint_sha256")
-    public void setFingerprintSha256(String fingerprintSha256) {
-        this.fingerprintSha256 = fingerprintSha256;
-    }
+  @JsonProperty("fingerprint_md5")
+  public void setFingerprintMd5(String fingerprintMd5) {
+    this.fingerprintMd5 = fingerprintMd5;
+  }
 
-    @JsonProperty("extensions")
-    public Extensions__1 getExtensions() {
-        return extensions;
-    }
+  @JsonProperty("chain")
+  public List<Chain> getChain() {
+    return chain;
+  }
 
-    @JsonProperty("extensions")
-    public void setExtensions(Extensions__1 extensions) {
-        this.extensions = extensions;
-    }
+  @JsonProperty("chain")
+  public void setChain(List<Chain> chain) {
+    this.chain = chain;
+  }
 
-    @JsonProperty("tbs_fingerprint")
-    public String getTbsFingerprint() {
-        return tbsFingerprint;
-    }
+  @JsonProperty("src")
+  public String getSrc() {
+    return src;
+  }
 
-    @JsonProperty("tbs_fingerprint")
-    public void setTbsFingerprint(String tbsFingerprint) {
-        this.tbsFingerprint = tbsFingerprint;
-    }
+  @JsonProperty("src")
+  public void setSrc(String src) {
+    this.src = src;
+  }
 
-    @JsonProperty("subject_dn")
-    public String getSubjectDn() {
-        return subjectDn;
-    }
+  @JsonProperty("redacted")
+  public Boolean getRedacted() {
+    return redacted;
+  }
 
-    @JsonProperty("subject_dn")
-    public void setSubjectDn(String subjectDn) {
-        this.subjectDn = subjectDn;
-    }
+  @JsonProperty("redacted")
+  public void setRedacted(Boolean redacted) {
+    this.redacted = redacted;
+  }
 
-    @JsonProperty("names")
-    public List<String> getNames() {
-        return names;
-    }
+  @JsonProperty("signature")
+  public Signature__1 getSignature() {
+    return signature;
+  }
 
-    @JsonProperty("names")
-    public void setNames(List<String> names) {
-        this.names = names;
-    }
+  @JsonProperty("signature")
+  public void setSignature(Signature__1 signature) {
+    this.signature = signature;
+  }
 
-    @JsonProperty("fingerprint_sha1")
-    public String getFingerprintSha1() {
-        return fingerprintSha1;
-    }
+  @JsonProperty("subject")
+  public Subject__1 getSubject() {
+    return subject;
+  }
 
-    @JsonProperty("fingerprint_sha1")
-    public void setFingerprintSha1(String fingerprintSha1) {
-        this.fingerprintSha1 = fingerprintSha1;
-    }
+  @JsonProperty("subject")
+  public void setSubject(Subject__1 subject) {
+    this.subject = subject;
+  }
 
-    @JsonProperty("signature_algorithm")
-    public SignatureAlgorithm__3 getSignatureAlgorithm() {
-        return signatureAlgorithm;
-    }
+  @JsonProperty("serial_number")
+  public String getSerialNumber() {
+    return serialNumber;
+  }
 
-    @JsonProperty("signature_algorithm")
-    public void setSignatureAlgorithm(SignatureAlgorithm__3 signatureAlgorithm) {
-        this.signatureAlgorithm = signatureAlgorithm;
-    }
+  @JsonProperty("serial_number")
+  public void setSerialNumber(String serialNumber) {
+    this.serialNumber = serialNumber;
+  }
 
-    @JsonProperty("spki_subject_fingerprint")
-    public String getSpkiSubjectFingerprint() {
-        return spkiSubjectFingerprint;
-    }
+  @JsonProperty("version")
+  public Integer getVersion() {
+    return version;
+  }
 
-    @JsonProperty("spki_subject_fingerprint")
-    public void setSpkiSubjectFingerprint(String spkiSubjectFingerprint) {
-        this.spkiSubjectFingerprint = spkiSubjectFingerprint;
-    }
+  @JsonProperty("version")
+  public void setVersion(Integer version) {
+    this.version = version;
+  }
 
-    @JsonProperty("validity")
-    public Validity__1 getValidity() {
-        return validity;
-    }
+  @JsonProperty("issuer")
+  public Issuer__1 getIssuer() {
+    return issuer;
+  }
 
-    @JsonProperty("validity")
-    public void setValidity(Validity__1 validity) {
-        this.validity = validity;
-    }
+  @JsonProperty("issuer")
+  public void setIssuer(Issuer__1 issuer) {
+    this.issuer = issuer;
+  }
 
-    @JsonProperty("validation_level")
-    public String getValidationLevel() {
-        return validationLevel;
-    }
+  @JsonProperty("tbs_noct_fingerprint")
+  public String getTbsNoctFingerprint() {
+    return tbsNoctFingerprint;
+  }
 
-    @JsonProperty("validation_level")
-    public void setValidationLevel(String validationLevel) {
-        this.validationLevel = validationLevel;
-    }
+  @JsonProperty("tbs_noct_fingerprint")
+  public void setTbsNoctFingerprint(String tbsNoctFingerprint) {
+    this.tbsNoctFingerprint = tbsNoctFingerprint;
+  }
 
+  @JsonProperty("fingerprint_sha256")
+  public String getFingerprintSha256() {
+    return fingerprintSha256;
+  }
+
+  @JsonProperty("fingerprint_sha256")
+  public void setFingerprintSha256(String fingerprintSha256) {
+    this.fingerprintSha256 = fingerprintSha256;
+  }
+
+  @JsonProperty("extensions")
+  public Extensions__1 getExtensions() {
+    return extensions;
+  }
+
+  @JsonProperty("extensions")
+  public void setExtensions(Extensions__1 extensions) {
+    this.extensions = extensions;
+  }
+
+  @JsonProperty("tbs_fingerprint")
+  public String getTbsFingerprint() {
+    return tbsFingerprint;
+  }
+
+  @JsonProperty("tbs_fingerprint")
+  public void setTbsFingerprint(String tbsFingerprint) {
+    this.tbsFingerprint = tbsFingerprint;
+  }
+
+  @JsonProperty("subject_dn")
+  public String getSubjectDn() {
+    return subjectDn;
+  }
+
+  @JsonProperty("subject_dn")
+  public void setSubjectDn(String subjectDn) {
+    this.subjectDn = subjectDn;
+  }
+
+  @JsonProperty("names")
+  public List<String> getNames() {
+    return names;
+  }
+
+  @JsonProperty("names")
+  public void setNames(List<String> names) {
+    this.names = names;
+  }
+
+  @JsonProperty("fingerprint_sha1")
+  public String getFingerprintSha1() {
+    return fingerprintSha1;
+  }
+
+  @JsonProperty("fingerprint_sha1")
+  public void setFingerprintSha1(String fingerprintSha1) {
+    this.fingerprintSha1 = fingerprintSha1;
+  }
+
+  @JsonProperty("signature_algorithm")
+  public SignatureAlgorithm__3 getSignatureAlgorithm() {
+    return signatureAlgorithm;
+  }
+
+  @JsonProperty("signature_algorithm")
+  public void setSignatureAlgorithm(SignatureAlgorithm__3 signatureAlgorithm) {
+    this.signatureAlgorithm = signatureAlgorithm;
+  }
+
+  @JsonProperty("spki_subject_fingerprint")
+  public String getSpkiSubjectFingerprint() {
+    return spkiSubjectFingerprint;
+  }
+
+  @JsonProperty("spki_subject_fingerprint")
+  public void setSpkiSubjectFingerprint(String spkiSubjectFingerprint) {
+    this.spkiSubjectFingerprint = spkiSubjectFingerprint;
+  }
+
+  @JsonProperty("validity")
+  public Validity__1 getValidity() {
+    return validity;
+  }
+
+  @JsonProperty("validity")
+  public void setValidity(Validity__1 validity) {
+    this.validity = validity;
+  }
+
+  @JsonProperty("validation_level")
+  public String getValidationLevel() {
+    return validationLevel;
+  }
+
+  @JsonProperty("validation_level")
+  public void setValidationLevel(String validationLevel) {
+    this.validationLevel = validationLevel;
+  }
 }

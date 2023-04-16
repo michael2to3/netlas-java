@@ -1,105 +1,111 @@
 package netlas.java.scheme.profile;
-import java.util.ArrayList;
-import java.util.List;
+
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import java.util.ArrayList;
+import java.util.List;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
-    "certs",
-    "domains",
-    "host_ip",
-    "whois_ip",
-    "responses",
-    "host_domain",
-    "whois_domains"
+  "certs",
+  "domains",
+  "host_ip",
+  "whois_ip",
+  "responses",
+  "host_domain",
+  "whois_domains"
 })
 public class ExcludeFromResults {
 
-    @JsonProperty("certs")
-    private List<Object> certs = new ArrayList<Object>();
-    @JsonProperty("domains")
-    private List<Object> domains = new ArrayList<Object>();
-    @JsonProperty("host_ip")
-    private List<String> hostIp = new ArrayList<String>();
-    @JsonProperty("whois_ip")
-    private List<String> whoisIp = new ArrayList<String>();
-    @JsonProperty("responses")
-    private List<String> responses = new ArrayList<String>();
-    @JsonProperty("host_domain")
-    private List<String> hostDomain = new ArrayList<String>();
-    @JsonProperty("whois_domains")
-    private List<String> whoisDomains = new ArrayList<String>();
+  @JsonProperty("certs")
+  private List<Object> certs = new ArrayList<Object>();
 
-    @JsonProperty("certs")
-    public List<Object> getCerts() {
-        return certs;
-    }
+  @JsonProperty("domains")
+  private List<Object> domains = new ArrayList<Object>();
 
-    @JsonProperty("certs")
-    public void setCerts(List<Object> certs) {
-        this.certs = certs;
-    }
+  @JsonProperty("host_ip")
+  private List<String> hostIp = new ArrayList<String>();
 
-    @JsonProperty("domains")
-    public List<Object> getDomains() {
-        return domains;
-    }
+  @JsonProperty("whois_ip")
+  private List<String> whoisIp = new ArrayList<String>();
 
-    @JsonProperty("domains")
-    public void setDomains(List<Object> domains) {
-        this.domains = domains;
-    }
+  @JsonProperty("responses")
+  private List<String> responses = new ArrayList<String>();
 
-    @JsonProperty("host_ip")
-    public List<String> getHostIp() {
-        return hostIp;
-    }
+  @JsonProperty("host_domain")
+  private List<String> hostDomain = new ArrayList<String>();
 
-    @JsonProperty("host_ip")
-    public void setHostIp(List<String> hostIp) {
-        this.hostIp = hostIp;
-    }
+  @JsonProperty("whois_domains")
+  private List<String> whoisDomains = new ArrayList<String>();
 
-    @JsonProperty("whois_ip")
-    public List<String> getWhoisIp() {
-        return whoisIp;
-    }
+  @JsonProperty("certs")
+  public List<Object> getCerts() {
+    return certs;
+  }
 
-    @JsonProperty("whois_ip")
-    public void setWhoisIp(List<String> whoisIp) {
-        this.whoisIp = whoisIp;
-    }
+  @JsonProperty("certs")
+  public void setCerts(List<Object> certs) {
+    this.certs = certs;
+  }
 
-    @JsonProperty("responses")
-    public List<String> getResponses() {
-        return responses;
-    }
+  @JsonProperty("domains")
+  public List<Object> getDomains() {
+    return domains;
+  }
 
-    @JsonProperty("responses")
-    public void setResponses(List<String> responses) {
-        this.responses = responses;
-    }
+  @JsonProperty("domains")
+  public void setDomains(List<Object> domains) {
+    this.domains = domains;
+  }
 
-    @JsonProperty("host_domain")
-    public List<String> getHostDomain() {
-        return hostDomain;
-    }
+  @JsonProperty("host_ip")
+  public List<String> getHostIp() {
+    return hostIp;
+  }
 
-    @JsonProperty("host_domain")
-    public void setHostDomain(List<String> hostDomain) {
-        this.hostDomain = hostDomain;
-    }
+  @JsonProperty("host_ip")
+  public void setHostIp(List<String> hostIp) {
+    this.hostIp = hostIp;
+  }
 
-    @JsonProperty("whois_domains")
-    public List<String> getWhoisDomains() {
-        return whoisDomains;
-    }
+  @JsonProperty("whois_ip")
+  public List<String> getWhoisIp() {
+    return whoisIp;
+  }
 
-    @JsonProperty("whois_domains")
-    public void setWhoisDomains(List<String> whoisDomains) {
-        this.whoisDomains = whoisDomains;
-    }
+  @JsonProperty("whois_ip")
+  public void setWhoisIp(List<String> whoisIp) {
+    this.whoisIp = whoisIp;
+  }
 
+  @JsonProperty("responses")
+  public List<String> getResponses() {
+    return responses;
+  }
+
+  @JsonProperty("responses")
+  public void setResponses(List<String> responses) {
+    this.responses = responses;
+  }
+
+  @JsonProperty("host_domain")
+  public List<String> getHostDomain() {
+    return hostDomain;
+  }
+
+  @JsonProperty("host_domain")
+  public void setHostDomain(List<String> hostDomain) {
+    this.hostDomain = hostDomain;
+  }
+
+  @JsonProperty("whois_domains")
+  public List<String> getWhoisDomains() {
+    return whoisDomains;
+  }
+
+  @JsonProperty("whois_domains")
+  public void setWhoisDomains(List<String> whoisDomains) {
+    this.whoisDomains = whoisDomains;
+  }
 }

@@ -1,64 +1,62 @@
 package netlas.java.scheme;
+
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@JsonPropertyOrder({
-    "software",
-    "raw",
-    "comment",
-    "version"
-})
+@JsonPropertyOrder({"software", "raw", "comment", "version"})
 public class ServerId {
 
-    @JsonProperty("software")
-    private String software;
-    @JsonProperty("raw")
-    private String raw;
-    @JsonProperty("comment")
-    private String comment;
-    @JsonProperty("version")
-    private String version;
+  @JsonProperty("software")
+  private String software;
 
-    @JsonProperty("software")
-    public String getSoftware() {
-        return software;
-    }
+  @JsonProperty("raw")
+  private String raw;
 
-    @JsonProperty("software")
-    public void setSoftware(String software) {
-        this.software = software;
-    }
+  @JsonProperty("comment")
+  private String comment;
 
-    @JsonProperty("raw")
-    public String getRaw() {
-        return raw;
-    }
+  @JsonProperty("version")
+  private String version;
 
-    @JsonProperty("raw")
-    public void setRaw(String raw) {
-        this.raw = raw;
-    }
+  @JsonProperty("software")
+  public String getSoftware() {
+    return software;
+  }
 
-    @JsonProperty("comment")
-    public String getComment() {
-        return comment;
-    }
+  @JsonProperty("software")
+  public void setSoftware(String software) {
+    this.software = software;
+  }
 
-    @JsonProperty("comment")
-    public void setComment(String comment) {
-        this.comment = comment;
-    }
+  @JsonProperty("raw")
+  public String getRaw() {
+    return raw;
+  }
 
-    @JsonProperty("version")
-    public String getVersion() {
-        return version;
-    }
+  @JsonProperty("raw")
+  public void setRaw(String raw) {
+    this.raw = raw;
+  }
 
-    @JsonProperty("version")
-    public void setVersion(String version) {
-        this.version = version;
-    }
+  @JsonProperty("comment")
+  public String getComment() {
+    return comment;
+  }
 
+  @JsonProperty("comment")
+  public void setComment(String comment) {
+    this.comment = comment;
+  }
+
+  @JsonProperty("version")
+  public String getVersion() {
+    return version;
+  }
+
+  @JsonProperty("version")
+  public void setVersion(String version) {
+    this.version = version;
+  }
 }

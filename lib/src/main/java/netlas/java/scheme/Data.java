@@ -1,326 +1,349 @@
 package netlas.java.scheme;
-import java.util.ArrayList;
-import java.util.List;
+
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import java.util.ArrayList;
+import java.util.List;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
-    "last_updated",
-    "jarm",
-    "isp",
-    "ip",
-    "certificate",
-    "uri",
-    "host_type",
-    "prot7",
-    "target",
-    "ptr",
-    "geo",
-    "path",
-    "protocol",
-    "prot4",
-    "@timestamp",
-    "whois",
-    "port",
-    "host",
-    "iteration",
-    "http",
-    "tag",
-    "scan_date",
-    "ssh",
-    "cve"
+  "last_updated",
+  "jarm",
+  "isp",
+  "ip",
+  "certificate",
+  "uri",
+  "host_type",
+  "prot7",
+  "target",
+  "ptr",
+  "geo",
+  "path",
+  "protocol",
+  "prot4",
+  "@timestamp",
+  "whois",
+  "port",
+  "host",
+  "iteration",
+  "http",
+  "tag",
+  "scan_date",
+  "ssh",
+  "cve"
 })
 public class Data {
 
-    @JsonProperty("last_updated")
-    private String lastUpdated;
-    @JsonProperty("jarm")
-    private String jarm;
-    @JsonProperty("isp")
-    private String isp;
-    @JsonProperty("ip")
-    private String ip;
-    @JsonProperty("certificate")
-    private Certificate certificate;
-    @JsonProperty("uri")
-    private String uri;
-    @JsonProperty("host_type")
-    private String hostType;
-    @JsonProperty("prot7")
-    private String prot7;
-    @JsonProperty("target")
-    private Target target;
-    @JsonProperty("ptr")
-    private List<String> ptr = new ArrayList<String>();
-    @JsonProperty("geo")
-    private Geo geo;
-    @JsonProperty("path")
-    private String path;
-    @JsonProperty("protocol")
-    private String protocol;
-    @JsonProperty("prot4")
-    private String prot4;
-    @JsonProperty("@timestamp")
-    private String timestamp;
-    @JsonProperty("whois")
-    private Whois whois;
-    @JsonProperty("port")
-    private Integer port;
-    @JsonProperty("host")
-    private String host;
-    @JsonProperty("iteration")
-    private String iteration;
-    @JsonProperty("http")
-    private Http http;
-    @JsonProperty("tag")
-    private List<Tag> tag = new ArrayList<Tag>();
-    @JsonProperty("scan_date")
-    private String scanDate;
-    @JsonProperty("ssh")
-    private Ssh ssh;
-    @JsonProperty("cve")
-    private List<Cve> cve = new ArrayList<Cve>();
+  @JsonProperty("last_updated")
+  private String lastUpdated;
 
-    @JsonProperty("last_updated")
-    public String getLastUpdated() {
-        return lastUpdated;
-    }
+  @JsonProperty("jarm")
+  private String jarm;
 
-    @JsonProperty("last_updated")
-    public void setLastUpdated(String lastUpdated) {
-        this.lastUpdated = lastUpdated;
-    }
+  @JsonProperty("isp")
+  private String isp;
 
-    @JsonProperty("jarm")
-    public String getJarm() {
-        return jarm;
-    }
+  @JsonProperty("ip")
+  private String ip;
 
-    @JsonProperty("jarm")
-    public void setJarm(String jarm) {
-        this.jarm = jarm;
-    }
+  @JsonProperty("certificate")
+  private Certificate certificate;
 
-    @JsonProperty("isp")
-    public String getIsp() {
-        return isp;
-    }
+  @JsonProperty("uri")
+  private String uri;
 
-    @JsonProperty("isp")
-    public void setIsp(String isp) {
-        this.isp = isp;
-    }
+  @JsonProperty("host_type")
+  private String hostType;
 
-    @JsonProperty("ip")
-    public String getIp() {
-        return ip;
-    }
+  @JsonProperty("prot7")
+  private String prot7;
 
-    @JsonProperty("ip")
-    public void setIp(String ip) {
-        this.ip = ip;
-    }
+  @JsonProperty("target")
+  private Target target;
 
-    @JsonProperty("certificate")
-    public Certificate getCertificate() {
-        return certificate;
-    }
+  @JsonProperty("ptr")
+  private List<String> ptr = new ArrayList<String>();
 
-    @JsonProperty("certificate")
-    public void setCertificate(Certificate certificate) {
-        this.certificate = certificate;
-    }
+  @JsonProperty("geo")
+  private Geo geo;
 
-    @JsonProperty("uri")
-    public String getUri() {
-        return uri;
-    }
+  @JsonProperty("path")
+  private String path;
 
-    @JsonProperty("uri")
-    public void setUri(String uri) {
-        this.uri = uri;
-    }
+  @JsonProperty("protocol")
+  private String protocol;
 
-    @JsonProperty("host_type")
-    public String getHostType() {
-        return hostType;
-    }
+  @JsonProperty("prot4")
+  private String prot4;
 
-    @JsonProperty("host_type")
-    public void setHostType(String hostType) {
-        this.hostType = hostType;
-    }
+  @JsonProperty("@timestamp")
+  private String timestamp;
 
-    @JsonProperty("prot7")
-    public String getProt7() {
-        return prot7;
-    }
+  @JsonProperty("whois")
+  private Whois whois;
 
-    @JsonProperty("prot7")
-    public void setProt7(String prot7) {
-        this.prot7 = prot7;
-    }
+  @JsonProperty("port")
+  private Integer port;
 
-    @JsonProperty("target")
-    public Target getTarget() {
-        return target;
-    }
+  @JsonProperty("host")
+  private String host;
 
-    @JsonProperty("target")
-    public void setTarget(Target target) {
-        this.target = target;
-    }
+  @JsonProperty("iteration")
+  private String iteration;
 
-    @JsonProperty("ptr")
-    public List<String> getPtr() {
-        return ptr;
-    }
+  @JsonProperty("http")
+  private Http http;
 
-    @JsonProperty("ptr")
-    public void setPtr(List<String> ptr) {
-        this.ptr = ptr;
-    }
+  @JsonProperty("tag")
+  private List<Tag> tag = new ArrayList<Tag>();
 
-    @JsonProperty("geo")
-    public Geo getGeo() {
-        return geo;
-    }
+  @JsonProperty("scan_date")
+  private String scanDate;
 
-    @JsonProperty("geo")
-    public void setGeo(Geo geo) {
-        this.geo = geo;
-    }
+  @JsonProperty("ssh")
+  private Ssh ssh;
 
-    @JsonProperty("path")
-    public String getPath() {
-        return path;
-    }
+  @JsonProperty("cve")
+  private List<Cve> cve = new ArrayList<Cve>();
 
-    @JsonProperty("path")
-    public void setPath(String path) {
-        this.path = path;
-    }
+  @JsonProperty("last_updated")
+  public String getLastUpdated() {
+    return lastUpdated;
+  }
 
-    @JsonProperty("protocol")
-    public String getProtocol() {
-        return protocol;
-    }
+  @JsonProperty("last_updated")
+  public void setLastUpdated(String lastUpdated) {
+    this.lastUpdated = lastUpdated;
+  }
 
-    @JsonProperty("protocol")
-    public void setProtocol(String protocol) {
-        this.protocol = protocol;
-    }
+  @JsonProperty("jarm")
+  public String getJarm() {
+    return jarm;
+  }
 
-    @JsonProperty("prot4")
-    public String getProt4() {
-        return prot4;
-    }
+  @JsonProperty("jarm")
+  public void setJarm(String jarm) {
+    this.jarm = jarm;
+  }
 
-    @JsonProperty("prot4")
-    public void setProt4(String prot4) {
-        this.prot4 = prot4;
-    }
+  @JsonProperty("isp")
+  public String getIsp() {
+    return isp;
+  }
 
-    @JsonProperty("@timestamp")
-    public String getTimestamp() {
-        return timestamp;
-    }
+  @JsonProperty("isp")
+  public void setIsp(String isp) {
+    this.isp = isp;
+  }
 
-    @JsonProperty("@timestamp")
-    public void setTimestamp(String timestamp) {
-        this.timestamp = timestamp;
-    }
+  @JsonProperty("ip")
+  public String getIp() {
+    return ip;
+  }
 
-    @JsonProperty("whois")
-    public Whois getWhois() {
-        return whois;
-    }
+  @JsonProperty("ip")
+  public void setIp(String ip) {
+    this.ip = ip;
+  }
 
-    @JsonProperty("whois")
-    public void setWhois(Whois whois) {
-        this.whois = whois;
-    }
+  @JsonProperty("certificate")
+  public Certificate getCertificate() {
+    return certificate;
+  }
 
-    @JsonProperty("port")
-    public Integer getPort() {
-        return port;
-    }
+  @JsonProperty("certificate")
+  public void setCertificate(Certificate certificate) {
+    this.certificate = certificate;
+  }
 
-    @JsonProperty("port")
-    public void setPort(Integer port) {
-        this.port = port;
-    }
+  @JsonProperty("uri")
+  public String getUri() {
+    return uri;
+  }
 
-    @JsonProperty("host")
-    public String getHost() {
-        return host;
-    }
+  @JsonProperty("uri")
+  public void setUri(String uri) {
+    this.uri = uri;
+  }
 
-    @JsonProperty("host")
-    public void setHost(String host) {
-        this.host = host;
-    }
+  @JsonProperty("host_type")
+  public String getHostType() {
+    return hostType;
+  }
 
-    @JsonProperty("iteration")
-    public String getIteration() {
-        return iteration;
-    }
+  @JsonProperty("host_type")
+  public void setHostType(String hostType) {
+    this.hostType = hostType;
+  }
 
-    @JsonProperty("iteration")
-    public void setIteration(String iteration) {
-        this.iteration = iteration;
-    }
+  @JsonProperty("prot7")
+  public String getProt7() {
+    return prot7;
+  }
 
-    @JsonProperty("http")
-    public Http getHttp() {
-        return http;
-    }
+  @JsonProperty("prot7")
+  public void setProt7(String prot7) {
+    this.prot7 = prot7;
+  }
 
-    @JsonProperty("http")
-    public void setHttp(Http http) {
-        this.http = http;
-    }
+  @JsonProperty("target")
+  public Target getTarget() {
+    return target;
+  }
 
-    @JsonProperty("tag")
-    public List<Tag> getTag() {
-        return tag;
-    }
+  @JsonProperty("target")
+  public void setTarget(Target target) {
+    this.target = target;
+  }
 
-    @JsonProperty("tag")
-    public void setTag(List<Tag> tag) {
-        this.tag = tag;
-    }
+  @JsonProperty("ptr")
+  public List<String> getPtr() {
+    return ptr;
+  }
 
-    @JsonProperty("scan_date")
-    public String getScanDate() {
-        return scanDate;
-    }
+  @JsonProperty("ptr")
+  public void setPtr(List<String> ptr) {
+    this.ptr = ptr;
+  }
 
-    @JsonProperty("scan_date")
-    public void setScanDate(String scanDate) {
-        this.scanDate = scanDate;
-    }
+  @JsonProperty("geo")
+  public Geo getGeo() {
+    return geo;
+  }
 
-    @JsonProperty("ssh")
-    public Ssh getSsh() {
-        return ssh;
-    }
+  @JsonProperty("geo")
+  public void setGeo(Geo geo) {
+    this.geo = geo;
+  }
 
-    @JsonProperty("ssh")
-    public void setSsh(Ssh ssh) {
-        this.ssh = ssh;
-    }
+  @JsonProperty("path")
+  public String getPath() {
+    return path;
+  }
 
-    @JsonProperty("cve")
-    public List<Cve> getCve() {
-        return cve;
-    }
+  @JsonProperty("path")
+  public void setPath(String path) {
+    this.path = path;
+  }
 
-    @JsonProperty("cve")
-    public void setCve(List<Cve> cve) {
-        this.cve = cve;
-    }
+  @JsonProperty("protocol")
+  public String getProtocol() {
+    return protocol;
+  }
 
+  @JsonProperty("protocol")
+  public void setProtocol(String protocol) {
+    this.protocol = protocol;
+  }
+
+  @JsonProperty("prot4")
+  public String getProt4() {
+    return prot4;
+  }
+
+  @JsonProperty("prot4")
+  public void setProt4(String prot4) {
+    this.prot4 = prot4;
+  }
+
+  @JsonProperty("@timestamp")
+  public String getTimestamp() {
+    return timestamp;
+  }
+
+  @JsonProperty("@timestamp")
+  public void setTimestamp(String timestamp) {
+    this.timestamp = timestamp;
+  }
+
+  @JsonProperty("whois")
+  public Whois getWhois() {
+    return whois;
+  }
+
+  @JsonProperty("whois")
+  public void setWhois(Whois whois) {
+    this.whois = whois;
+  }
+
+  @JsonProperty("port")
+  public Integer getPort() {
+    return port;
+  }
+
+  @JsonProperty("port")
+  public void setPort(Integer port) {
+    this.port = port;
+  }
+
+  @JsonProperty("host")
+  public String getHost() {
+    return host;
+  }
+
+  @JsonProperty("host")
+  public void setHost(String host) {
+    this.host = host;
+  }
+
+  @JsonProperty("iteration")
+  public String getIteration() {
+    return iteration;
+  }
+
+  @JsonProperty("iteration")
+  public void setIteration(String iteration) {
+    this.iteration = iteration;
+  }
+
+  @JsonProperty("http")
+  public Http getHttp() {
+    return http;
+  }
+
+  @JsonProperty("http")
+  public void setHttp(Http http) {
+    this.http = http;
+  }
+
+  @JsonProperty("tag")
+  public List<Tag> getTag() {
+    return tag;
+  }
+
+  @JsonProperty("tag")
+  public void setTag(List<Tag> tag) {
+    this.tag = tag;
+  }
+
+  @JsonProperty("scan_date")
+  public String getScanDate() {
+    return scanDate;
+  }
+
+  @JsonProperty("scan_date")
+  public void setScanDate(String scanDate) {
+    this.scanDate = scanDate;
+  }
+
+  @JsonProperty("ssh")
+  public Ssh getSsh() {
+    return ssh;
+  }
+
+  @JsonProperty("ssh")
+  public void setSsh(Ssh ssh) {
+    this.ssh = ssh;
+  }
+
+  @JsonProperty("cve")
+  public List<Cve> getCve() {
+    return cve;
+  }
+
+  @JsonProperty("cve")
+  public void setCve(List<Cve> cve) {
+    this.cve = cve;
+  }
 }
