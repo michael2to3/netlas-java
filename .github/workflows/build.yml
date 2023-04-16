@@ -1,5 +1,7 @@
 env:
   API_KEY: ${{ secrets.NETLAS_API_KEY }}
+  JITPACK_TOKEN: ${{ secrets.JITPACK_TOKEN }}
+  JITPACK_USERNAME: ${{ secrets.JITPACK_USERNAME }}
 
 jobs:
   build:

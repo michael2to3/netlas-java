@@ -5,6 +5,7 @@
 ![Build Status](https://img.shields.io/github/actions/workflow/status/michael2to3/netlas-java/build.yml?branch=main)
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/db5aeb5920234d20a4951f85c9171e9d)](https://app.codacy.com/gh/michael2to3/netlas-java/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade)
 [![Codacy Badge](https://app.codacy.com/project/badge/Coverage/db5aeb5920234d20a4951f85c9171e9d)](https://app.codacy.com/gh/michael2to3/netlas-java/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_coverage)
+[![](https://jitpack.io/v/michael2to3/netlas-java.svg)](https://jitpack.io/#michael2to3/netlas-java)
 
 This Java library is designed to interact with the Netlas API, allowing you to easily search for certificates, domains, and WHOIS information. It requires an API key, and makes use of the following dependencies:
 
