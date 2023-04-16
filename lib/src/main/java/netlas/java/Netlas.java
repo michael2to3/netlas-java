@@ -1,5 +1,6 @@
 package netlas.java;
 
+import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.IOException;
@@ -29,7 +30,9 @@ public class Netlas {
   private Netlas() {
     this.apiBase = "https://app.netlas.io";
     this.client = new OkHttpClient();
-    this.objectMapper = new ObjectMapper();
+    this.objectMapper =
+        new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+    ;
   }
 
   /**
@@ -39,10 +42,9 @@ public class Netlas {
    * @param apiBase The base URL of the Netlas API
    */
   public Netlas(String apiKey, String apiBase) {
+    this();
     this.apiKey = apiKey;
     this.apiBase = apiBase;
-    this.client = new OkHttpClient();
-    this.objectMapper = new ObjectMapper();
   }
 
   /**
