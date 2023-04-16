@@ -47,7 +47,8 @@ import java.util.List;
   "content_security_policy_report_only",
   "accept_ch_lifetime",
   "cf_cache_status",
-  "cf_ray"
+  "cf_ray",
+  "x_amz_version_id"
 })
 public class Headers {
 
@@ -170,6 +171,9 @@ public class Headers {
 
   @JsonProperty("cf_ray")
   private List<String> cfRay = new ArrayList<String>();
+
+  @JsonProperty("x_amz_version_id")
+  private List<String> xAmzVersionId = new ArrayList<String>();
 
   @JsonProperty("date")
   public List<String> getDate() {
@@ -569,5 +573,15 @@ public class Headers {
   @JsonProperty("cf_ray")
   public void setCfRay(List<String> cfRay) {
     this.cfRay = cfRay;
+  }
+
+  @JsonProperty("x_amz_version_id")
+  public List<String> getxAmzVersionId() {
+    return xAmzVersionId;
+  }
+
+  @JsonProperty("x_amz_version_id")
+  public void setxAmzVersionId(List<String> xAmzVersionId) {
+    this.xAmzVersionId = xAmzVersionId;
   }
 }
