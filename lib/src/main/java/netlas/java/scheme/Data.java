@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import java.util.ArrayList;
 import java.util.List;
+import netlas.java.scheme.host.Dns;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
@@ -33,7 +34,8 @@ import java.util.List;
   "scan_date",
   "ptr",
   "uri",
-  "isp"
+  "isp",
+  "dns"
 })
 public class Data {
 
@@ -114,6 +116,9 @@ public class Data {
 
   @JsonProperty("referer")
   private List<String> referer = new ArrayList<String>();
+
+  @JsonProperty("dns")
+  Dns dns;
 
   @JsonProperty("last_updated")
   public String getLastUpdated() {

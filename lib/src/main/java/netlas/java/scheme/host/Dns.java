@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@JsonPropertyOrder({"a", "txt", "level", "ns", "zone"})
+@JsonPropertyOrder({"a", "txt", "level", "ns", "zone", "nsid", "id_server"})
 public class Dns {
 
   @JsonProperty("a")
@@ -24,6 +24,12 @@ public class Dns {
 
   @JsonProperty("zone")
   private String zone;
+
+  @JsonProperty("nsid")
+  private String nsid;
+
+  @JsonProperty("id_server")
+  private String idServer;
 
   @JsonProperty("a")
   public List<String> getA() {
@@ -73,5 +79,20 @@ public class Dns {
   @JsonProperty("zone")
   public void setZone(String zone) {
     this.zone = zone;
+  }
+
+  @JsonProperty("nsid")
+  public String getNsid() {
+    return nsid;
+  }
+
+  @JsonProperty("nsid")
+  public void setNsid(String nsid) {
+    this.nsid = nsid;
+  }
+
+  @JsonProperty("id_server")
+  public String getIdServer() {
+    return idServer;
   }
 }

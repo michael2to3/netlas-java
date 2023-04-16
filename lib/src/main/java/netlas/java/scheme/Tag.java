@@ -23,7 +23,9 @@ import java.util.List;
   "amazon_s3",
   "angularjs",
   "bem",
-  "react"
+  "react",
+  "google",
+  "cloudflare"
 })
 public class Tag {
 
@@ -74,6 +76,12 @@ public class Tag {
 
   @JsonProperty("react")
   private React react;
+
+  @JsonProperty("google")
+  private Google google;
+
+  @JsonProperty("cloudflare")
+  private Cloudflare cloudflare;
 
   @JsonProperty("google_web_server")
   public GoogleWebServer getGoogleWebServer() {
@@ -234,5 +242,25 @@ public class Tag {
   @JsonProperty("react")
   public void setReact(React react) {
     this.react = react;
+  }
+
+  @JsonProperty("google")
+  public Google getGoogle() {
+    return google;
+  }
+
+  @JsonProperty("google")
+  public void setGoogle(Google google) {
+    this.google = google;
+  }
+
+  @JsonProperty("cloudflare")
+  public Cloudflare getCloudflare() {
+    return cloudflare;
+  }
+
+  @JsonProperty("cloudflare")
+  public void setCloudflare(Cloudflare cloudflare) {
+    this.cloudflare = cloudflare;
   }
 }

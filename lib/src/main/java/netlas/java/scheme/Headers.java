@@ -45,7 +45,9 @@ import java.util.List;
   "access_control_expose_headers",
   "nel",
   "content_security_policy_report_only",
-  "accept_ch_lifetime"
+  "accept_ch_lifetime",
+  "cf_cache_status",
+  "cf_ray"
 })
 public class Headers {
 
@@ -162,6 +164,12 @@ public class Headers {
 
   @JsonProperty("accept_ch_lifetime")
   private List<String> acceptChLifetime = new ArrayList<String>();
+
+  @JsonProperty("cf_cache_status")
+  private List<String> cfCacheStatus = new ArrayList<String>();
+
+  @JsonProperty("cf_ray")
+  private List<String> cfRay = new ArrayList<String>();
 
   @JsonProperty("date")
   public List<String> getDate() {
@@ -541,5 +549,25 @@ public class Headers {
   @JsonProperty("accept_ch_lifetime")
   public void setAcceptChLifetime(List<String> acceptChLifetime) {
     this.acceptChLifetime = acceptChLifetime;
+  }
+
+  @JsonProperty("cf_cache_status")
+  public List<String> getCfCacheStatus() {
+    return cfCacheStatus;
+  }
+
+  @JsonProperty("cf_cache_status")
+  public void setCfCacheStatus(List<String> cfCacheStatus) {
+    this.cfCacheStatus = cfCacheStatus;
+  }
+
+  @JsonProperty("cf_ray")
+  public List<String> getCfRay() {
+    return cfRay;
+  }
+
+  @JsonProperty("cf_ray")
+  public void setCfRay(List<String> cfRay) {
+    this.cfRay = cfRay;
   }
 }

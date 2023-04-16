@@ -301,5 +301,13 @@ class NetlasTest {
     target = "ya.ru";
     resp = net.search("host:" + target, DataType.RESPONSES, 0, null, null, false);
     assertTrue(status.contains(resp.getItems().get(0).getData().getHttp().getStatusCode()));
+
+    target = "google.com";
+    resp = net.search("host:" + target, DataType.RESPONSES, 0, null, null, false);
+    assertTrue(status.contains(resp.getItems().get(0).getData().getHttp().getStatusCode()));
+
+    target = "1.1.1.1";
+    resp = net.search("host:" + target, DataType.RESPONSES, 0, null, null, false);
+    assertTrue(status.contains(resp.getItems().get(0).getData().getHttp().getStatusCode()));
   }
 }
