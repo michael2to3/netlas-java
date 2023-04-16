@@ -68,4 +68,13 @@ publishing {
             version = '0.0.400-SNAPSHOT'
         }
     }
+    repositories {
+        maven {
+            url = uri("https://jitpack.io")
+            credentials {
+                username = findProperty("JITPACK_USER") ?: System.getenv("JITPACK_USER")
+                password = findProperty("JITPACK_TOKEN") ?: System.getenv("JITPACK_TOKEN")
+            }
+        }
+    }
 }
