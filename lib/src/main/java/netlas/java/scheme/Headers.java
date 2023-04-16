@@ -1,55 +1,13 @@
 package netlas.java.scheme;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import java.util.ArrayList;
 import java.util.List;
 
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
-@JsonPropertyOrder({
-  "date",
-  "server",
-  "set_cookie",
-  "content_type",
-  "x_content_type_options",
-  "content_security_policy",
-  "x_xss_protection",
-  "location",
-  "p3p",
-  "alt_svc",
-  "content_length",
-  "x_frame_options",
-  "expires",
-  "cache_control",
-  "pragma",
-  "report_to",
-  "strict_transport_security",
-  "vary",
-  "permissions_policy",
-  "cross_origin_resource_policy",
-  "accept_ch",
-  "referrer_policy",
-  "x_robots_tag",
-  "origin_trial",
-  "x_cache",
-  "x_amz_cf_id",
-  "x_amz_cf_pop",
-  "connection",
-  "via",
-  "accept_ranges",
-  "etag",
-  "last_modified",
-  "age",
-  "x_powered_by",
-  "access_control_expose_headers",
-  "nel",
-  "content_security_policy_report_only",
-  "accept_ch_lifetime",
-  "cf_cache_status",
-  "cf_ray",
-  "x_amz_version_id"
-})
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Headers {
 
   @JsonProperty("date")

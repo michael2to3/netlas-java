@@ -1,33 +1,13 @@
 package netlas.java.scheme;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import java.util.ArrayList;
 import java.util.List;
 
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
-@JsonPropertyOrder({
-  "nginx",
-  "name",
-  "cpe",
-  "description",
-  "fullname",
-  "category",
-  "openssh",
-  "debian",
-  "opengse",
-  "google_font_api",
-  "google_web_server",
-  "amazon_cloudfront",
-  "amazon_s3",
-  "angularjs",
-  "bem",
-  "react",
-  "google",
-  "cloudflare",
-  "bootstrap"
-})
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Tag {
 
   @JsonProperty("nginx")

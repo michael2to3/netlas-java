@@ -1,42 +1,16 @@
 package netlas.java.scheme;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import java.util.ArrayList;
 import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import netlas.java.scheme.host.Dns;
 
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
-@JsonPropertyOrder({
-  "referer",
-  "iteration",
-  "ip",
-  "cve",
-  "port",
-  "tag",
-  "domain",
-  "host",
-  "prot7",
-  "@timestamp",
-  "prot4",
-  "http",
-  "protocol",
-  "target",
-  "last_updated",
-  "ssh",
-  "jarm",
-  "whois",
-  "certificate",
-  "geo",
-  "host_type",
-  "path",
-  "scan_date",
-  "ptr",
-  "uri",
-  "isp",
-  "dns"
-})
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Data {
 
   @JsonProperty("last_updated")
