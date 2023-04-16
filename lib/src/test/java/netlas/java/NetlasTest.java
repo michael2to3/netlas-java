@@ -285,7 +285,7 @@ class NetlasTest {
     List<Integer> status = Arrays.asList(200, 301, 302);
     Netlas net = Netlas.newBuilder().setApiKey(api).build();
     netlas.java.scheme.Response resp =
-        net.search("google.com", DataType.RESPONSES, 0, null, null, false);
+        net.search("netlas.io", DataType.RESPONSES, 0, null, null, false);
     assertNotNull(resp);
     assertTrue(status.contains(resp.getItems().get(0).getData().getHttp().getStatusCode()));
   }
