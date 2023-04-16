@@ -44,8 +44,6 @@ javadoc {
     source = sourceSets.main.allJava
 }
 
-version = '0.0.400-SNAPSHOT'
-
 repositories {
     mavenCentral()
 }
@@ -58,5 +56,16 @@ java {
 allprojects {
     repositories {
         maven { url 'https://jitpack.io' }
+    }
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            from components.java
+            groupId = 'netlas-java'
+            artifactId = 'lib'
+            version = '0.0.400-SNAPSHOT'
+        }
     }
 }
