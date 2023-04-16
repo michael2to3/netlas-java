@@ -37,7 +37,7 @@ public class Netlas {
     this.objectMapper = new ObjectMapper();
   }
 
-  private JsonNode request(String endpoint, HttpUrl.Builder urlBuilder) throws IOException {
+  private JsonNode request(HttpUrl.Builder urlBuilder) throws IOException {
     Request request =
         new Request.Builder()
             .url(urlBuilder.build())
@@ -69,7 +69,7 @@ public class Netlas {
             .addQueryParameter("source_type", excludeFields ? "exclude" : "include");
 
     try {
-      JsonNode request = request(datatype.getValue(), urlBuilder);
+      JsonNode request = request(urlBuilder);
       return objectMapper.convertValue(request, netlas.java.scheme.Response.class);
     } catch (IOException e) {
       throw new NetlasRequestException(e.getMessage(), e);
@@ -85,7 +85,7 @@ public class Netlas {
             .addQueryParameter("indices", indices);
 
     try {
-      JsonNode request = request(datatype.getValue(), urlBuilder);
+      JsonNode request = request(urlBuilder);
       return objectMapper.convertValue(request, Count.class);
     } catch (IOException e) {
       throw new NetlasRequestException(e.getMessage(), e);
@@ -104,7 +104,7 @@ public class Netlas {
             .addQueryParameter("index_type", indexType);
 
     try {
-      JsonNode request = request("stat", urlBuilder);
+      JsonNode request = request(urlBuilder);
       return objectMapper.convertValue(request, Stat.class);
     } catch (IOException e) {
       throw new NetlasRequestException(e.getMessage(), e);
@@ -114,7 +114,7 @@ public class Netlas {
   public Profile profile() throws NetlasRequestException {
     HttpUrl.Builder urlBuilder = HttpUrl.parse(apiBase + "/api/users/current/").newBuilder();
     try {
-      JsonNode request = request("profile", urlBuilder);
+      JsonNode request = request(urlBuilder);
       return objectMapper.convertValue(request, Profile.class);
     } catch (IOException e) {
       throw new NetlasRequestException(e.getMessage(), e);
@@ -130,7 +130,7 @@ public class Netlas {
             .addQueryParameter("source_type", excludeFields ? "exclude" : "include");
 
     try {
-      JsonNode request = request("host", urlBuilder);
+      JsonNode request = request(urlBuilder);
       return objectMapper.convertValue(request, Host.class);
     } catch (IOException e) {
       throw new NetlasRequestException(e.getMessage(), e);
@@ -141,7 +141,7 @@ public class Netlas {
     HttpUrl.Builder urlBuilder = HttpUrl.parse(apiBase + "/api/indices/").newBuilder();
 
     try {
-      JsonNode request = request("indices", urlBuilder);
+      JsonNode request = request(urlBuilder);
       return objectMapper.readValue(
           request.toString(),
           objectMapper.getTypeFactory().constructCollectionType(List.class, Index.class));
