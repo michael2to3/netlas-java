@@ -49,20 +49,8 @@ version = '0.0.400-SNAPSHOT'
 repositories {
     mavenCentral()
 }
-publishing {
+allprojects {
     repositories {
-        maven {
-            name = "GitHubPackages"
-            url = uri("https://maven.pkg.github.com/michael2to3/netlas-java")
-            credentials {
-                username = project.findProperty("gpr.user") ?: System.getenv("USERNAME")
-                password = project.findProperty("gpr.key") ?: System.getenv("TOKEN")
-            }
-        }
-    }
-    publications {
-        gpr(MavenPublication) {
-            from(components.java)
-        }
+        maven { url 'https://jitpack.io' }
     }
 }
