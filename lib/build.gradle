@@ -65,7 +65,7 @@ publishing {
             from components.java
             groupId = 'netlas-java'
             artifactId = 'lib'
-            version = '0.0.400-SNAPSHOT'
+            version = '0.0.401-SNAPSHOT'
         }
     }
     repositories {
