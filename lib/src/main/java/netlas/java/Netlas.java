@@ -1,211 +1,223 @@
 package netlas.java;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.IOException;
-import java.util.concurrent.TimeUnit;
+import java.io.InputStream;
+import java.util.List;
+import netlas.java.datatype.DataType;
+import netlas.java.exception.NetlasRequestException;
+import netlas.java.scheme.Count;
+import netlas.java.scheme.Stat;
+import netlas.java.scheme.host.Host;
+import netlas.java.scheme.indices.Index;
+import netlas.java.scheme.profile.Profile;
 import okhttp3.HttpUrl;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import okhttp3.ResponseBody;
 
-/** A class for interacting with the Netlas API. */
 public class Netlas {
-  private final String apiKey;
-  private final String apiBase;
-  private final boolean debug;
-  private final int connectionTimeout;
-  private static final Logger LOGGER = LoggerFactory.getLogger(Netlas.class);
+  private String apiKey;
+  private String apiBase;
+  private OkHttpClient client;
+  private ObjectMapper objectMapper;
 
-  private final OkHttpClient client;
-
-  /**
-   * Constructs a new Netlas instance with the given API key.
-   *
-   * @param apiKey The API key to use for requests.
-   */
-  public Netlas(String apiKey) {
-    this(apiKey, "https://app.netlas.io", false, 120);
+  private Netlas() {
+    this.apiBase = "https://app.netlas.io";
+    this.client = new OkHttpClient();
+    this.objectMapper = new ObjectMapper();
   }
 
-  /**
-   * Constructs a new Netlas instance with the given API key and options.
-   *
-   * @param apiKey The API key to use for requests.
-   * @param apiBase The base URL for the Netlas API.
-   * @param debug Whether to enable debug mode.
-   * @param connectionTimeout The connection timeout in seconds.
-   */
-  public Netlas(String apiKey, String apiBase, boolean debug, int connectionTimeout) {
+  public Netlas(String apiKey, String apiBase) {
     this.apiKey = apiKey;
-    this.apiBase = apiBase.endsWith("/") ? apiBase.substring(0, apiBase.length() - 1) : apiBase;
-    this.debug = debug;
-    this.connectionTimeout = connectionTimeout;
-    var builder =
-        new OkHttpClient.Builder()
-            .writeTimeout(this.connectionTimeout, TimeUnit.SECONDS)
-            .readTimeout(this.connectionTimeout, TimeUnit.SECONDS)
-            .connectTimeout(this.connectionTimeout, TimeUnit.SECONDS);
-    this.client = builder.build();
+    this.apiBase = apiBase;
+    this.client = new OkHttpClient();
+    this.objectMapper = new ObjectMapper();
   }
 
-  /**
-   * Returns the API key used by this instance.
-   *
-   * @return The API key.
-   */
-  public String getApiKey() {
-    return apiKey;
-  }
+  private JsonNode request(HttpUrl.Builder urlBuilder) throws IOException {
+    Request request =
+        new Request.Builder()
+            .url(urlBuilder.build())
+            .addHeader("Content-Type", "application/json")
+            .addHeader("X-Api-Key", apiKey)
+            .build();
 
-  /**
-   * Returns the base URL for the Netlas API used by this instance.
-   *
-   * @return The base URL.
-   */
-  public String getApiBase() {
-    return apiBase;
-  }
-
-  /**
-   * Returns whether debug mode is enabled for this instance.
-   *
-   * @return Whether debug mode is enabled.
-   */
-  public boolean isDebug() {
-    return debug;
-  }
-
-  /**
-   * Returns the connection timeout in seconds used by this instance.
-   *
-   * @return The connection timeout in seconds.
-   */
-  public int getConnectionTimeout() {
-    return connectionTimeout;
-  }
-
-  /**
-   * Returns the OkHttpClient instance used by this instance.
-   *
-   * @return The OkHttpClient instance.
-   */
-  public OkHttpClient getClient() {
-    return client;
-  }
-
-  /**
-   * Searches the Netlas API and returns the results as a JsonNode.
-   *
-   * @param query The search query.
-   * @param datatype The type of data to search for (e.g. "cert").
-   * @param page The page number of the search results.
-   * @param indices The indices to search in (e.g. "certs_prod").
-   * @param fields The fields to include in the search results (optional).
-   * @param excludeFields Whether to exclude fields from the search results (optional).
-   * @return The search results as a JsonNode.
-   * @throws ApiException If an error occurs while making the request.
-   * @throws JsonMappingException If an error occurs while parsing the response.
-   * @throws JsonProcessingException If an error occurs while parsing the response.
-   */
-  public JsonNode search(
-      String query, String datatype, int page, String indices, String fields, boolean excludeFields)
-      throws ApiException, JsonMappingException, JsonProcessingException {
-    String response = searchAsString(query, datatype, page, indices, fields, excludeFields);
-    ObjectMapper mapper = new ObjectMapper();
-    JsonNode root = mapper.readTree(response);
-    return root;
-  }
-
-  /**
-   * Searches the Netlas API and returns the results as a string.
-   *
-   * @param query The search query.
-   * @param datatype The type of data to search for (e.g. "cert").
-   * @param page The page number of the search results.
-   * @param indices The indices to search in (e.g. "certs_prod").
-   * @param fields The fields to include in the search results (optional).
-   * @param excludeFields Whether to exclude fields from the search results (optional).
-   * @return The search results as a string.
-   * @throws ApiException If an error occurs while making the request.
-   */
-  public String searchAsString(
-      String query, String datatype, int page, String indices, String fields, boolean excludeFields)
-      throws ApiException {
-    String endpoint = "/api/responses/";
-    if (datatype.equals("cert")) {
-      endpoint = "/api/certs/";
-    } else if (datatype.equals("domain")) {
-      endpoint = "/api/domains/";
-    } else if (datatype.equals("whois-ip")) {
-      endpoint = "/api/whois_ip/";
-    } else if (datatype.equals("whois-domain")) {
-      endpoint = "/api/whois_domains/";
+    try (Response response = client.newCall(request).execute()) {
+      String responseBody = response.body().string();
+      return objectMapper.readTree(responseBody);
     }
+  }
+
+  public netlas.java.scheme.Response search(
+      String query,
+      DataType datatype,
+      int page,
+      String indices,
+      String fields,
+      boolean excludeFields)
+      throws NetlasRequestException {
     HttpUrl.Builder urlBuilder =
-        HttpUrl.parse(buildEndpointUrl(endpoint))
+        HttpUrl.parse(apiBase + "/api/" + datatype.getValue() + "/")
             .newBuilder()
             .addQueryParameter("q", query)
-            .addQueryParameter("page", String.valueOf(page))
+            .addQueryParameter("start", Integer.toString(page * 20))
+            .addQueryParameter("indices", indices)
+            .addQueryParameter("fields", fields)
+            .addQueryParameter("source_type", excludeFields ? "exclude" : "include");
+
+    try {
+      JsonNode request = request(urlBuilder);
+      return objectMapper.convertValue(request, netlas.java.scheme.Response.class);
+    } catch (IOException e) {
+      throw new NetlasRequestException(e.getMessage(), e);
+    }
+  }
+
+  public Count count(String query, DataType datatype, String indices)
+      throws NetlasRequestException {
+    HttpUrl.Builder urlBuilder =
+        HttpUrl.parse(apiBase + "/api/" + datatype.getValue() + "_count/")
+            .newBuilder()
+            .addQueryParameter("q", query)
             .addQueryParameter("indices", indices);
-    if (fields != null) {
-      urlBuilder.addQueryParameter("fields", fields);
-    }
-    if (excludeFields) {
-      urlBuilder.addQueryParameter("exclude_fields", "true");
-    }
-    String responseBody = getRequest(urlBuilder);
-    return responseBody;
-  }
 
-  private String getRequest(HttpUrl.Builder urlBuilder) throws ApiException {
     try {
-      Request request = buildRequest(urlBuilder);
-      Response response = sendRequest(request);
-      return response.body().string();
+      JsonNode request = request(urlBuilder);
+      return objectMapper.convertValue(request, Count.class);
     } catch (IOException e) {
-      throw new ApiException("Error sending HTTP request", e);
+      throw new NetlasRequestException(e.getMessage(), e);
     }
   }
 
-  private byte[] getStreamRequest(HttpUrl.Builder urlBuilder) throws ApiException {
+  public Stat stat(String query, String groupFields, String indices, int size, String indexType)
+      throws NetlasRequestException {
+    HttpUrl.Builder urlBuilder =
+        HttpUrl.parse(apiBase + "/api/stat/")
+            .newBuilder()
+            .addQueryParameter("q", query)
+            .addQueryParameter("fields", groupFields)
+            .addQueryParameter("indices", indices)
+            .addQueryParameter("size", Integer.toString(size))
+            .addQueryParameter("index_type", indexType);
+
     try {
-      Request request = buildRequest(urlBuilder);
-      Response response = sendRequest(request);
-      return response.body().bytes();
+      JsonNode request = request(urlBuilder);
+      return objectMapper.convertValue(request, Stat.class);
     } catch (IOException e) {
-      throw new ApiException("Error sending HTTP request", e);
+      throw new NetlasRequestException(e.getMessage(), e);
     }
   }
 
-  private String buildEndpointUrl(String endpoint) {
-    return apiBase + endpoint;
+  public Profile profile() throws NetlasRequestException {
+    HttpUrl.Builder urlBuilder = HttpUrl.parse(apiBase + "/api/users/current/").newBuilder();
+    try {
+      JsonNode request = request(urlBuilder);
+      return objectMapper.convertValue(request, Profile.class);
+    } catch (IOException e) {
+      throw new NetlasRequestException(e.getMessage(), e);
+    }
   }
 
-  private Request buildRequest(HttpUrl.Builder urlBuilder) {
-    HttpUrl url = urlBuilder.build();
-    Request.Builder requestBuilder =
+  public Host host(String query, String fields, boolean excludeFields)
+      throws NetlasRequestException {
+    HttpUrl.Builder urlBuilder =
+        HttpUrl.parse(apiBase + "/api/host/" + query)
+            .newBuilder()
+            .addQueryParameter("fields", fields)
+            .addQueryParameter("source_type", excludeFields ? "exclude" : "include");
+
+    try {
+      JsonNode request = request(urlBuilder);
+      return objectMapper.convertValue(request, Host.class);
+    } catch (IOException e) {
+      throw new NetlasRequestException(e.getMessage(), e);
+    }
+  }
+
+  public List<Index> indices() throws NetlasRequestException {
+    HttpUrl.Builder urlBuilder = HttpUrl.parse(apiBase + "/api/indices/").newBuilder();
+
+    try {
+      JsonNode request = request(urlBuilder);
+      return objectMapper.readValue(
+          request.toString(),
+          objectMapper.getTypeFactory().constructCollectionType(List.class, Index.class));
+    } catch (IOException e) {
+      throw new NetlasRequestException(e.getMessage(), e);
+    }
+  }
+
+  public InputStream download(
+      String query,
+      String fields,
+      boolean excludeFields,
+      DataType datatype,
+      int size,
+      String indices)
+      throws NetlasRequestException {
+    HttpUrl.Builder urlBuilder =
+        HttpUrl.parse(apiBase + "/api/" + datatype.getValue() + "/download/")
+            .newBuilder()
+            .addQueryParameter("q", query)
+            .addQueryParameter("size", Integer.toString(size))
+            .addQueryParameter("indices", indices)
+            .addQueryParameter("raw", "true")
+            .addQueryParameter("fields", fields)
+            .addQueryParameter("source_type", excludeFields ? "exclude" : "include");
+
+    OkHttpClient client = new OkHttpClient();
+
+    Request request =
         new Request.Builder()
-            .url(url)
-            .header("Content-Type", "application/json")
-            .header("X-Api-Key", apiKey)
-            .get();
+            .url(urlBuilder.build())
+            .addHeader("Authorization", "Bearer " + apiKey)
+            .build();
 
-    var response = requestBuilder.build();
-    LOGGER.info("Request: {}", response.toString());
-    LOGGER.info("Response: {}", response);
-    return response;
+    try {
+      Response response = client.newCall(request).execute();
+      ResponseBody responseBody = response.body();
+
+      if (!response.isSuccessful() || responseBody == null) {
+        throw new NetlasRequestException(
+            "Error: " + response.code() + " " + response.message(),
+            new IOException("Error: " + response.code() + " " + response.message()));
+      }
+
+      return responseBody.byteStream();
+    } catch (IOException e) {
+      throw new NetlasRequestException(e.getMessage(), e);
+    }
   }
 
-  private Response sendRequest(Request request) throws IOException, ApiException {
-    Response response = client.newCall(request).execute();
-    if (!response.isSuccessful()) {
-      throw new ApiException(response.code() + ": " + response.message());
+  public void setClient(OkHttpClient client) {
+    this.client = client;
+  }
+
+  public static Builder newBuilder() {
+    return new Netlas().new Builder();
+  }
+
+  public final class Builder {
+    public Builder setApiKey(String apiKey) {
+      Netlas.this.apiKey = apiKey;
+      return this;
     }
-    return response;
+
+    public Builder setApiBase(String apiBase) {
+      Netlas.this.apiBase = apiBase;
+      return this;
+    }
+
+    public Builder setClient(OkHttpClient client) {
+      Netlas.this.client = client;
+      return this;
+    }
+
+    public Netlas build() {
+      return Netlas.this;
+    }
   }
 }
