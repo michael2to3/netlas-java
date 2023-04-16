@@ -8,6 +8,8 @@ import java.util.List;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
+  "subject_alt_name",
+  "signed_certificate_timestamps",
   "crl_distribution_points",
   "subject_key_id",
   "certificate_policies",
@@ -18,6 +20,12 @@ import java.util.List;
   "extended_key_usage"
 })
 public class Extensions {
+  @JsonProperty("subject_alt_name")
+  private SubjectAltName subjectAltName;
+
+  @JsonProperty("signed_certificate_timestamps")
+  private List<SignedCertificateTimestamp> signedCertificateTimestamps =
+      new ArrayList<SignedCertificateTimestamp>();
 
   @JsonProperty("crl_distribution_points")
   private List<String> crlDistributionPoints = new ArrayList<String>();
@@ -42,6 +50,27 @@ public class Extensions {
 
   @JsonProperty("extended_key_usage")
   private ExtendedKeyUsage extendedKeyUsage;
+
+  @JsonProperty("subject_alt_name")
+  public SubjectAltName getSubjectAltName() {
+    return subjectAltName;
+  }
+
+  @JsonProperty("subject_alt_name")
+  public void setSubjectAltName(SubjectAltName subjectAltName) {
+    this.subjectAltName = subjectAltName;
+  }
+
+  @JsonProperty("signed_certificate_timestamps")
+  public List<SignedCertificateTimestamp> getSignedCertificateTimestamps() {
+    return signedCertificateTimestamps;
+  }
+
+  @JsonProperty("signed_certificate_timestamps")
+  public void setSignedCertificateTimestamps(
+      List<SignedCertificateTimestamp> signedCertificateTimestamps) {
+    this.signedCertificateTimestamps = signedCertificateTimestamps;
+  }
 
   @JsonProperty("crl_distribution_points")
   public List<String> getCrlDistributionPoints() {

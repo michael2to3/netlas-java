@@ -48,10 +48,10 @@ public class Certificate {
   private Boolean redacted;
 
   @JsonProperty("signature")
-  private Signature__1 signature;
+  private Signature signature;
 
   @JsonProperty("subject")
-  private Subject__1 subject;
+  private Subject subject;
 
   @JsonProperty("serial_number")
   private String serialNumber;
@@ -60,7 +60,7 @@ public class Certificate {
   private Integer version;
 
   @JsonProperty("issuer")
-  private Issuer__1 issuer;
+  private Issuer issuer;
 
   @JsonProperty("tbs_noct_fingerprint")
   private String tbsNoctFingerprint;
@@ -69,7 +69,7 @@ public class Certificate {
   private String fingerprintSha256;
 
   @JsonProperty("extensions")
-  private Extensions__1 extensions;
+  private Extensions extensions;
 
   @JsonProperty("tbs_fingerprint")
   private String tbsFingerprint;
@@ -84,13 +84,13 @@ public class Certificate {
   private String fingerprintSha1;
 
   @JsonProperty("signature_algorithm")
-  private SignatureAlgorithm__3 signatureAlgorithm;
+  private SignatureAlgorithm signatureAlgorithm;
 
   @JsonProperty("spki_subject_fingerprint")
   private String spkiSubjectFingerprint;
 
   @JsonProperty("validity")
-  private Validity__1 validity;
+  private Validity validity;
 
   @JsonProperty("validation_level")
   private String validationLevel;
@@ -146,22 +146,22 @@ public class Certificate {
   }
 
   @JsonProperty("signature")
-  public Signature__1 getSignature() {
+  public Signature getSignature() {
     return signature;
   }
 
   @JsonProperty("signature")
-  public void setSignature(Signature__1 signature) {
+  public void setSignature(Signature signature) {
     this.signature = signature;
   }
 
   @JsonProperty("subject")
-  public Subject__1 getSubject() {
+  public Subject getSubject() {
     return subject;
   }
 
   @JsonProperty("subject")
-  public void setSubject(Subject__1 subject) {
+  public void setSubject(Subject subject) {
     this.subject = subject;
   }
 
@@ -186,12 +186,12 @@ public class Certificate {
   }
 
   @JsonProperty("issuer")
-  public Issuer__1 getIssuer() {
+  public Issuer getIssuer() {
     return issuer;
   }
 
   @JsonProperty("issuer")
-  public void setIssuer(Issuer__1 issuer) {
+  public void setIssuer(Issuer issuer) {
     this.issuer = issuer;
   }
 
@@ -216,12 +216,12 @@ public class Certificate {
   }
 
   @JsonProperty("extensions")
-  public Extensions__1 getExtensions() {
+  public Extensions getExtensions() {
     return extensions;
   }
 
   @JsonProperty("extensions")
-  public void setExtensions(Extensions__1 extensions) {
+  public void setExtensions(Extensions extensions) {
     this.extensions = extensions;
   }
 
@@ -266,12 +266,12 @@ public class Certificate {
   }
 
   @JsonProperty("signature_algorithm")
-  public SignatureAlgorithm__3 getSignatureAlgorithm() {
+  public SignatureAlgorithm getSignatureAlgorithm() {
     return signatureAlgorithm;
   }
 
   @JsonProperty("signature_algorithm")
-  public void setSignatureAlgorithm(SignatureAlgorithm__3 signatureAlgorithm) {
+  public void setSignatureAlgorithm(SignatureAlgorithm signatureAlgorithm) {
     this.signatureAlgorithm = signatureAlgorithm;
   }
 
@@ -286,12 +286,12 @@ public class Certificate {
   }
 
   @JsonProperty("validity")
-  public Validity__1 getValidity() {
+  public Validity getValidity() {
     return validity;
   }
 
   @JsonProperty("validity")
-  public void setValidity(Validity__1 validity) {
+  public void setValidity(Validity validity) {
     this.validity = validity;
   }
 

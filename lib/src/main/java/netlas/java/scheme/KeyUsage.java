@@ -5,7 +5,13 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@JsonPropertyOrder({"digital_signature", "certificate_sign", "crl_sign", "value"})
+@JsonPropertyOrder({
+  "digital_signature",
+  "certificate_sign",
+  "crl_sign",
+  "value",
+  "key_encipherment"
+})
 public class KeyUsage {
 
   @JsonProperty("digital_signature")
@@ -19,6 +25,9 @@ public class KeyUsage {
 
   @JsonProperty("value")
   private Integer value;
+
+  @JsonProperty("key_encipherment")
+  private Boolean keyEncipherment;
 
   @JsonProperty("digital_signature")
   public Boolean getDigitalSignature() {
@@ -58,5 +67,15 @@ public class KeyUsage {
   @JsonProperty("value")
   public void setValue(Integer value) {
     this.value = value;
+  }
+
+  @JsonProperty("key_encipherment")
+  public Boolean getKeyEncipherment() {
+    return keyEncipherment;
+  }
+
+  @JsonProperty("key_encipherment")
+  public void setKeyEncipherment(Boolean keyEncipherment) {
+    this.keyEncipherment = keyEncipherment;
   }
 }

@@ -26,6 +26,8 @@ public class Netlas {
 
   private Netlas() {
     this.apiBase = "https://app.netlas.io";
+    this.client = new OkHttpClient();
+    this.objectMapper = new ObjectMapper();
   }
 
   public Netlas(String apiKey, String apiBase) {

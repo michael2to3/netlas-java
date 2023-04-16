@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@JsonPropertyOrder({"items", "took", "timestamp"})
+@JsonPropertyOrder({"items", "took", "timestamp", "error"})
 public class Response {
 
   @JsonProperty("items")
@@ -18,6 +18,9 @@ public class Response {
 
   @JsonProperty("timestamp")
   private Integer timestamp;
+
+  @JsonProperty("error")
+  private String error;
 
   @JsonProperty("items")
   public List<Item> getItems() {
@@ -47,5 +50,15 @@ public class Response {
   @JsonProperty("timestamp")
   public void setTimestamp(Integer timestamp) {
     this.timestamp = timestamp;
+  }
+
+  @JsonProperty("error")
+  public String getError() {
+    return error;
+  }
+
+  @JsonProperty("error")
+  public void setError(String error) {
+    this.error = error;
   }
 }

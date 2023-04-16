@@ -274,4 +274,19 @@ class NetlasTest {
     verify(mockClient).newCall(requestCaptor.capture());
     assertEquals(expectedUrl, requestCaptor.getValue().url().toString());
   }
+
+  @Test
+  void testWithApi() throws IOException, NetlasRequestException {
+    String api = System.getenv("API_KEY");
+    if (api == null || api.isEmpty()) {
+      return;
+    }
+
+    List<Integer> status = Arrays.asList(200, 301, 302);
+    Netlas net = Netlas.newBuilder().setApiKey(api).build();
+    netlas.java.scheme.Response resp =
+        net.search("google.com", DataType.RESPONSES, 0, null, null, false);
+    assertNotNull(resp);
+    assertTrue(status.contains(resp.getItems().get(0).getData().getHttp().getStatusCode()));
+  }
 }

@@ -70,7 +70,7 @@ public class Chain {
   private String fingerprintSha1;
 
   @JsonProperty("signature_algorithm")
-  private SignatureAlgorithm__1 signatureAlgorithm;
+  private SignatureAlgorithm signatureAlgorithm;
 
   @JsonProperty("spki_subject_fingerprint")
   private String spkiSubjectFingerprint;
@@ -222,12 +222,12 @@ public class Chain {
   }
 
   @JsonProperty("signature_algorithm")
-  public SignatureAlgorithm__1 getSignatureAlgorithm() {
+  public SignatureAlgorithm getSignatureAlgorithm() {
     return signatureAlgorithm;
   }
 
   @JsonProperty("signature_algorithm")
-  public void setSignatureAlgorithm(SignatureAlgorithm__1 signatureAlgorithm) {
+  public void setSignatureAlgorithm(SignatureAlgorithm signatureAlgorithm) {
     this.signatureAlgorithm = signatureAlgorithm;
   }
 
