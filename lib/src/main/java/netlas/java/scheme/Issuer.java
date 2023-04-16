@@ -8,12 +8,12 @@ import java.util.List;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
-    "country",
-    "organization",
-    "common_name",
-    "organizational_unit",
-    "province",
-    "locality"
+  "country",
+  "organization",
+  "common_name",
+  "organizational_unit",
+  "province",
+  "locality"
 })
 public class Issuer {
 

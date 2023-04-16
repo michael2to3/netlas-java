@@ -8,23 +8,23 @@ import java.util.List;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
-    "country",
-    "address",
-    "city",
-    "created",
-    "range",
-    "description",
-    "handle",
-    "organization",
-    "name",
-    "start_ip",
-    "cidr",
-    "net_size",
-    "state",
-    "postal_code",
-    "updated",
-    "end_ip",
-    "remarks"
+  "country",
+  "address",
+  "city",
+  "created",
+  "range",
+  "description",
+  "handle",
+  "organization",
+  "name",
+  "start_ip",
+  "cidr",
+  "net_size",
+  "state",
+  "postal_code",
+  "updated",
+  "end_ip",
+  "remarks"
 })
 public class Net {
 

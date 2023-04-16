@@ -8,22 +8,22 @@ import java.util.List;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
-    "nginx",
-    "name",
-    "cpe",
-    "description",
-    "fullname",
-    "category",
-    "openssh",
-    "debian",
-    "opengse",
-    "google_font_api",
-    "google_web_server",
-    "amazon_cloudfront",
-    "amazon_s3",
-    "angularjs",
-    "bem",
-    "react"
+  "nginx",
+  "name",
+  "cpe",
+  "description",
+  "fullname",
+  "category",
+  "openssh",
+  "debian",
+  "opengse",
+  "google_font_api",
+  "google_web_server",
+  "amazon_cloudfront",
+  "amazon_s3",
+  "angularjs",
+  "bem",
+  "react"
 })
 public class Tag {
 
