@@ -50,17 +50,6 @@ netlas.java.scheme.Response response = netlas.search("8.8.8.8", DataType.WHOIS_I
 netlas.java.scheme.Response response = netlas.search("example.com", DataType.WHOIS_DOMAIN, 1, null, null, false);
 ```
 
-## Important Notice: GitHub Packages now requires authentication for all package downloads
-
-Starting on November 12, 2021, GitHub Packages requires authentication for all package downloads, even public packages. This means that you will need to authenticate with a personal access token (PAT) to download any packages from this repository.
-
-To authenticate with a PAT and use GitHub Packages, please follow the steps outlined in the GitHub documentation:
-
-Generate a personal access token with the appropriate permissions.
-Add your personal access token to your Maven settings.xml file.
-Configure your build to use your personal access token for authentication.
-For more information on how to authenticate with a PAT and use GitHub Packages, please see the GitHub documentation: [https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-gradle-registry](https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-gradle-registry)
-
 ## Testing
 
 This library includes unit tests using JUnit Jupiter. You can run the tests by executing the following Gradle command:
