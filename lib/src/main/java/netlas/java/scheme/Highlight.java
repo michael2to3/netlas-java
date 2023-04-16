@@ -5,7 +5,12 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@JsonPropertyOrder({"certificate.names", "certificate.extensions.subject_alt_name.dns_names"})
+@JsonPropertyOrder({
+  "certificate.names",
+  "certificate.extensions.subject_alt_name.dns_names",
+  "path",
+  "host"
+})
 public class Highlight {
 
   @JsonProperty("certificate.names")
@@ -13,6 +18,32 @@ public class Highlight {
 
   @JsonProperty("certificate.extensions.subject_alt_name.dns_names")
   private String certificateExtensionsSubjectAltNameDnsNames;
+
+  @JsonProperty("path")
+  private String path;
+
+  @JsonProperty("host")
+  private String host;
+
+  @JsonProperty("path")
+  public String getPath() {
+    return path;
+  }
+
+  @JsonProperty("path")
+  public void setPath(String path) {
+    this.path = path;
+  }
+
+  @JsonProperty("host")
+  public String getHost() {
+    return host;
+  }
+
+  @JsonProperty("host")
+  public void setHost(String host) {
+    this.host = host;
+  }
 
   @JsonProperty("certificate.names")
   public String getCertificateNames() {
