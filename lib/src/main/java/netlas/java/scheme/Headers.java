@@ -8,30 +8,44 @@ import java.util.List;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
-  "date",
-  "server",
-  "set_cookie",
-  "content_type",
-  "x_content_type_options",
-  "content_security_policy",
-  "x_xss_protection",
-  "location",
-  "p3p",
-  "alt_svc",
-  "content_length",
-  "x_frame_options",
-  "expires",
-  "cache_control",
-  "pragma",
-  "report_to",
-  "strict_transport_security",
-  "vary",
-  "permissions_policy",
-  "cross_origin_resource_policy",
-  "accept_ch",
-  "referrer_policy",
-  "x_robots_tag",
-  "origin_trial"
+    "date",
+    "server",
+    "set_cookie",
+    "content_type",
+    "x_content_type_options",
+    "content_security_policy",
+    "x_xss_protection",
+    "location",
+    "p3p",
+    "alt_svc",
+    "content_length",
+    "x_frame_options",
+    "expires",
+    "cache_control",
+    "pragma",
+    "report_to",
+    "strict_transport_security",
+    "vary",
+    "permissions_policy",
+    "cross_origin_resource_policy",
+    "accept_ch",
+    "referrer_policy",
+    "x_robots_tag",
+    "origin_trial",
+    "x_cache",
+    "x_amz_cf_id",
+    "x_amz_cf_pop",
+    "connection",
+    "via",
+    "accept_ranges",
+    "etag",
+    "last_modified",
+    "age",
+    "x_powered_by",
+    "access_control_expose_headers",
+    "nel",
+    "content_security_policy_report_only",
+    "accept_ch_lifetime"
 })
 public class Headers {
 
@@ -106,6 +120,48 @@ public class Headers {
 
   @JsonProperty("origin_trial")
   private List<String> originTrial = new ArrayList<String>();
+
+  @JsonProperty("x_cache")
+  private List<String> xCache = new ArrayList<String>();
+
+  @JsonProperty("x_amz_cf_id")
+  private List<String> xAmzCfId = new ArrayList<String>();
+
+  @JsonProperty("x_amz_cf_pop")
+  private List<String> xAmzCfPop = new ArrayList<String>();
+
+  @JsonProperty("connection")
+  private List<String> connection = new ArrayList<String>();
+
+  @JsonProperty("via")
+  private List<String> via = new ArrayList<String>();
+
+  @JsonProperty("accept_ranges")
+  private List<String> acceptRanges = new ArrayList<String>();
+
+  @JsonProperty("etag")
+  private List<String> etag = new ArrayList<String>();
+
+  @JsonProperty("last_modified")
+  private List<String> lastModified = new ArrayList<String>();
+
+  @JsonProperty("age")
+  private List<String> age = new ArrayList<String>();
+
+  @JsonProperty("x_powered_by")
+  private List<String> xPoweredBy = new ArrayList<String>();
+
+  @JsonProperty("access_control_expose_headers")
+  private List<String> accessControlExposeHeaders = new ArrayList<String>();
+
+  @JsonProperty("nel")
+  private List<String> nel = new ArrayList<String>();
+
+  @JsonProperty("content_security_policy_report_only")
+  private List<String> contentSecurityPolicyReportOnly = new ArrayList<String>();
+
+  @JsonProperty("accept_ch_lifetime")
+  private List<String> acceptChLifetime = new ArrayList<String>();
 
   @JsonProperty("date")
   public List<String> getDate() {
@@ -345,5 +401,145 @@ public class Headers {
   @JsonProperty("origin_trial")
   public void setOriginTrial(List<String> originTrial) {
     this.originTrial = originTrial;
+  }
+
+  @JsonProperty("x_cache")
+  public List<String> getxCache() {
+    return xCache;
+  }
+
+  @JsonProperty("x_cache")
+  public void setxCache(List<String> xCache) {
+    this.xCache = xCache;
+  }
+
+  @JsonProperty("x_amz_cf_id")
+  public List<String> getxAmzCfId() {
+    return xAmzCfId;
+  }
+
+  @JsonProperty("x_amz_cf_id")
+  public void setxAmzCfId(List<String> xAmzCfId) {
+    this.xAmzCfId = xAmzCfId;
+  }
+
+  @JsonProperty("x_amz_cf_pop")
+  public List<String> getxAmzCfPop() {
+    return xAmzCfPop;
+  }
+
+  @JsonProperty("x_amz_cf_pop")
+  public void setxAmzCfPop(List<String> xAmzCfPop) {
+    this.xAmzCfPop = xAmzCfPop;
+  }
+
+  @JsonProperty("connection")
+  public List<String> getConnection() {
+    return connection;
+  }
+
+  @JsonProperty("connection")
+  public void setConnection(List<String> connection) {
+    this.connection = connection;
+  }
+
+  @JsonProperty("via")
+  public List<String> getVia() {
+    return via;
+  }
+
+  @JsonProperty("via")
+  public void setVia(List<String> via) {
+    this.via = via;
+  }
+
+  @JsonProperty("accept_ranges")
+  public List<String> getAcceptRanges() {
+    return acceptRanges;
+  }
+
+  @JsonProperty("accept_ranges")
+  public void setAcceptRanges(List<String> acceptRanges) {
+    this.acceptRanges = acceptRanges;
+  }
+
+  @JsonProperty("etag")
+  public List<String> getEtag() {
+    return etag;
+  }
+
+  @JsonProperty("etag")
+  public void setEtag(List<String> etag) {
+    this.etag = etag;
+  }
+
+  @JsonProperty("last_modified")
+  public List<String> getLastModified() {
+    return lastModified;
+  }
+
+  @JsonProperty("last_modified")
+  public void setLastModified(List<String> lastModified) {
+    this.lastModified = lastModified;
+  }
+
+  @JsonProperty("age")
+  public List<String> getAge() {
+    return age;
+  }
+
+  @JsonProperty("age")
+  public void setAge(List<String> age) {
+    this.age = age;
+  }
+
+  @JsonProperty("x_powered_by")
+  public List<String> getxPoweredBy() {
+    return xPoweredBy;
+  }
+
+  @JsonProperty("x_powered_by")
+  public void setxPoweredBy(List<String> xPoweredBy) {
+    this.xPoweredBy = xPoweredBy;
+  }
+
+  @JsonProperty("access_control_expose_headers")
+  public List<String> getAccessControlExposeHeaders() {
+    return accessControlExposeHeaders;
+  }
+
+  @JsonProperty("access_control_expose_headers")
+  public void setAccessControlExposeHeaders(List<String> accessControlExposeHeaders) {
+    this.accessControlExposeHeaders = accessControlExposeHeaders;
+  }
+
+  @JsonProperty("nel")
+  public List<String> getNel() {
+    return nel;
+  }
+
+  @JsonProperty("nel")
+  public void setNel(List<String> nel) {
+    this.nel = nel;
+  }
+
+  @JsonProperty("content_security_policy_report_only")
+  public List<String> getContentSecurityPolicyReportOnly() {
+    return contentSecurityPolicyReportOnly;
+  }
+
+  @JsonProperty("content_security_policy_report_only")
+  public void setContentSecurityPolicyReportOnly(List<String> contentSecurityPolicyReportOnly) {
+    this.contentSecurityPolicyReportOnly = contentSecurityPolicyReportOnly;
+  }
+
+  @JsonProperty("accept_ch_lifetime")
+  public List<String> getAcceptChLifetime() {
+    return acceptChLifetime;
+  }
+
+  @JsonProperty("accept_ch_lifetime")
+  public void setAcceptChLifetime(List<String> acceptChLifetime) {
+    this.acceptChLifetime = acceptChLifetime;
   }
 }

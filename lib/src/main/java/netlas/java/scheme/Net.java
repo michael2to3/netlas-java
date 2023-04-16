@@ -8,22 +8,23 @@ import java.util.List;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
-  "country",
-  "address",
-  "city",
-  "created",
-  "range",
-  "description",
-  "handle",
-  "organization",
-  "name",
-  "start_ip",
-  "cidr",
-  "net_size",
-  "state",
-  "postal_code",
-  "updated",
-  "end_ip"
+    "country",
+    "address",
+    "city",
+    "created",
+    "range",
+    "description",
+    "handle",
+    "organization",
+    "name",
+    "start_ip",
+    "cidr",
+    "net_size",
+    "state",
+    "postal_code",
+    "updated",
+    "end_ip",
+    "remarks"
 })
 public class Net {
 
@@ -74,6 +75,9 @@ public class Net {
 
   @JsonProperty("end_ip")
   private String endIp;
+
+  @JsonProperty("remarks")
+  private String remarks;
 
   @JsonProperty("country")
   public String getCountry() {
@@ -233,5 +237,15 @@ public class Net {
   @JsonProperty("end_ip")
   public void setEndIp(String endIp) {
     this.endIp = endIp;
+  }
+
+  @JsonProperty("remarks")
+  public String getRemarks() {
+    return remarks;
+  }
+
+  @JsonProperty("remarks")
+  public void setRemarks(String remarks) {
+    this.remarks = remarks;
   }
 }

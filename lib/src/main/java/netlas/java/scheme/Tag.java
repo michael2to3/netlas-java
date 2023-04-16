@@ -8,17 +8,22 @@ import java.util.List;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
-  "nginx",
-  "name",
-  "cpe",
-  "description",
-  "fullname",
-  "category",
-  "openssh",
-  "debian",
-  "opengse",
-  "google_font_api",
-  "google_web_server"
+    "nginx",
+    "name",
+    "cpe",
+    "description",
+    "fullname",
+    "category",
+    "openssh",
+    "debian",
+    "opengse",
+    "google_font_api",
+    "google_web_server",
+    "amazon_cloudfront",
+    "amazon_s3",
+    "angularjs",
+    "bem",
+    "react"
 })
 public class Tag {
 
@@ -54,6 +59,21 @@ public class Tag {
 
   @JsonProperty("opengse")
   private Opengse opengse;
+
+  @JsonProperty("amazon_cloudfront")
+  private AmazonCloudfront amazonCloudfront;
+
+  @JsonProperty("amazon_s3")
+  private AmazonS3 amazonS3;
+
+  @JsonProperty("angularjs")
+  private Angularjs angularjs;
+
+  @JsonProperty("bem")
+  private Bem bem;
+
+  @JsonProperty("react")
+  private React react;
 
   @JsonProperty("google_web_server")
   public GoogleWebServer getGoogleWebServer() {
@@ -163,5 +183,56 @@ public class Tag {
   @JsonProperty("debian")
   public void setDebian(Debian debian) {
     this.debian = debian;
+  }
+
+  @JsonProperty("amazon_cloudfront")
+  public AmazonCloudfront getAmazonCloudfront() {
+    return amazonCloudfront;
+  }
+
+  @JsonProperty("amazon_cloudfront")
+  public void setAmazonCloudfront(AmazonCloudfront amazonCloudfront) {
+    this.amazonCloudfront = amazonCloudfront;
+  }
+
+  @JsonProperty("amazon_s3")
+  public AmazonS3 getAmazonS3() {
+    return amazonS3;
+  }
+
+  @JsonProperty("amazon_s3")
+  public void setAmazonS3(AmazonS3 amazonS3) {
+    this.amazonS3 = amazonS3;
+  }
+
+  @JsonProperty("angularjs")
+  public Angularjs getAngularjs() {
+    return angularjs;
+  }
+
+  @JsonProperty("angularjs")
+  public void setAngularjs(Angularjs angularjs) {
+    this.angularjs = angularjs;
+  }
+
+  @JsonProperty("bem")
+  public Bem getBem() {
+    return bem;
+  }
+
+  @JsonProperty("bem")
+  public void setBem(Bem bem) {
+    this.bem = bem;
+  }
+
+  @JsonProperty("react")
+  public React getReact() {
+
+    return react;
+  }
+
+  @JsonProperty("react")
+  public void setReact(React react) {
+    this.react = react;
   }
 }

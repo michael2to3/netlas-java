@@ -289,5 +289,17 @@ class NetlasTest {
             "host:google.com AND port:443 AND path:\\/", DataType.RESPONSES, 0, null, null, false);
     assertNotNull(resp);
     assertTrue(status.contains(resp.getItems().get(0).getData().getHttp().getStatusCode()));
+
+    String target = "fadich.com";
+    resp = net.search("host:" + target, DataType.RESPONSES, 0, null, null, false);
+    assertTrue(status.contains(resp.getItems().get(0).getData().getHttp().getStatusCode()));
+
+    target = "vk.com";
+    resp = net.search("host:" + target, DataType.RESPONSES, 0, null, null, false);
+    assertTrue(status.contains(resp.getItems().get(0).getData().getHttp().getStatusCode()));
+
+    target = "ya.ru";
+    resp = net.search("host:" + target, DataType.RESPONSES, 0, null, null, false);
+    assertTrue(status.contains(resp.getItems().get(0).getData().getHttp().getStatusCode()));
   }
 }

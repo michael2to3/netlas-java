@@ -7,7 +7,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@JsonPropertyOrder({"country", "organization", "common_name"})
+@JsonPropertyOrder({
+    "country",
+    "organization",
+    "common_name",
+    "province",
+    "locality",
+    "organizational_unit"
+})
 public class Subject {
 
   @JsonProperty("country")
@@ -18,6 +25,15 @@ public class Subject {
 
   @JsonProperty("common_name")
   private List<String> commonName = new ArrayList<String>();
+
+  @JsonProperty("province")
+  private List<String> province = new ArrayList<String>();
+
+  @JsonProperty("locality")
+  private List<String> locality = new ArrayList<String>();
+
+  @JsonProperty("organizational_unit")
+  private List<String> organizationalUnit = new ArrayList<String>();
 
   @JsonProperty("country")
   public List<String> getCountry() {
@@ -47,5 +63,35 @@ public class Subject {
   @JsonProperty("common_name")
   public void setCommonName(List<String> commonName) {
     this.commonName = commonName;
+  }
+
+  @JsonProperty("province")
+  public List<String> getProvince() {
+    return province;
+  }
+
+  @JsonProperty("province")
+  public void setProvince(List<String> province) {
+    this.province = province;
+  }
+
+  @JsonProperty("locality")
+  public List<String> getLocality() {
+    return locality;
+  }
+
+  @JsonProperty("locality")
+  public void setLocality(List<String> locality) {
+    this.locality = locality;
+  }
+
+  @JsonProperty("organizational_unit")
+  public List<String> getOrganizationalUnit() {
+    return organizationalUnit;
+  }
+
+  @JsonProperty("organizational_unit")
+  public void setOrganizationalUnit(List<String> organizationalUnit) {
+    this.organizationalUnit = organizationalUnit;
   }
 }
