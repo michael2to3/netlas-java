@@ -25,7 +25,8 @@ import java.util.List;
   "bem",
   "react",
   "google",
-  "cloudflare"
+  "cloudflare",
+  "bootstrap"
 })
 public class Tag {
 
@@ -82,6 +83,9 @@ public class Tag {
 
   @JsonProperty("cloudflare")
   private Cloudflare cloudflare;
+
+  @JsonProperty("bootstrap")
+  private Bootstrap bootstrap;
 
   @JsonProperty("google_web_server")
   public GoogleWebServer getGoogleWebServer() {
@@ -262,5 +266,15 @@ public class Tag {
   @JsonProperty("cloudflare")
   public void setCloudflare(Cloudflare cloudflare) {
     this.cloudflare = cloudflare;
+  }
+
+  @JsonProperty("bootstrap")
+  public Bootstrap getBootstrap() {
+    return bootstrap;
+  }
+
+  @JsonProperty("bootstrap")
+  public void setBootstrap(Bootstrap bootstrap) {
+    this.bootstrap = bootstrap;
   }
 }
