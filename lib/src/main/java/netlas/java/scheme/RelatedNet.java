@@ -8,6 +8,10 @@ import java.util.List;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
+  "postal_code",
+  "state",
+  "organization",
+  "city",
   "country",
   "address",
   "created",
@@ -23,6 +27,17 @@ import java.util.List;
   "remarks"
 })
 public class RelatedNet {
+  @JsonProperty("postal_code")
+  private String postalCode;
+
+  @JsonProperty("state")
+  private String state;
+
+  @JsonProperty("organization")
+  private String organization;
+
+  @JsonProperty("city")
+  private String city;
 
   @JsonProperty("country")
   private String country;
@@ -62,6 +77,46 @@ public class RelatedNet {
 
   @JsonProperty("remarks")
   private String remarks;
+
+  @JsonProperty("postal_code")
+  public String getPostalCode() {
+    return postalCode;
+  }
+
+  @JsonProperty("postal_code")
+  public void setPostalCode(String postalCode) {
+    this.postalCode = postalCode;
+  }
+
+  @JsonProperty("state")
+  public String getState() {
+    return state;
+  }
+
+  @JsonProperty("state")
+  public void setState(String state) {
+    this.state = state;
+  }
+
+  @JsonProperty("organization")
+  public String getOrganization() {
+    return organization;
+  }
+
+  @JsonProperty("organization")
+  public void setOrganization(String organization) {
+    this.organization = organization;
+  }
+
+  @JsonProperty("city")
+  public String getCity() {
+    return city;
+  }
+
+  @JsonProperty("city")
+  public void setCity(String city) {
+    this.city = city;
+  }
 
   @JsonProperty("country")
   public String getCountry() {

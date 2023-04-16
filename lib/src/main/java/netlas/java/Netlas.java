@@ -58,7 +58,7 @@ public class Netlas {
       boolean excludeFields)
       throws NetlasRequestException {
     HttpUrl.Builder urlBuilder =
-        HttpUrl.parse(apiBase + "/api/" + datatype + "/")
+        HttpUrl.parse(apiBase + "/api/" + datatype.getValue() + "/")
             .newBuilder()
             .addQueryParameter("q", query)
             .addQueryParameter("start", Integer.toString(page * 20))

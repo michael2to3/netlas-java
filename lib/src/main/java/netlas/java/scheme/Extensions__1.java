@@ -8,6 +8,7 @@ import java.util.List;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
+  "crl_distribution_points",
   "subject_key_id",
   "certificate_policies",
   "key_usage",
@@ -19,6 +20,9 @@ import java.util.List;
   "extended_key_usage"
 })
 public class Extensions__1 {
+
+  @JsonProperty("crl_distribution_points")
+  private List<String> crlDistributionPoints = new ArrayList<String>();
 
   @JsonProperty("subject_key_id")
   private String subjectKeyId;
@@ -47,6 +51,16 @@ public class Extensions__1 {
 
   @JsonProperty("extended_key_usage")
   private ExtendedKeyUsage__1 extendedKeyUsage;
+
+  @JsonProperty("crl_distribution_points")
+  public List<String> getCrlDistributionPoints() {
+    return crlDistributionPoints;
+  }
+
+  @JsonProperty("crl_distribution_points")
+  public void setCrlDistributionPoints(List<String> crlDistributionPoints) {
+    this.crlDistributionPoints = crlDistributionPoints;
+  }
 
   @JsonProperty("subject_key_id")
   public String getSubjectKeyId() {

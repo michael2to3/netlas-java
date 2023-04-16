@@ -8,22 +8,36 @@ import java.util.List;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
+  "country",
+  "address",
+  "city",
   "created",
-  "start_ip",
   "range",
   "description",
-  "net_size",
+  "handle",
+  "organization",
+  "name",
+  "start_ip",
   "cidr",
+  "net_size",
+  "state",
+  "postal_code",
   "updated",
   "end_ip"
 })
 public class Net {
 
+  @JsonProperty("country")
+  private String country;
+
+  @JsonProperty("address")
+  private String address;
+
+  @JsonProperty("city")
+  private String city;
+
   @JsonProperty("created")
   private String created;
-
-  @JsonProperty("start_ip")
-  private String startIp;
 
   @JsonProperty("range")
   private String range;
@@ -31,17 +45,65 @@ public class Net {
   @JsonProperty("description")
   private String description;
 
-  @JsonProperty("net_size")
-  private Integer netSize;
+  @JsonProperty("handle")
+  private String handle;
+
+  @JsonProperty("organization")
+  private String organization;
+
+  @JsonProperty("name")
+  private String name;
+
+  @JsonProperty("start_ip")
+  private String startIp;
 
   @JsonProperty("cidr")
   private List<String> cidr = new ArrayList<String>();
+
+  @JsonProperty("net_size")
+  private Integer netSize;
+
+  @JsonProperty("state")
+  private String state;
+
+  @JsonProperty("postal_code")
+  private String postalCode;
 
   @JsonProperty("updated")
   private String updated;
 
   @JsonProperty("end_ip")
   private String endIp;
+
+  @JsonProperty("country")
+  public String getCountry() {
+    return country;
+  }
+
+  @JsonProperty("country")
+  public void setCountry(String country) {
+    this.country = country;
+  }
+
+  @JsonProperty("address")
+  public String getAddress() {
+    return address;
+  }
+
+  @JsonProperty("address")
+  public void setAddress(String address) {
+    this.address = address;
+  }
+
+  @JsonProperty("city")
+  public String getCity() {
+    return city;
+  }
+
+  @JsonProperty("city")
+  public void setCity(String city) {
+    this.city = city;
+  }
 
   @JsonProperty("created")
   public String getCreated() {
@@ -51,16 +113,6 @@ public class Net {
   @JsonProperty("created")
   public void setCreated(String created) {
     this.created = created;
-  }
-
-  @JsonProperty("start_ip")
-  public String getStartIp() {
-    return startIp;
-  }
-
-  @JsonProperty("start_ip")
-  public void setStartIp(String startIp) {
-    this.startIp = startIp;
   }
 
   @JsonProperty("range")
@@ -83,14 +135,44 @@ public class Net {
     this.description = description;
   }
 
-  @JsonProperty("net_size")
-  public Integer getNetSize() {
-    return netSize;
+  @JsonProperty("handle")
+  public String getHandle() {
+    return handle;
   }
 
-  @JsonProperty("net_size")
-  public void setNetSize(Integer netSize) {
-    this.netSize = netSize;
+  @JsonProperty("handle")
+  public void setHandle(String handle) {
+    this.handle = handle;
+  }
+
+  @JsonProperty("organization")
+  public String getOrganization() {
+    return organization;
+  }
+
+  @JsonProperty("organization")
+  public void setOrganization(String organization) {
+    this.organization = organization;
+  }
+
+  @JsonProperty("name")
+  public String getName() {
+    return name;
+  }
+
+  @JsonProperty("name")
+  public void setName(String name) {
+    this.name = name;
+  }
+
+  @JsonProperty("start_ip")
+  public String getStartIp() {
+    return startIp;
+  }
+
+  @JsonProperty("start_ip")
+  public void setStartIp(String startIp) {
+    this.startIp = startIp;
   }
 
   @JsonProperty("cidr")
@@ -101,6 +183,36 @@ public class Net {
   @JsonProperty("cidr")
   public void setCidr(List<String> cidr) {
     this.cidr = cidr;
+  }
+
+  @JsonProperty("net_size")
+  public Integer getNetSize() {
+    return netSize;
+  }
+
+  @JsonProperty("net_size")
+  public void setNetSize(Integer netSize) {
+    this.netSize = netSize;
+  }
+
+  @JsonProperty("state")
+  public String getState() {
+    return state;
+  }
+
+  @JsonProperty("state")
+  public void setState(String state) {
+    this.state = state;
+  }
+
+  @JsonProperty("postal_code")
+  public String getPostalCode() {
+    return postalCode;
+  }
+
+  @JsonProperty("postal_code")
+  public void setPostalCode(String postalCode) {
+    this.postalCode = postalCode;
   }
 
   @JsonProperty("updated")

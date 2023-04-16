@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@JsonPropertyOrder({"country", "organization", "common_name"})
+@JsonPropertyOrder({"country", "organization", "common_name", "organizational_unit"})
 public class Issuer {
 
   @JsonProperty("country")
@@ -18,6 +18,9 @@ public class Issuer {
 
   @JsonProperty("common_name")
   private List<String> commonName = new ArrayList<String>();
+
+  @JsonProperty("organizational_unit")
+  private List<String> organizationalUnit = new ArrayList<String>();
 
   @JsonProperty("country")
   public List<String> getCountry() {
@@ -47,5 +50,15 @@ public class Issuer {
   @JsonProperty("common_name")
   public void setCommonName(List<String> commonName) {
     this.commonName = commonName;
+  }
+
+  @JsonProperty("organizational_unit")
+  public List<String> getOrganizationalUnit() {
+    return organizationalUnit;
+  }
+
+  @JsonProperty("organizational_unit")
+  public void setOrganizationalUnit(List<String> organizationalUnit) {
+    this.organizationalUnit = organizationalUnit;
   }
 }

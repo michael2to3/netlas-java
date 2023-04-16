@@ -15,7 +15,10 @@ import java.util.List;
   "fullname",
   "category",
   "openssh",
-  "debian"
+  "debian",
+  "opengse",
+  "google_font_api",
+  "google_web_server"
 })
 public class Tag {
 
@@ -42,6 +45,45 @@ public class Tag {
 
   @JsonProperty("debian")
   private Debian debian;
+
+  @JsonProperty("google_web_server")
+  private GoogleWebServer googleWebServer;
+
+  @JsonProperty("google_font_api")
+  private GoogleFontApi googleFontApi;
+
+  @JsonProperty("opengse")
+  private Opengse opengse;
+
+  @JsonProperty("google_web_server")
+  public GoogleWebServer getGoogleWebServer() {
+    return googleWebServer;
+  }
+
+  @JsonProperty("google_web_server")
+  public void setGoogleWebServer(GoogleWebServer googleWebServer) {
+    this.googleWebServer = googleWebServer;
+  }
+
+  @JsonProperty("google_font_api")
+  public GoogleFontApi getGoogleFontApi() {
+    return googleFontApi;
+  }
+
+  @JsonProperty("google_font_api")
+  public void setGoogleFontApi(GoogleFontApi googleFontApi) {
+    this.googleFontApi = googleFontApi;
+  }
+
+  @JsonProperty("opengse")
+  public Opengse getOpengse() {
+    return opengse;
+  }
+
+  @JsonProperty("opengse")
+  public void setOpengse(Opengse opengse) {
+    this.opengse = opengse;
+  }
 
   @JsonProperty("nginx")
   public Nginx getNginx() {

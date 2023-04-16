@@ -8,30 +8,32 @@ import java.util.List;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
-  "last_updated",
-  "jarm",
-  "isp",
-  "ip",
-  "certificate",
-  "uri",
-  "host_type",
-  "prot7",
-  "target",
-  "ptr",
-  "geo",
-  "path",
-  "protocol",
-  "prot4",
-  "@timestamp",
-  "whois",
-  "port",
-  "host",
+  "referer",
   "iteration",
-  "http",
+  "ip",
+  "cve",
+  "port",
   "tag",
-  "scan_date",
+  "domain",
+  "host",
+  "prot7",
+  "@timestamp",
+  "prot4",
+  "http",
+  "protocol",
+  "target",
+  "last_updated",
   "ssh",
-  "cve"
+  "jarm",
+  "whois",
+  "certificate",
+  "geo",
+  "host_type",
+  "path",
+  "scan_date",
+  "ptr",
+  "uri",
+  "isp"
 })
 public class Data {
 
@@ -107,9 +109,35 @@ public class Data {
   @JsonProperty("cve")
   private List<Cve> cve = new ArrayList<Cve>();
 
+  @JsonProperty("domain")
+  private List<String> domain = new ArrayList<String>();
+
+  @JsonProperty("referer")
+  private List<String> referer = new ArrayList<String>();
+
   @JsonProperty("last_updated")
   public String getLastUpdated() {
     return lastUpdated;
+  }
+
+  @JsonProperty("domain")
+  public void setDomain(List<String> domain) {
+    this.domain = domain;
+  }
+
+  @JsonProperty("domain")
+  public List<String> getDomain() {
+    return domain;
+  }
+
+  @JsonProperty("referer")
+  public List<String> getReferer() {
+    return referer;
+  }
+
+  @JsonProperty("referer")
+  public void setReferer(List<String> referer) {
+    this.referer = referer;
   }
 
   @JsonProperty("last_updated")

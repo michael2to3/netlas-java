@@ -5,19 +5,33 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@JsonPropertyOrder({"host"})
+@JsonPropertyOrder({"certificate.names", "certificate.extensions.subject_alt_name.dns_names"})
 public class Highlight {
 
-  @JsonProperty("host")
-  private String host;
+  @JsonProperty("certificate.names")
+  private String certificateNames;
 
-  @JsonProperty("host")
-  public String getHost() {
-    return host;
+  @JsonProperty("certificate.extensions.subject_alt_name.dns_names")
+  private String certificateExtensionsSubjectAltNameDnsNames;
+
+  @JsonProperty("certificate.names")
+  public String getCertificateNames() {
+    return certificateNames;
   }
 
-  @JsonProperty("host")
-  public void setHost(String host) {
-    this.host = host;
+  @JsonProperty("certificate.names")
+  public void setCertificateNames(String certificateNames) {
+    this.certificateNames = certificateNames;
+  }
+
+  @JsonProperty("certificate.extensions.subject_alt_name.dns_names")
+  public String getCertificateExtensionsSubjectAltNameDnsNames() {
+    return certificateExtensionsSubjectAltNameDnsNames;
+  }
+
+  @JsonProperty("certificate.extensions.subject_alt_name.dns_names")
+  public void setCertificateExtensionsSubjectAltNameDnsNames(
+      String certificateExtensionsSubjectAltNameDnsNames) {
+    this.certificateExtensionsSubjectAltNameDnsNames = certificateExtensionsSubjectAltNameDnsNames;
   }
 }

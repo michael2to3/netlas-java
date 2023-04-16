@@ -33,6 +33,7 @@ import okhttp3.mockwebserver.RecordedRequest;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
+import org.mockito.Captor;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
@@ -43,6 +44,7 @@ class NetlasTest {
   @Mock private Response mockResponse;
   @Mock private ResponseBody mockResponseBody;
   @Mock private Call mockCall;
+  @Captor private ArgumentCaptor<Request> requestCaptor;
 
   @BeforeEach
   void setUp() {
@@ -242,5 +244,34 @@ class NetlasTest {
     assertTrue(recordedRequest.getPath().startsWith("//api/responses/download/"));
 
     mockWebServer.shutdown();
+  }
+
+  @Test
+  void searchTest() throws IOException, NetlasRequestException {
+    String responseBody = "{\"items\": [], \"took\": 57, \"timestamp\": 1681651426}";
+    okhttp3.Response mockedResponse =
+        new okhttp3.Response.Builder()
+            .code(200)
+            .message("OK")
+            .request(new okhttp3.Request.Builder().url("http://localhost").build())
+            .protocol(okhttp3.Protocol.HTTP_1_1)
+            .body(
+                okhttp3.ResponseBody.create(
+                    responseBody, okhttp3.MediaType.get("application/json")))
+            .build();
+
+    when(mockClient.newCall(any(okhttp3.Request.class))).thenReturn(mockCall);
+    when(mockCall.execute()).thenReturn(mockedResponse);
+
+    var response =
+        netlas.search("test_query", DataType.RESPONSES, 0, "test_indices", "test_fields", false);
+
+    assertNotNull(response);
+    assertEquals(57, response.getTook());
+
+    String expectedUrl =
+        "https://app.netlas.io/api/responses/?q=test_query&start=0&indices=test_indices&fields=test_fields&source_type=include";
+    verify(mockClient).newCall(requestCaptor.capture());
+    assertEquals(expectedUrl, requestCaptor.getValue().url().toString());
   }
 }
