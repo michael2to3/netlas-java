@@ -2,34 +2,10 @@ package netlas.java.scheme;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import java.util.ArrayList;
 import java.util.List;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@JsonPropertyOrder({
-  "issuer_dn",
-  "fingerprint_md5",
-  "chain",
-  "src",
-  "redacted",
-  "signature",
-  "subject",
-  "serial_number",
-  "version",
-  "issuer",
-  "tbs_noct_fingerprint",
-  "fingerprint_sha256",
-  "extensions",
-  "tbs_fingerprint",
-  "subject_dn",
-  "names",
-  "fingerprint_sha1",
-  "signature_algorithm",
-  "spki_subject_fingerprint",
-  "validity",
-  "validation_level"
-})
 public class Certificate {
 
   @JsonProperty("issuer_dn")
@@ -94,6 +70,18 @@ public class Certificate {
 
   @JsonProperty("validation_level")
   private String validationLevel;
+
+  @JsonProperty("last_updated")
+  private String lastUpdated;
+
+  @JsonProperty("@timestamp")
+  private String timestamp;
+
+  @JsonProperty("index")
+  long index;
+
+  @JsonProperty("unknown_extensions")
+  private List<UnknownExtension> unknownExtensions = new ArrayList<UnknownExtension>();
 
   @JsonProperty("issuer_dn")
   public String getIssuerDn() {
@@ -303,5 +291,45 @@ public class Certificate {
   @JsonProperty("validation_level")
   public void setValidationLevel(String validationLevel) {
     this.validationLevel = validationLevel;
+  }
+
+  @JsonProperty("last_updated")
+  public String getLastUpdated() {
+    return lastUpdated;
+  }
+
+  @JsonProperty("last_updated")
+  public void setLastUpdated(String lastUpdated) {
+    this.lastUpdated = lastUpdated;
+  }
+
+  @JsonProperty("@timestamp")
+  public String getTimestamp() {
+    return timestamp;
+  }
+
+  @JsonProperty("@timestamp")
+  public void setTimestamp(String timestamp) {
+    this.timestamp = timestamp;
+  }
+
+  @JsonProperty("index")
+  public long getIndex() {
+    return index;
+  }
+
+  @JsonProperty("index")
+  public void setIndex(long index) {
+    this.index = index;
+  }
+
+  @JsonProperty("unknown_extensions")
+  public List<UnknownExtension> getUnknownExtensions() {
+    return unknownExtensions;
+  }
+
+  @JsonProperty("unknown_extensions")
+  public void setUnknownExtensions(List<UnknownExtension> unknownExtensions) {
+    this.unknownExtensions = unknownExtensions;
   }
 }

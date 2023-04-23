@@ -2,17 +2,16 @@ package netlas.java.scheme;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import java.math.BigInteger;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@JsonPropertyOrder({"start", "length", "end"})
 public class Validity {
 
   @JsonProperty("start")
   private String start;
 
   @JsonProperty("length")
-  private Integer length;
+  private BigInteger length;
 
   @JsonProperty("end")
   private String end;
@@ -28,12 +27,12 @@ public class Validity {
   }
 
   @JsonProperty("length")
-  public Integer getLength() {
+  public BigInteger getLength() {
     return length;
   }
 
   @JsonProperty("length")
-  public void setLength(Integer length) {
+  public void setLength(BigInteger length) {
     this.length = length;
   }
 

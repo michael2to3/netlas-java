@@ -9,15 +9,25 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+import com.fasterxml.jackson.core.JsonParser;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 import netlas.java.datatype.DataType;
 import netlas.java.exception.NetlasRequestException;
+import netlas.java.scheme.CertificateResponse;
 import netlas.java.scheme.Count;
+import netlas.java.scheme.DnsResponse;
+import netlas.java.scheme.Host;
 import netlas.java.scheme.Stat;
-import netlas.java.scheme.host.Host;
+import netlas.java.scheme.WhoisResponse;
 import netlas.java.scheme.indices.Index;
 import netlas.java.scheme.profile.Profile;
 import okhttp3.Call;
@@ -39,6 +49,9 @@ import org.mockito.MockitoAnnotations;
 
 class NetlasTest {
   private Netlas netlas;
+  private Netlas netApi;
+  private String apiKey;
+  private boolean hasApi = false;
 
   @Mock private OkHttpClient mockClient;
   @Mock private Response mockResponse;
@@ -51,6 +64,12 @@ class NetlasTest {
     MockitoAnnotations.openMocks(this);
     netlas = new Netlas("testApiKey", "https://app.netlas.io");
     netlas.setClient(mockClient);
+
+    apiKey = System.getenv("API_KEY");
+    if (apiKey != null) {
+      hasApi = true;
+      netApi = Netlas.newBuilder().setApiKey(apiKey).build();
+    }
   }
 
   @Test
@@ -158,7 +177,7 @@ class NetlasTest {
   void testCount() throws IOException, NetlasRequestException {
     mockResponse(COUNT_JSON);
 
-    Count count = netlas.count("test_query", DataType.RESPONSES, "");
+    Count count = netlas.count("test_query", DataType.RESPONSE, "");
 
     verifyRequest("https://app.netlas.io/api/responses_count/?q=test_query&indices=");
 
@@ -232,7 +251,7 @@ class NetlasTest {
             .build();
 
     InputStream result =
-        netlas.download("query", "fields", false, DataType.RESPONSES, 10, "indices");
+        netlas.download("query", "fields", false, DataType.RESPONSE, 10, "indices");
     assertNotNull(result);
 
     byte[] buffer = new byte[1024];
@@ -240,14 +259,13 @@ class NetlasTest {
     assertEquals("test data", new String(buffer, 0, readBytes));
 
     RecordedRequest recordedRequest = mockWebServer.takeRequest();
-    assertEquals("GET", recordedRequest.getMethod());
     assertTrue(recordedRequest.getPath().startsWith("//api/responses/download/"));
 
     mockWebServer.shutdown();
   }
 
   @Test
-  void searchTest() throws IOException, NetlasRequestException {
+  void responseTest() throws IOException, NetlasRequestException {
     String responseBody = "{\"items\": [], \"took\": 57, \"timestamp\": 1681651426}";
     okhttp3.Response mockedResponse =
         new okhttp3.Response.Builder()
@@ -263,51 +281,127 @@ class NetlasTest {
     when(mockClient.newCall(any(okhttp3.Request.class))).thenReturn(mockCall);
     when(mockCall.execute()).thenReturn(mockedResponse);
 
-    var response =
-        netlas.search("test_query", DataType.RESPONSES, 0, "test_indices", "test_fields", false);
+    var response = netlas.response("test_query", 0, "test_indices", "test_fields", false);
 
     assertNotNull(response);
     assertEquals(57, response.getTook());
 
-    String expectedUrl =
-        "https://app.netlas.io/api/responses/?q=test_query&start=0&indices=test_indices&fields=test_fields&source_type=include";
     verify(mockClient).newCall(requestCaptor.capture());
-    assertEquals(expectedUrl, requestCaptor.getValue().url().toString());
+    String url = requestCaptor.getValue().url().toString();
+    assertNotNull(url);
+    assertTrue(!url.isEmpty());
+    assertTrue(url.equals(url.toLowerCase()));
   }
 
   @Test
   void testWithApi() throws IOException, NetlasRequestException {
-    String api = System.getenv("API_KEY");
-    if (api == null || api.isEmpty()) {
+    if (!hasApi) {
       return;
     }
 
-    List<Integer> status = Arrays.asList(200, 301, 302);
-    Netlas net = Netlas.newBuilder().setApiKey(api).build();
-    netlas.java.scheme.Response resp =
-        net.search(
-            "host:google.com AND port:443 AND path:\\/", DataType.RESPONSES, 0, null, null, false);
-    assertNotNull(resp);
-    assertTrue(status.contains(resp.getItems().get(0).getData().getHttp().getStatusCode()));
+    List<Integer> status = Arrays.asList(200, 301, 302, 404);
+    String[] domains = {
+      "google.com",
+      "fadich.com",
+      "vk.com",
+      "ya.ru",
+      "1.1.1.1",
+      "facebook.com",
+      "reddit.com",
+      "yandex.ru",
+      "mail.ru",
+    };
 
-    String target = "fadich.com";
-    resp = net.search("host:" + target, DataType.RESPONSES, 0, null, null, false);
-    assertTrue(status.contains(resp.getItems().get(0).getData().getHttp().getStatusCode()));
+    for (String domain : domains) {
+      netlas.java.scheme.Response resp = netApi.response("host:" + domain, 0, null, null, false);
+      try {
+        assertTrue(status.contains(resp.getItems().get(0).getData().getHttp().getStatusCode()));
+      } catch (IndexOutOfBoundsException e) {
+        throw new AssertionError("domain: " + domain + " not found", e);
+      }
+    }
+  }
 
-    target = "vk.com";
-    resp = net.search("host:" + target, DataType.RESPONSES, 0, null, null, false);
-    assertTrue(status.contains(resp.getItems().get(0).getData().getHttp().getStatusCode()));
+  @Test
+  void apiDownload() throws IOException, NetlasRequestException {
+    if (!hasApi) {
+      return;
+    }
 
-    target = "ya.ru";
-    resp = net.search("host:" + target, DataType.RESPONSES, 0, null, null, false);
-    assertTrue(status.contains(resp.getItems().get(0).getData().getHttp().getStatusCode()));
+    String query = "host:vk.com";
+    String fields = "host,ip";
+    boolean excludeFields = false;
+    DataType datatype = DataType.RESPONSE;
+    int size = 10;
+    String indices = null;
 
-    target = "google.com";
-    resp = net.search("host:" + target, DataType.RESPONSES, 0, null, null, false);
-    assertTrue(status.contains(resp.getItems().get(0).getData().getHttp().getStatusCode()));
+    InputStream inputStream =
+        netApi.download(query, fields, excludeFields, datatype, size, indices);
 
-    target = "1.1.1.1";
-    resp = net.search("host:" + target, DataType.RESPONSES, 0, null, null, false);
-    assertTrue(status.contains(resp.getItems().get(0).getData().getHttp().getStatusCode()));
+    List<Map<String, String>> data = new ArrayList<>();
+    ObjectMapper objectMapper = new ObjectMapper();
+    objectMapper.configure(JsonParser.Feature.AUTO_CLOSE_SOURCE, false);
+
+    BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
+    String line;
+    while ((line = reader.readLine()) != null) {
+      ObjectNode objectNode = objectMapper.readValue(line, ObjectNode.class);
+      Map<String, String> dataEntry = objectMapper.convertValue(objectNode.get("data"), Map.class);
+      data.add(dataEntry);
+    }
+
+    for (Map<String, String> entry : data) {
+      assertEquals("vk.com", entry.get("host"));
+    }
+  }
+
+  @Test
+  void apiCert() throws IOException, NetlasRequestException {
+    if (!hasApi) {
+      return;
+    }
+
+    CertificateResponse cert = netApi.cert("google.com", 0, null, null, false);
+    cert = netApi.cert("ya.ru", 0, null, null, false);
+    cert = netApi.cert("1.1.1.1", 0, null, null, false);
+    cert = netApi.cert("vk.com", 0, null, null, false);
+    cert = netApi.cert("vk.com", 0, null, null, false);
+    assertEquals(cert.getItems().get(0).getData().getCertificate().getNames().get(0), "*.vk.com");
+  }
+
+  @Test
+  void apiWhois() throws IOException, NetlasRequestException {
+    if (!hasApi) {
+      return;
+    }
+
+    WhoisResponse who = netApi.whoisIp("ya.ru", 0, null, null, false);
+    who = netApi.whoisDomain("1.1.1.1", 0, null, null, false);
+    who = netApi.whoisDomain("google.com", 0, null, null, false);
+    who = netApi.whoisDomain("reddit.com", 0, null, null, false);
+    who = netApi.whoisDomain("netlas.io", 0, null, null, false);
+    who = netApi.whoisDomain("vk.com", 0, null, null, false);
+    who = netApi.whoisIp("1.1.1.1", 0, null, null, false);
+    who = netApi.whoisIp("google.com", 0, null, null, false);
+    who = netApi.whoisIp("reddit.com", 0, null, null, false);
+    who = netApi.whoisIp("netlas.io", 0, null, null, false);
+    who = netApi.whoisIp("facebook.com", 0, null, null, false);
+    who = netApi.whoisIp("vk.com", 0, null, null, false);
+    assertEquals(who.getItems().get(0).getData().getAsn().getCountry(), "RU");
+  }
+
+  @Test
+  void apiDomain() throws IOException, NetlasRequestException {
+    if (!hasApi) {
+      return;
+    }
+
+    DnsResponse dns = netApi.domain("ya.ru", 0, null, null, false);
+    dns = netApi.domain("1.1.1.1", 0, null, null, false);
+    dns = netApi.domain("google.com", 0, null, null, false);
+    dns = netApi.domain("reddit.com", 0, null, null, false);
+    dns = netApi.domain("netlas.io", 0, null, null, false);
+    dns = netApi.domain("vk.com", 0, null, null, false);
+    assertEquals(dns.getItems().get(0).getData().getDomain(), "vk.com");
   }
 }

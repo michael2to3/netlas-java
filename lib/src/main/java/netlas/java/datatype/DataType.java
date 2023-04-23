@@ -1,10 +1,14 @@
 package netlas.java.datatype;
 
 public enum DataType {
-  RESPONSES("responses"),
+  RESPONSE("responses"),
   STAT("stat"),
   COUNT("count"),
-  PROFILE("profile");
+  PROFILE("profile"),
+  WHOIS_IP("whois_ip"),
+  WHOIS_DOMAIN("whois_domains"),
+  CERT("certs"),
+  DOMAIN("domains");
 
   private final String value;
 

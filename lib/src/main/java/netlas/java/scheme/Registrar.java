@@ -1,11 +1,9 @@
-package netlas.java.scheme.host;
+package netlas.java.scheme;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@JsonPropertyOrder({"referral_url", "name", "id"})
 public class Registrar {
 
   @JsonProperty("referral_url")
@@ -16,6 +14,9 @@ public class Registrar {
 
   @JsonProperty("id")
   private String id;
+
+  @JsonProperty("country")
+  private String country;
 
   @JsonProperty("referral_url")
   public String getReferralUrl() {
@@ -45,5 +46,15 @@ public class Registrar {
   @JsonProperty("id")
   public void setId(String id) {
     this.id = id;
+  }
+
+  @JsonProperty("country")
+  public String getCountry() {
+    return country;
+  }
+
+  @JsonProperty("country")
+  public void setCountry(String country) {
+    this.country = country;
   }
 }

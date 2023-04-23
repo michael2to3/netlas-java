@@ -2,12 +2,10 @@ package netlas.java.scheme;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import java.util.ArrayList;
 import java.util.List;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@JsonPropertyOrder({"id", "cps"})
 public class CertificatePolicy {
 
   @JsonProperty("id")
@@ -15,6 +13,9 @@ public class CertificatePolicy {
 
   @JsonProperty("cps")
   private List<String> cps = new ArrayList<String>();
+
+  @JsonProperty("user_notice")
+  private List<UserNotice> userNotice;
 
   @JsonProperty("id")
   public String getId() {
@@ -34,5 +35,15 @@ public class CertificatePolicy {
   @JsonProperty("cps")
   public void setCps(List<String> cps) {
     this.cps = cps;
+  }
+
+  @JsonProperty("user_notice")
+  public List<UserNotice> getUserNotice() {
+    return userNotice;
+  }
+
+  @JsonProperty("user_notice")
+  public void setUserNotice(List<UserNotice> userNotice) {
+    this.userNotice = userNotice;
   }
 }

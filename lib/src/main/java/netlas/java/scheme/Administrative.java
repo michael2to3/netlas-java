@@ -1,11 +1,9 @@
-package netlas.java.scheme.host;
+package netlas.java.scheme;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@JsonPropertyOrder({"country", "province", "city", "street", "organization", "name", "postal_code"})
 public class Administrative {
 
   @JsonProperty("country")
@@ -28,6 +26,9 @@ public class Administrative {
 
   @JsonProperty("postal_code")
   private String postalCode;
+
+  @JsonProperty("id")
+  private String id;
 
   @JsonProperty("country")
   public String getCountry() {
@@ -97,5 +98,15 @@ public class Administrative {
   @JsonProperty("postal_code")
   public void setPostalCode(String postalCode) {
     this.postalCode = postalCode;
+  }
+
+  @JsonProperty("id")
+  public String getId() {
+    return id;
+  }
+
+  @JsonProperty("id")
+  public void setId(String id) {
+    this.id = id;
   }
 }
