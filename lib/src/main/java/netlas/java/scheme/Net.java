@@ -2,7 +2,6 @@ package netlas.java.scheme;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-
 import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
