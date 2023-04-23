@@ -1,39 +1,39 @@
 package netlas.java;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 import netlas.java.datatype.DataType;
 import netlas.java.exception.NetlasRequestException;
+import netlas.java.scheme.CertificateResponse;
 import netlas.java.scheme.Count;
+import netlas.java.scheme.DnsResponse;
+import netlas.java.scheme.Host;
 import netlas.java.scheme.Stat;
-import netlas.java.scheme.host.Host;
+import netlas.java.scheme.WhoisResponse;
 import netlas.java.scheme.indices.Index;
 import netlas.java.scheme.profile.Profile;
 import okhttp3.HttpUrl;
+import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
+import okhttp3.RequestBody;
 import okhttp3.Response;
 import okhttp3.ResponseBody;
 
 /** A class for interacting with the Netlas API. */
 public class Netlas {
+  private static int TIMEOUT_S = 120;
   private String apiKey;
   private String apiBase;
   private OkHttpClient client;
   private ObjectMapper objectMapper;
-
-  /** Private constructor to initialize default values for API base, client, and object mapper. */
-  private Netlas() {
-    this.apiBase = "https://app.netlas.io";
-    this.client = new OkHttpClient();
-    this.objectMapper =
-        new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
-    ;
-  }
 
   /**
    * Public constructor to initialize the API key, API base, client, and object mapper.
@@ -47,77 +47,74 @@ public class Netlas {
     this.apiBase = apiBase;
   }
 
-  /**
-   * Makes an HTTP request to the specified URL and returns the response as a JsonNode.
-   *
-   * @param urlBuilder The HttpUrl.Builder instance used to build the request URL
-   * @return The response body as a JsonNode
-   * @throws IOException If there is an error while making the request or processing the response
-   */
-  private JsonNode request(HttpUrl.Builder urlBuilder) throws IOException {
-    Request request =
-        new Request.Builder()
-            .url(urlBuilder.build())
-            .addHeader("Content-Type", "application/json")
-            .addHeader("X-Api-Key", apiKey)
+  /** Private constructor to initialize default values for API base, client, and object mapper. */
+  private Netlas() {
+    this.apiBase = "https://app.netlas.io";
+    this.client =
+        new OkHttpClient()
+            .newBuilder()
+            .connectTimeout(TIMEOUT_S, TimeUnit.SECONDS)
+            .readTimeout(TIMEOUT_S, TimeUnit.SECONDS)
+            .writeTimeout(TIMEOUT_S, TimeUnit.SECONDS)
             .build();
-
-    try (Response response = client.newCall(request).execute()) {
-      String responseBody = response.body().string();
-      return objectMapper.readTree(responseBody);
-    }
+    this.objectMapper =
+        new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+    ;
   }
 
-  /**
-   * Searches for data matching the specified query and returns a Response object.
-   *
-   * @param query The search query
-   * @param datatype The type of data to search for
-   * @param page The page number to start from
-   * @param indices The indices to search in
-   * @param fields The fields to include or exclude in the response
-   * @param excludeFields Whether to exclude the specified fields from the response
-   * @return A Response object containing the search results
-   * @throws NetlasRequestException If there is an error while making the request
-   */
-  public netlas.java.scheme.Response search(
-      String query,
-      DataType datatype,
-      int page,
-      String indices,
-      String fields,
-      boolean excludeFields)
+  public netlas.java.scheme.Response response(
+      String query, int page, String indices, String fields, boolean excludeFields)
       throws NetlasRequestException {
-    HttpUrl.Builder urlBuilder =
-        HttpUrl.parse(apiBase + "/api/" + datatype.getValue() + "/")
-            .newBuilder()
-            .addQueryParameter("q", query)
-            .addQueryParameter("start", Integer.toString(page * 20))
-            .addQueryParameter("indices", indices)
-            .addQueryParameter("fields", fields)
-            .addQueryParameter("source_type", excludeFields ? "exclude" : "include");
+    return deserializeResponse(
+        query,
+        DataType.RESPONSE,
+        page,
+        indices,
+        fields,
+        excludeFields,
+        netlas.java.scheme.Response.class);
+  }
 
-    try {
-      JsonNode request = request(urlBuilder);
-      return objectMapper.convertValue(request, netlas.java.scheme.Response.class);
-    } catch (IOException e) {
-      throw new NetlasRequestException(e.getMessage(), e);
-    }
+  public DnsResponse domain(
+      String query, int page, String indices, String fields, boolean excludeFields)
+      throws NetlasRequestException {
+    return deserializeResponse(
+        query, DataType.DOMAIN, page, indices, fields, excludeFields, DnsResponse.class);
+  }
+
+  public WhoisResponse whoisIp(
+      String query, int page, String indices, String fields, boolean excludeFields)
+      throws NetlasRequestException {
+    return deserializeResponse(
+        query, DataType.WHOIS_IP, page, indices, fields, excludeFields, WhoisResponse.class);
+  }
+
+  public WhoisResponse whoisDomain(
+      String query, int page, String indices, String fields, boolean excludeFields)
+      throws NetlasRequestException {
+    return deserializeResponse(
+        query, DataType.WHOIS_DOMAIN, page, indices, fields, excludeFields, WhoisResponse.class);
+  }
+
+  public CertificateResponse cert(
+      String query, int page, String indices, String fields, boolean excludeFields)
+      throws NetlasRequestException {
+    return deserializeResponse(
+        query, DataType.CERT, page, indices, fields, excludeFields, CertificateResponse.class);
   }
 
   /**
    * Counts the number of matching results for the specified query and datatype.
    *
    * @param query The search query
-   * @param datatype The type of data to count
    * @param indices The indices to search in
    * @return A Count object containing the count of matching results
    * @throws NetlasRequestException If there is an error while making the request
    */
-  public Count count(String query, DataType datatype, String indices)
+  public Count count(String query, DataType dataType, String indices)
       throws NetlasRequestException {
     HttpUrl.Builder urlBuilder =
-        HttpUrl.parse(apiBase + "/api/" + datatype.getValue() + "_count/")
+        HttpUrl.parse(apiBase + "/api/" + dataType.getValue() + "_count/")
             .newBuilder()
             .addQueryParameter("q", query)
             .addQueryParameter("indices", indices);
@@ -241,23 +238,29 @@ public class Netlas {
       int size,
       String indices)
       throws NetlasRequestException {
-    HttpUrl.Builder urlBuilder =
-        HttpUrl.parse(apiBase + "/api/" + datatype.getValue() + "/download/")
-            .newBuilder()
-            .addQueryParameter("q", query)
-            .addQueryParameter("size", Integer.toString(size))
-            .addQueryParameter("indices", indices)
-            .addQueryParameter("raw", "true")
-            .addQueryParameter("fields", fields)
-            .addQueryParameter("source_type", excludeFields ? "exclude" : "include");
+    String endpoint = apiBase + "/api/" + datatype.getValue() + "/download/";
 
-    OkHttpClient client = new OkHttpClient();
+    ObjectMapper objectMapper = new ObjectMapper();
+    ObjectNode payload = objectMapper.createObjectNode();
+    payload.put("q", query);
+    payload.put("size", size);
+    payload.put("indices", indices);
+    payload.put("raw", true);
+    payload.put("fields", fields);
+    payload.put("source_type", excludeFields ? "exclude" : "include");
+
+    String jsonPayload;
+    try {
+      jsonPayload = objectMapper.writeValueAsString(payload);
+    } catch (JsonProcessingException e) {
+      throw new NetlasRequestException(e.getMessage(), e);
+    }
+
+    MediaType JSON = MediaType.parse("application/json; charset=utf-8");
+    RequestBody body = RequestBody.create(jsonPayload, JSON);
 
     Request request =
-        new Request.Builder()
-            .url(urlBuilder.build())
-            .addHeader("Authorization", "Bearer " + apiKey)
-            .build();
+        new Request.Builder().url(endpoint).post(body).addHeader("X-Api-Key", apiKey).build();
 
     try {
       Response response = client.newCall(request).execute();
@@ -335,6 +338,64 @@ public class Netlas {
      */
     public Netlas build() {
       return Netlas.this;
+    }
+  }
+
+  /**
+   * Makes an HTTP request to the specified URL and returns the response as a JsonNode.
+   *
+   * @param urlBuilder The HttpUrl.Builder instance used to build the request URL
+   * @return The response body as a JsonNode
+   * @throws IOException If there is an error while making the request or processing the response
+   */
+  private JsonNode request(HttpUrl.Builder urlBuilder) throws IOException {
+    Request request =
+        new Request.Builder()
+            .url(urlBuilder.build())
+            .addHeader("Content-Type", "application/json")
+            .addHeader("X-Api-Key", apiKey)
+            .build();
+
+    try (Response response = client.newCall(request).execute()) {
+      String responseBody = response.body().string();
+      return objectMapper.readTree(responseBody);
+    }
+  }
+
+  private JsonNode request(
+      String query,
+      DataType dataType,
+      int page,
+      String indices,
+      String fields,
+      boolean excludeFields)
+      throws IOException {
+    HttpUrl.Builder urlBuilder =
+        HttpUrl.parse(apiBase + "/api/" + dataType.getValue() + "/")
+            .newBuilder()
+            .addQueryParameter("q", query)
+            .addQueryParameter("start", Integer.toString(page * 20))
+            .addQueryParameter("indices", indices)
+            .addQueryParameter("fields", fields)
+            .addQueryParameter("source_type", excludeFields ? "exclude" : "include");
+
+    return request(urlBuilder);
+  }
+
+  private <T> T deserializeResponse(
+      String query,
+      DataType dataType,
+      int page,
+      String indices,
+      String fields,
+      boolean excludeFields,
+      Class<T> responseType)
+      throws NetlasRequestException {
+    try {
+      JsonNode request = request(query, dataType, page, indices, fields, excludeFields);
+      return objectMapper.convertValue(request, responseType);
+    } catch (IOException e) {
+      throw new NetlasRequestException(e.getMessage(), e);
     }
   }
 }

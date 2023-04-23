@@ -2,30 +2,12 @@ package netlas.java.scheme;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@JsonPropertyOrder({
-  "country",
-  "address",
-  "city",
-  "created",
-  "range",
-  "description",
-  "handle",
-  "organization",
-  "name",
-  "start_ip",
-  "cidr",
-  "net_size",
-  "state",
-  "postal_code",
-  "updated",
-  "end_ip",
-  "remarks"
-})
 public class Net {
 
   @JsonProperty("country")
@@ -62,7 +44,7 @@ public class Net {
   private List<String> cidr = new ArrayList<String>();
 
   @JsonProperty("net_size")
-  private Integer netSize;
+  private BigInteger netSize;
 
   @JsonProperty("state")
   private String state;
@@ -190,12 +172,12 @@ public class Net {
   }
 
   @JsonProperty("net_size")
-  public Integer getNetSize() {
+  public BigInteger getNetSize() {
     return netSize;
   }
 
   @JsonProperty("net_size")
-  public void setNetSize(Integer netSize) {
+  public void setNetSize(BigInteger netSize) {
     this.netSize = netSize;
   }
 

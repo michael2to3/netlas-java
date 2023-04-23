@@ -7,21 +7,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@JsonPropertyOrder({
-  "headers",
-  "status_code",
-  "http_version",
-  "unknown_headers",
-  "status_line",
-  "favicon",
-  "body_sha256",
-  "description",
-  "title",
-  "body",
-  "transfer_encoding",
-  "meta",
-  "content_length"
-})
 public class Http {
 
   @JsonProperty("headers")

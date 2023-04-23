@@ -29,6 +29,15 @@ public class KeyUsage {
   @JsonProperty("key_encipherment")
   private Boolean keyEncipherment;
 
+  @JsonProperty("key_agreement")
+  private Boolean keyAgreement;
+
+  @JsonProperty("data_encipherment")
+  private Boolean dataEncipherment;
+
+  @JsonProperty("content_commitment")
+  private Boolean contentCommitment;
+
   @JsonProperty("digital_signature")
   public Boolean getDigitalSignature() {
     return digitalSignature;
@@ -77,5 +86,35 @@ public class KeyUsage {
   @JsonProperty("key_encipherment")
   public void setKeyEncipherment(Boolean keyEncipherment) {
     this.keyEncipherment = keyEncipherment;
+  }
+
+  @JsonProperty("key_agreement")
+  public Boolean getKeyAgreement() {
+    return keyAgreement;
+  }
+
+  @JsonProperty("key_agreement")
+  public void setKeyAgreement(Boolean keyAgreement) {
+    this.keyAgreement = keyAgreement;
+  }
+
+  @JsonProperty("data_encipherment")
+  public Boolean getDataEncipherment() {
+    return dataEncipherment;
+  }
+
+  @JsonProperty("data_encipherment")
+  public void setDataEncipherment(Boolean dataEncipherment) {
+    this.dataEncipherment = dataEncipherment;
+  }
+
+  @JsonProperty("content_commitment")
+  public Boolean getContentCommitment() {
+    return contentCommitment;
+  }
+
+  @JsonProperty("content_commitment")
+  public void setContentCommitment(Boolean contentCommitment) {
+    this.contentCommitment = contentCommitment;
   }
 }

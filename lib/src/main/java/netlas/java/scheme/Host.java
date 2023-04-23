@@ -1,21 +1,11 @@
-package netlas.java.scheme.host;
+package netlas.java.scheme;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import java.util.ArrayList;
 import java.util.List;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@JsonPropertyOrder({
-  "related_domains_count",
-  "related_domains",
-  "dns",
-  "whois",
-  "related_domains_query",
-  "domain",
-  "type"
-})
 public class Host {
 
   @JsonProperty("related_domains_count")

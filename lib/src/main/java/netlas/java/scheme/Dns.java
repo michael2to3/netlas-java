@@ -1,13 +1,11 @@
-package netlas.java.scheme.host;
+package netlas.java.scheme;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import java.util.ArrayList;
 import java.util.List;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@JsonPropertyOrder({"a", "txt", "level", "ns", "zone", "nsid", "id_server"})
 public class Dns {
 
   @JsonProperty("a")
@@ -30,6 +28,21 @@ public class Dns {
 
   @JsonProperty("id_server")
   private String idServer;
+
+  @JsonProperty("last_updated")
+  private String lastUpdated;
+
+  @JsonProperty("@timestamp")
+  private String timestamp;
+
+  @JsonProperty("domain")
+  private String domain;
+
+  @JsonProperty("mx")
+  private List<String> mx = new ArrayList<String>();
+
+  @JsonProperty("cname")
+  private List<String> cname = new ArrayList<String>();
 
   @JsonProperty("a")
   public List<String> getA() {
@@ -94,5 +107,55 @@ public class Dns {
   @JsonProperty("id_server")
   public String getIdServer() {
     return idServer;
+  }
+
+  @JsonProperty("last_updated")
+  public String getLastUpdate() {
+    return lastUpdated;
+  }
+
+  @JsonProperty("last_updated")
+  public void setLastUpdate(String lastUpdated) {
+    this.lastUpdated = lastUpdated;
+  }
+
+  @JsonProperty("@timestamp")
+  public String getTimestamp() {
+    return timestamp;
+  }
+
+  @JsonProperty("@timestamp")
+  public void setTimestamp(String timestamp) {
+    this.timestamp = timestamp;
+  }
+
+  @JsonProperty("domain")
+  public String getDomain() {
+    return domain;
+  }
+
+  @JsonProperty("domain")
+  public void setDomain(String domain) {
+    this.domain = domain;
+  }
+
+  @JsonProperty("mx")
+  public List<String> getMx() {
+    return mx;
+  }
+
+  @JsonProperty("mx")
+  public void setMx(List<String> mx) {
+    this.mx = mx;
+  }
+
+  @JsonProperty("cname")
+  public List<String> getCname() {
+    return cname;
+  }
+
+  @JsonProperty("cname")
+  public void setCname(List<String> cname) {
+    this.cname = cname;
   }
 }

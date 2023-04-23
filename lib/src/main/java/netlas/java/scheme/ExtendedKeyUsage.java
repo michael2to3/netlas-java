@@ -14,6 +14,12 @@ public class ExtendedKeyUsage {
   @JsonProperty("server_auth")
   private Boolean serverAuth;
 
+  @JsonProperty("any")
+  private Boolean any;
+
+  @JsonProperty("ipsec_end_system")
+  private Boolean ipsecEndSystem;
+
   @JsonProperty("client_auth")
   public Boolean getClientAuth() {
     return clientAuth;
@@ -32,5 +38,25 @@ public class ExtendedKeyUsage {
   @JsonProperty("server_auth")
   public void setServerAuth(Boolean serverAuth) {
     this.serverAuth = serverAuth;
+  }
+
+  @JsonProperty("any")
+  public Boolean getAny() {
+    return any;
+  }
+
+  @JsonProperty("any")
+  public void setAny(Boolean any) {
+    this.any = any;
+  }
+
+  @JsonProperty("ipsec_end_system")
+  public Boolean getIpsecEndSystem() {
+    return ipsecEndSystem;
+  }
+
+  @JsonProperty("ipsec_end_system")
+  public void setIpsecEndSystem(Boolean ipsecEndSystem) {
+    this.ipsecEndSystem = ipsecEndSystem;
   }
 }

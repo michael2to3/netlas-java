@@ -1,11 +1,9 @@
-package netlas.java.scheme.host;
+package netlas.java.scheme;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@JsonPropertyOrder({"retries", "quota_retries", "parser", "was_queued", "total_time", "error"})
 public class Stats {
 
   @JsonProperty("retries")

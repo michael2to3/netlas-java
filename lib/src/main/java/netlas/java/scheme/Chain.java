@@ -2,29 +2,10 @@ package netlas.java.scheme;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import java.util.ArrayList;
+import java.util.List;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@JsonPropertyOrder({
-  "issuer_dn",
-  "fingerprint_md5",
-  "redacted",
-  "signature",
-  "subject",
-  "serial_number",
-  "version",
-  "issuer",
-  "tbs_noct_fingerprint",
-  "fingerprint_sha256",
-  "extensions",
-  "tbs_fingerprint",
-  "subject_dn",
-  "fingerprint_sha1",
-  "signature_algorithm",
-  "spki_subject_fingerprint",
-  "validity",
-  "validation_level"
-})
 public class Chain {
 
   @JsonProperty("issuer_dn")
@@ -80,6 +61,12 @@ public class Chain {
 
   @JsonProperty("validation_level")
   private String validationLevel;
+
+  @JsonProperty("names")
+  private List<String> names = new ArrayList<String>();
+
+  @JsonProperty("unknown_extensions")
+  private List<UnknownExtension> unknownExtensions = new ArrayList<UnknownExtension>();
 
   @JsonProperty("issuer_dn")
   public String getIssuerDn() {
@@ -259,5 +246,25 @@ public class Chain {
   @JsonProperty("validation_level")
   public void setValidationLevel(String validationLevel) {
     this.validationLevel = validationLevel;
+  }
+
+  @JsonProperty("names")
+  public List<String> getNames() {
+    return names;
+  }
+
+  @JsonProperty("names")
+  public void setNames(List<String> names) {
+    this.names = names;
+  }
+
+  @JsonProperty("unknown_extensions")
+  public List<UnknownExtension> getUnknownExtensions() {
+    return unknownExtensions;
+  }
+
+  @JsonProperty("unknown_extensions")
+  public void setUnknownExtensions(List<UnknownExtension> unknownExtensions) {
+    this.unknownExtensions = unknownExtensions;
   }
 }

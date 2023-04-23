@@ -2,21 +2,11 @@ package netlas.java.scheme;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import java.util.ArrayList;
 import java.util.List;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@JsonPropertyOrder({
-  "country",
-  "organization",
-  "common_name",
-  "province",
-  "locality",
-  "organizational_unit"
-})
 public class Subject {
-
   @JsonProperty("country")
   private List<String> country = new ArrayList<String>();
 
@@ -34,6 +24,12 @@ public class Subject {
 
   @JsonProperty("organizational_unit")
   private List<String> organizationalUnit = new ArrayList<String>();
+
+  @JsonProperty("serial_number")
+  private List<String> serialNumber = new ArrayList<String>();
+
+  @JsonProperty("email_address")
+  private List<String> emailAddress = new ArrayList<String>();
 
   @JsonProperty("country")
   public List<String> getCountry() {
@@ -93,5 +89,25 @@ public class Subject {
   @JsonProperty("organizational_unit")
   public void setOrganizationalUnit(List<String> organizationalUnit) {
     this.organizationalUnit = organizationalUnit;
+  }
+
+  @JsonProperty("serial_number")
+  public List<String> getSerialNumber() {
+    return serialNumber;
+  }
+
+  @JsonProperty("serial_number")
+  public void setSerialNumber(List<String> serialNumber) {
+    this.serialNumber = serialNumber;
+  }
+
+  @JsonProperty("email_address")
+  public List<String> getEmailAddress() {
+    return emailAddress;
+  }
+
+  @JsonProperty("email_address")
+  public void setEmailAddress(List<String> emailAddress) {
+    this.emailAddress = emailAddress;
   }
 }
